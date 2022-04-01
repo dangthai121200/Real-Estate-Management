@@ -1,0 +1,3 @@
+hostname:us-cdbr-east-05.cleardb.net
+username:b1eef1a051362b
+password:4330144a
