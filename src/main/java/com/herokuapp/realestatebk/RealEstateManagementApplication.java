@@ -1,4 +1,4 @@
-package herokuapp.com;
+package com.herokuapp.realestatebk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
