@@ -43,12 +43,12 @@ public class Hopdongdatcoc implements Serializable {
 	private List<Hopdongchuyennhuong> hopdongchuyennhuongs;
 
 	//bi-directional many-to-one association to Batdongsan
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bdsid")
 	private Batdongsan batdongsan;
 
 	//bi-directional many-to-one association to Khachhang
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="khid")
 	private Khachhang khachhang;
 

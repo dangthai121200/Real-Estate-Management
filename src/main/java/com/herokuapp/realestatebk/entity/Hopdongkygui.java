@@ -38,12 +38,12 @@ public class Hopdongkygui implements Serializable {
 	private byte trangthai;
 
 	//bi-directional many-to-one association to Batdongsan
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bdsid")
 	private Batdongsan batdongsan;
 
 	//bi-directional many-to-one association to Khachhang
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="khid")
 	private Khachhang khachhang;
 

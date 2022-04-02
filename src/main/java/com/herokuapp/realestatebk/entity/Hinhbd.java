@@ -23,7 +23,7 @@ public class Hinhbd implements Serializable {
 	private String hinh;
 
 	//bi-directional many-to-one association to Batdongsan
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bdsid")
 	private Batdongsan batdongsan;
 

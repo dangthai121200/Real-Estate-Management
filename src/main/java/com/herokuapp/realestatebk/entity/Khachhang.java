@@ -72,7 +72,7 @@ public class Khachhang implements Serializable {
 	private List<Hopdongkygui> hopdongkyguis;
 
 	//bi-directional many-to-one association to Nhanvien
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="nvid")
 	private Nhanvien nhanvien;
 

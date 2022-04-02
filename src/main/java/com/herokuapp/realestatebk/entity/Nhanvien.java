@@ -39,8 +39,8 @@ public class Nhanvien implements Serializable {
 	@Column(nullable=false)
 	private Date ngaysinh;
 
-	@Column(nullable=false)
-	private byte quyen;
+	@Column(nullable=false, length=10)
+	private String quyen;
 
 	@Column(nullable=false)
 	private int sdt;
@@ -117,11 +117,11 @@ public class Nhanvien implements Serializable {
 		this.ngaysinh = ngaysinh;
 	}
 
-	public byte getQuyen() {
+	public String getQuyen() {
 		return this.quyen;
 	}
 
-	public void setQuyen(byte quyen) {
+	public void setQuyen(String quyen) {
 		this.quyen = quyen;
 	}
 

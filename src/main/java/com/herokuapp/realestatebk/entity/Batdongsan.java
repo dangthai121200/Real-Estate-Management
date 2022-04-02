@@ -63,12 +63,12 @@ public class Batdongsan implements Serializable {
 	private int tinhtrang;
 
 	//bi-directional many-to-one association to Khachhang
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="khid")
 	private Khachhang khachhang;
 
 	//bi-directional many-to-one association to Loaibd
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="loaiid")
 	private Loaibd loaibd;
 

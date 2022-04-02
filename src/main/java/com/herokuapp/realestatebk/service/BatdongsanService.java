@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
-import com.herokuapp.realestatebk.reponsitory.BatdongsanReponsitory;
+import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 
 
 @Service
 public class BatdongsanService {
 	
 	@Autowired
-	private BatdongsanReponsitory batdongsanReponsitory;
+	private BatdongsanRepository batdongsanReponsitory;
 	
 	public List<Batdongsan> getAllBatdongsan(){
 		
