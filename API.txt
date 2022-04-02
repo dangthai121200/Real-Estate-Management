@@ -1,0 +1,7 @@
+base user https://realestatebk.herokuapp.com
+
+Batdongsan
+ - GET: /batdongsan: get all list batdongsan
+
+Nhanvien:
+ - GET: /nhanvien: get all list nhanvien
