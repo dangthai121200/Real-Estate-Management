@@ -19,4 +19,22 @@ public class NhanvienService {
 		return (List<Nhanvien>) nhanvienRepository.findAll();
 	}
 
+	public void deleteNhanvien(int id) {
+		nhanvienRepository.deleteById(id);;
+	}
+
+	public Nhanvien addNhanvien(Nhanvien nhanvien) {
+		Nhanvien nhanvienAdd = nhanvienRepository.save(nhanvien);
+		return nhanvienAdd;
+	}
+
+	public Nhanvien editNhanvien(Nhanvien nhanvien) {
+		Nhanvien nhanvienEdit = null;
+		boolean flag = nhanvienRepository.existsById(nhanvien.getNvid());
+		if(flag) {
+			nhanvienEdit = nhanvienRepository.save(nhanvien);
+		}
+		return nhanvienEdit;
+	}
+
 }

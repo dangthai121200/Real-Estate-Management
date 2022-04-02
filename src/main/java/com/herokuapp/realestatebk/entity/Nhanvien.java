@@ -21,7 +21,7 @@ public class Nhanvien implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int nvid;
 
-	@Column(nullable=false, length=50)
+	@Column(name = "diachi", nullable=false, length=50)
 	private String diachi;
 
 	private float doanhthu;
