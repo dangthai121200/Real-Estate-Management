@@ -5,3 +5,6 @@ Batdongsan
 
 Nhanvien:
  - GET: /nhanvien: get all list nhanvien
+ - POST: /nhanvien: add nhanvien
+ - PUT: /nhanvien: edit nhanvien
+ - DELETE: /nhanvien/:id : delete nhanvien by id
