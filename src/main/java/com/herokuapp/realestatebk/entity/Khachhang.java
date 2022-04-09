@@ -2,6 +2,11 @@ package com.herokuapp.realestatebk.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -56,28 +61,35 @@ public class Khachhang implements Serializable {
 	private byte trangthai;
 
 	//bi-directional many-to-one association to Batdongsan
-	@OneToMany(mappedBy="khachhang")
+	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private List<Batdongsan> batdongsans;
 
 	//bi-directional many-to-one association to Hopdongchuyennhuong
-	@OneToMany(mappedBy="khachhang")
+	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private List<Hopdongchuyennhuong> hopdongchuyennhuongs;
 
 	//bi-directional many-to-one association to Hopdongdatcoc
-	@OneToMany(mappedBy="khachhang")
+	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	@JsonManagedReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private List<Hopdongdatcoc> hopdongdatcocs;
 
 	//bi-directional many-to-one association to Hopdongkygui
-	@OneToMany(mappedBy="khachhang")
+	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private List<Hopdongkygui> hopdongkyguis;
 
 	//bi-directional many-to-one association to Nhanvien
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="nvid")
+	@JsonBackReference
 	private Nhanvien nhanvien;
 
 	//bi-directional many-to-one association to Yeucaukhachhang
-	@OneToMany(mappedBy="khachhang")
+	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private List<Yeucaukhachhang> yeucaukhachhangs;
 
 	public Khachhang() {

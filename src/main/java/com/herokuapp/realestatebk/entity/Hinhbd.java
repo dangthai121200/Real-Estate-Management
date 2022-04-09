@@ -3,6 +3,8 @@ package com.herokuapp.realestatebk.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 /**
  * The persistent class for the hinhbds database table.
@@ -25,6 +27,7 @@ public class Hinhbd implements Serializable {
 	//bi-directional many-to-one association to Batdongsan
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bdsid")
+	@JsonBackReference
 	private Batdongsan batdongsan;
 
 	public Hinhbd() {

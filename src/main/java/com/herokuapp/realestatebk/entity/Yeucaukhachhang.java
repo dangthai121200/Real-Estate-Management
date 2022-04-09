@@ -3,6 +3,8 @@ package com.herokuapp.realestatebk.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 /**
  * The persistent class for the yeucaukhachhang database table.
@@ -49,11 +51,13 @@ public class Yeucaukhachhang implements Serializable {
 	//bi-directional many-to-one association to Khachhang
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="khid")
+	@JsonBackReference
 	private Khachhang khachhang;
 
 	//bi-directional many-to-one association to Loaibd
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="loaiid")
+	@JsonBackReference
 	private Loaibd loaibd;
 
 	public Yeucaukhachhang() {

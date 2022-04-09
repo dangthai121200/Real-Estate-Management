@@ -2,6 +2,10 @@ package com.herokuapp.realestatebk.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -39,17 +43,20 @@ public class Hopdongdatcoc implements Serializable {
 	private byte trangthai;
 
 	//bi-directional many-to-one association to Hopdongchuyennhuong
-	@OneToMany(mappedBy="hopdongdatcoc")
+	@OneToMany(mappedBy="hopdongdatcoc", fetch=FetchType.LAZY)
+	@JsonManagedReference
 	private List<Hopdongchuyennhuong> hopdongchuyennhuongs;
 
 	//bi-directional many-to-one association to Batdongsan
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bdsid")
+	@JsonBackReference
 	private Batdongsan batdongsan;
 
 	//bi-directional many-to-one association to Khachhang
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="khid")
+	@JsonBackReference
 	private Khachhang khachhang;
 
 	public Hopdongdatcoc() {
