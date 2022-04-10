@@ -3,6 +3,7 @@ package com.herokuapp.realestatebk.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
@@ -27,12 +28,12 @@ public class Loaibd implements Serializable {
 
 	//bi-directional many-to-one association to Batdongsan
 	@OneToMany(mappedBy="loaibd", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Batdongsan> batdongsans;
 
 	//bi-directional many-to-one association to Yeucaukhachhang
 	@OneToMany(mappedBy="loaibd", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Yeucaukhachhang> yeucaukhachhangs;
 
 	public Loaibd() {

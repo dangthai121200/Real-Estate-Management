@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -69,34 +70,34 @@ public class Batdongsan implements Serializable {
 	//bi-directional many-to-one association to Khachhang
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="khid")
-	@JsonBackReference
+	@JsonIgnore
 	private Khachhang khachhang;
 
 	//bi-directional many-to-one association to Loaibd
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="loaiid")
-	@JsonBackReference
+	@JsonIgnore
 	private Loaibd loaibd;
 
 	//bi-directional many-to-one association to Hinhbd
 	@OneToMany(mappedBy="batdongsan",  fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Hinhbd> hinhbds;
 
 	//bi-directional many-to-one association to Hopdongchuyennhuong
 	@OneToMany(mappedBy="batdongsan",  fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Hopdongchuyennhuong> hopdongchuyennhuongs;
 
 	//bi-directional many-to-one association to Hopdongdatcoc
 	@OneToMany(mappedBy="batdongsan",  fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonIgnore
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private List<Hopdongdatcoc> hopdongdatcocs;
 
 	//bi-directional many-to-one association to Hopdongkygui
 	@OneToMany(mappedBy="batdongsan",  fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Hopdongkygui> hopdongkyguis;
 
 	public Batdongsan() {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -26,7 +27,7 @@ public class Hinhbd implements Serializable {
 	//bi-directional many-to-one association to Batdongsan
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bdsid")
-	@JsonBackReference
+	@JsonIgnore
 	private Batdongsan batdongsan;
 
 	public Hinhbd() {

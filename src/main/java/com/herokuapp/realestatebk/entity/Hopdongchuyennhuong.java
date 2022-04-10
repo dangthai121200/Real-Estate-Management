@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 
@@ -35,19 +36,19 @@ public class Hopdongchuyennhuong implements Serializable {
 	//bi-directional many-to-one association to Batdongsan
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bdsid")
-	@JsonBackReference
+	@JsonIgnore
 	private Batdongsan batdongsan;
 
 	//bi-directional many-to-one association to Hopdongdatcoc
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="dcid")
-	@JsonBackReference
+	@JsonIgnore
 	private Hopdongdatcoc hopdongdatcoc;
 
 	//bi-directional many-to-one association to Khachhang
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="khid")
-	@JsonBackReference
+	@JsonIgnore
 	private Khachhang khachhang;
 
 	public Hopdongchuyennhuong() {
