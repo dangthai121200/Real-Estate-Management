@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.herokuapp.realestatebk.entity.Nhanvien;
+import com.herokuapp.realestatebk.form.FormLogin;
 import com.herokuapp.realestatebk.service.NhanvienService;
 
 @RestController
@@ -52,9 +53,9 @@ public class NhanvienController {
 	}
 	
 	@PostMapping("/login")
-	public Nhanvien loginNhanvien(@RequestParam("email") String email, @RequestParam("pass") String pass){
-		Nhanvien checkedNhanvien = nhanvienService.checkExistNhanvien(email, pass);
-		return checkedNhanvien;
+	public Nhanvien loginNhanvien(@RequestBody FormLogin formLogin){
+		Nhanvien nhanvien = nhanvienService.login(formLogin);
+		return nhanvien;
 	}
 	
 	

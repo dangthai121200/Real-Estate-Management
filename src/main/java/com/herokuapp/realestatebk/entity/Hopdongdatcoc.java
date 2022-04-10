@@ -16,7 +16,6 @@ import java.util.List;
  */
 @Entity
 @Table(name="hopdongdatcoc")
-@NamedQuery(name="Hopdongdatcoc.findAll", query="SELECT h FROM Hopdongdatcoc h")
 public class Hopdongdatcoc implements Serializable {
 	private static final long serialVersionUID = 1L;
 

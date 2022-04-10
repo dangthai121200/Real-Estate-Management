@@ -14,7 +14,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name="hopdongchuyennhuong")
-@NamedQuery(name="Hopdongchuyennhuong.findAll", query="SELECT h FROM Hopdongchuyennhuong h")
 public class Hopdongchuyennhuong implements Serializable {
 	private static final long serialVersionUID = 1L;
 
