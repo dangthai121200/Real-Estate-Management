@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.herokuapp.realestatebk.entity.Nhanvien;
+import com.herokuapp.realestatebk.form.FormLogin;
 import com.herokuapp.realestatebk.repository.NhanvienRepository;
 
 
@@ -45,6 +46,11 @@ public class NhanvienService {
 				checkedNhanvien = nv;
 		}
 		return checkedNhanvien;
+	}
+
+	public Nhanvien login(FormLogin formLogin) {
+		Nhanvien nhanvien = nhanvienRepository.login(formLogin.getTaikhoan(), formLogin.getMatkhau());
+		return nhanvien;
 	}
 
 }

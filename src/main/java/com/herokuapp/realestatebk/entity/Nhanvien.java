@@ -14,9 +14,8 @@ import java.util.List;
  * The persistent class for the nhanvien database table.
  * 
  */
-@Entity
+@Entity(name = "nhanvien")
 @Table(name="nhanvien")
-@NamedQuery(name="Nhanvien.findAll", query="SELECT n FROM Nhanvien n")
 public class Nhanvien implements Serializable {
 	private static final long serialVersionUID = 1L;
 

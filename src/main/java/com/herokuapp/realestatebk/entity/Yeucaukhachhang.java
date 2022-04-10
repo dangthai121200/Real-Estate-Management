@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  */
 @Entity
 @Table(name="yeucaukhachhang")
-@NamedQuery(name="Yeucaukhachhang.findAll", query="SELECT y FROM Yeucaukhachhang y")
 public class Yeucaukhachhang implements Serializable {
 	private static final long serialVersionUID = 1L;
 
