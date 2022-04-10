@@ -36,5 +36,15 @@ public class NhanvienService {
 		}
 		return nhanvienEdit;
 	}
+	
+	public Nhanvien checkExistNhanvien(String email, String pass) {
+		Nhanvien checkedNhanvien = null;
+		List<Nhanvien> listNhanvien = (List<Nhanvien>) nhanvienRepository.findAll();
+		for (Nhanvien nv : listNhanvien) {
+			if(email.equals(nv.getEmail()) && pass.equals(nv.getMatkhau()))
+				checkedNhanvien = nv;
+		}
+		return checkedNhanvien;
+	}
 
 }

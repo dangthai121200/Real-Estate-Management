@@ -8,4 +8,3 @@ Nhanvien:
  - POST: /nhanvien: add nhanvien
  - PUT: /nhanvien: edit nhanvien
  - DELETE: /nhanvien/:id : delete nhanvien by id
- - POST : /nhanvien/login : login nhân viên (Param: email, password)
