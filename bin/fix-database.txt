@@ -1,3 +1,0 @@
-- sửa dữ liệu cột (quyen) trong bảng (nhanvien) thành varchar(10)
-
-- thêm unique cho cột (taikhoan)(email) trong bảng nhanvien
