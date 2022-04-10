@@ -52,11 +52,9 @@ public class NhanvienController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<Nhanvien> loginNhanvien(@RequestParam("email") String email, @RequestParam("pass") String pass){
+	public Nhanvien loginNhanvien(@RequestParam("email") String email, @RequestParam("pass") String pass){
 		Nhanvien checkedNhanvien = nhanvienService.checkExistNhanvien(email, pass);
-		if(checkedNhanvien==null)
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
-		return new ResponseEntity<Nhanvien>(checkedNhanvien, HttpStatus.OK);
+		return checkedNhanvien;
 	}
 	
 	
