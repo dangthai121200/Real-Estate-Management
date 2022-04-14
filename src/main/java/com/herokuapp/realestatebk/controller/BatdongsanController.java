@@ -11,14 +11,13 @@ import com.herokuapp.realestatebk.service.BatdongsanService;
 
 @RestController
 public class BatdongsanController {
-	
+
 	@Autowired
 	private BatdongsanService batdongsanService;
-	
+
 	@RequestMapping("/batdongsan")
-	public List<Batdongsan> getAllBatdongsan(){
+	public List<Batdongsan> getAllBatdongsan() {
 		return batdongsanService.getAllBatdongsan();
 	}
-	
-	
+
 }

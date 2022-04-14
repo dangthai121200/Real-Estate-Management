@@ -1,38 +1,43 @@
 package com.herokuapp.realestatebk.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * The persistent class for the loaibds database table.
  * 
  */
 @Entity
-@Table(name="loaibds")
+@Table(name = "loaibds")
 public class Loaibd implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private int loaiid;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String tenloai;
 
-	//bi-directional many-to-one association to Batdongsan
-	@OneToMany(mappedBy="loaibd", fetch = FetchType.LAZY)
+	// bi-directional many-to-one association to Batdongsan
+	@OneToMany(mappedBy = "loaibd", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Batdongsan> batdongsans;
 
-	//bi-directional many-to-one association to Yeucaukhachhang
-	@OneToMany(mappedBy="loaibd", fetch = FetchType.LAZY)
+	// bi-directional many-to-one association to Yeucaukhachhang
+	@OneToMany(mappedBy = "loaibd", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Yeucaukhachhang> yeucaukhachhangs;
 

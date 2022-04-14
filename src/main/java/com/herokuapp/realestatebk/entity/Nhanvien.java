@@ -1,70 +1,110 @@
 package com.herokuapp.realestatebk.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * The persistent class for the nhanvien database table.
  * 
  */
 @Entity(name = "nhanvien")
-@Table(name="nhanvien")
+@Table(name = "nhanvien")
 public class Nhanvien implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private int nvid;
 
-	@Column(name = "diachi", nullable=false, length=50)
+	@Column(name = "diachi", nullable = false, length = 50)
 	private String diachi;
 
 	private float doanhthu;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String email;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private byte gioitinh;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String matkhau;
 
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Date ngaysinh;
 
-	@Column(nullable=false, length=10)
+	@Column(nullable = false, length = 10)
 	private String quyen;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int sdt;
 
-	@Column(nullable=false, length=20)
+	@Column(nullable = false, length = 20)
 	private String taikhoan;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String tennv;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private byte trangthai;
 
-	//bi-directional many-to-one association to Khachhang
-	@OneToMany(mappedBy="nhanvien", fetch = FetchType.EAGER)
+	// bi-directional many-to-one association to Khachhang
+	@OneToMany(mappedBy = "nhanvien", fetch = FetchType.EAGER)
 	@JsonIgnore
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private List<Khachhang> khachhangs;
 
 	public Nhanvien() {
+	}
+
+	public Nhanvien(String diachi, float doanhthu, String email, byte gioitinh, String matkhau, Date ngaysinh,
+			String quyen, int sdt, String taikhoan, String tennv, byte trangthai) {
+		super();
+		this.diachi = diachi;
+		this.doanhthu = doanhthu;
+		this.email = email;
+		this.gioitinh = gioitinh;
+		this.matkhau = matkhau;
+		this.ngaysinh = ngaysinh;
+		this.quyen = quyen;
+		this.sdt = sdt;
+		this.taikhoan = taikhoan;
+		this.tennv = tennv;
+		this.trangthai = trangthai;
+	}
+
+	public Nhanvien(int nvid, String diachi, float doanhthu, String email, byte gioitinh, String matkhau, Date ngaysinh,
+			String quyen, int sdt, String taikhoan, String tennv, byte trangthai) {
+		super();
+		this.nvid = nvid;
+		this.diachi = diachi;
+		this.doanhthu = doanhthu;
+		this.email = email;
+		this.gioitinh = gioitinh;
+		this.matkhau = matkhau;
+		this.ngaysinh = ngaysinh;
+		this.quyen = quyen;
+		this.sdt = sdt;
+		this.taikhoan = taikhoan;
+		this.tennv = tennv;
+		this.trangthai = trangthai;
 	}
 
 	public int getNvid() {
@@ -184,5 +224,4 @@ public class Nhanvien implements Serializable {
 
 		return khachhang;
 	}
-
 }

@@ -1,54 +1,62 @@
 package com.herokuapp.realestatebk.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * The persistent class for the hopdongkygui database table.
  * 
  */
 @Entity
-@Table(name="hopdongkygui")
+@Table(name = "hopdongkygui")
 public class Hopdongkygui implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private int kgid;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private float chiphidv;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private float giatri;
 
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Date ngaybd;
 
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Date ngayketthuc;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private byte trangthai;
 
-	//bi-directional many-to-one association to Batdongsan
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="bdsid")
+	// bi-directional many-to-one association to Batdongsan
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "bdsid")
 	@JsonIgnore
 	private Batdongsan batdongsan;
 
-	//bi-directional many-to-one association to Khachhang
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="khid")
+	// bi-directional many-to-one association to Khachhang
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "khid")
 	@JsonIgnore
 	private Khachhang khachhang;
 

@@ -1,10 +1,10 @@
 package com.herokuapp.realestatebk.form;
 
 public class FormLogin {
-	
+
 	private String taikhoan;
 	private String matkhau;
-	
+
 	public FormLogin() {
 		super();
 	}
@@ -24,7 +24,5 @@ public class FormLogin {
 	public void setMatkhau(String matkhau) {
 		this.matkhau = matkhau;
 	}
-	
-	
-	
+
 }

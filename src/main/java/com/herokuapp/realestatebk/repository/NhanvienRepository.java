@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.herokuapp.realestatebk.entity.Nhanvien;
 
-
 @Repository
 public interface NhanvienRepository extends CrudRepository<Nhanvien, Integer> {
 
