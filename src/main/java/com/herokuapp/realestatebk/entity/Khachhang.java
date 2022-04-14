@@ -16,7 +16,7 @@ import java.util.List;
  * The persistent class for the khachhang database table.
  * 
  */
-@Entity
+@Entity(name="khachhang")
 @Table(name="khachhang")
 public class Khachhang implements Serializable {
 	private static final long serialVersionUID = 1L;

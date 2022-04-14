@@ -184,5 +184,4 @@ public class Nhanvien implements Serializable {
 
 		return khachhang;
 	}
-
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.herokuapp.realestatebk.entity.Khachhang;
 import com.herokuapp.realestatebk.entity.Nhanvien;
 import com.herokuapp.realestatebk.form.FormLogin;
 import com.herokuapp.realestatebk.service.NhanvienService;
@@ -49,8 +50,8 @@ public class NhanvienController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteNhanvien(@PathVariable int id){
-		nhanvienService.deleteNhanvien(id);
+	public String deleteNhanvien(@PathVariable int id){
+		return nhanvienService.deleteNhanvien(id);
 	}
 	
 	@PostMapping("/login")
