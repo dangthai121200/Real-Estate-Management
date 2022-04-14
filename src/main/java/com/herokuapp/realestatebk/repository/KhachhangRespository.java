@@ -9,7 +9,7 @@ import com.herokuapp.realestatebk.entity.Khachhang;
 
 @Repository
 public interface KhachhangRespository extends CrudRepository<Khachhang, Integer> {
-	
+
 	@Query("select count(kh) from khachhang kh where nhanvien.nvid = :nvid")
-	int getKhachhangByNvID(@Param("nvid") int nvid);
+	int countKhachhangByNvID(@Param("nvid") int nvid);
 }

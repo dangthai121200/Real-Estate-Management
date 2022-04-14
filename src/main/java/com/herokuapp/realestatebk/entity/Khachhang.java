@@ -1,94 +1,102 @@
 package com.herokuapp.realestatebk.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * The persistent class for the khachhang database table.
  * 
  */
-@Entity(name="khachhang")
-@Table(name="khachhang")
+@Entity(name = "khachhang")
+@Table(name = "khachhang")
 public class Khachhang implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private int khid;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int cmnd;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String diachi;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String diachitt;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String email;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private byte gioitinh;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String hoten;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private byte loaikh;
 
-	@Column(length=300)
+	@Column(length = 300)
 	private String mota;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Date ngaysinh;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int sodienthoai;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private byte trangthai;
 
-	//bi-directional many-to-one association to Batdongsan
-	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	// bi-directional many-to-one association to Batdongsan
+	@OneToMany(mappedBy = "khachhang", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Batdongsan> batdongsans;
 
-	//bi-directional many-to-one association to Hopdongchuyennhuong
-	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	// bi-directional many-to-one association to Hopdongchuyennhuong
+	@OneToMany(mappedBy = "khachhang", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Hopdongchuyennhuong> hopdongchuyennhuongs;
 
-	//bi-directional many-to-one association to Hopdongdatcoc
-	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	// bi-directional many-to-one association to Hopdongdatcoc
+	@OneToMany(mappedBy = "khachhang", fetch = FetchType.LAZY)
 	@JsonIgnore
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private List<Hopdongdatcoc> hopdongdatcocs;
 
-	//bi-directional many-to-one association to Hopdongkygui
-	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	// bi-directional many-to-one association to Hopdongkygui
+	@OneToMany(mappedBy = "khachhang", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Hopdongkygui> hopdongkyguis;
 
-	//bi-directional many-to-one association to Nhanvien
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="nvid")
+	// bi-directional many-to-one association to Nhanvien
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "nvid")
 	@JsonIgnore
 	private Nhanvien nhanvien;
 
-	//bi-directional many-to-one association to Yeucaukhachhang
-	@OneToMany(mappedBy="khachhang", fetch = FetchType.LAZY)
+	// bi-directional many-to-one association to Yeucaukhachhang
+	@OneToMany(mappedBy = "khachhang", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Yeucaukhachhang> yeucaukhachhangs;
 
