@@ -9,3 +9,9 @@ Nhanvien:
  - PUT: /nhanvien: edit nhanvien
  - DELETE: /nhanvien/:id : delete nhanvien by id
  - POST : /nhanvien/login : login nhân viên (Param: taikhoan, matkhau)
+
+Khachhang
+ - GET: /khachhang get all khachhang
+ - POST /khachhang add khachhang
+ - PUT /khachhang edit khachhang
+ - DELETE /khachhang/:id delete khachhang by id
