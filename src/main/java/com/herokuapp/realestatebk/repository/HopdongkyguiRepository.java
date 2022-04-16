@@ -9,7 +9,7 @@ import com.herokuapp.realestatebk.entity.Hopdongkygui;
 
 @Repository
 public interface HopdongkyguiRepository extends CrudRepository<Hopdongkygui, Integer> {
-	
+
 	@Query("select count(kg) from hopdongkygui kg where khachhang.khid = :khid")
 	int countHopdongkyguiByKhID(@Param("khid") int khid);
 }

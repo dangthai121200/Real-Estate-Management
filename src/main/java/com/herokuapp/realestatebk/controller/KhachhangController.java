@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.herokuapp.realestatebk.entity.Khachhang;
-import com.herokuapp.realestatebk.entity.Nhanvien;
 import com.herokuapp.realestatebk.form.FormKhachhang;
 import com.herokuapp.realestatebk.service.KhachhangService;
 
@@ -38,7 +37,7 @@ public class KhachhangController {
 	public Khachhang editKhachhang(@RequestBody FormKhachhang fKhachhang) {
 		return (Khachhang) khachhangService.editKhachhang(fKhachhang);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public Khachhang deleteKhachhang(@PathVariable int id) throws Exception {
 		return khachhangService.deleteNhanvien(id);

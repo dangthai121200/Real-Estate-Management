@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.herokuapp.realestatebk.entity.Hopdongkygui;
 import com.herokuapp.realestatebk.entity.Khachhang;
-import com.herokuapp.realestatebk.entity.Nhanvien;
 import com.herokuapp.realestatebk.exception.MessageException;
 import com.herokuapp.realestatebk.form.FormKhachhang;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
