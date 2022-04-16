@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * The persistent class for the hopdongkygui database table.
  * 
  */
-@Entity
+@Entity(name = "hopdongkygui")
 @Table(name = "hopdongkygui")
 public class Hopdongkygui implements Serializable {
 	private static final long serialVersionUID = 1L;

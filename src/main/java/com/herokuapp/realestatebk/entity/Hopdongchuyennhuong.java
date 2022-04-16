@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * The persistent class for the hopdongchuyennhuong database table.
  * 
  */
-@Entity
+@Entity(name = "hopdongchuyennhuong")
 @Table(name = "hopdongchuyennhuong")
 public class Hopdongchuyennhuong implements Serializable {
 	private static final long serialVersionUID = 1L;
