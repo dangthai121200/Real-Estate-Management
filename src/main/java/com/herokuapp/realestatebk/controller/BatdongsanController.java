@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.service.BatdongsanService;
+import com.herokuapp.realestatebk.util.URL;
 
 @RestController
 public class BatdongsanController {
@@ -15,7 +16,7 @@ public class BatdongsanController {
 	@Autowired
 	private BatdongsanService batdongsanService;
 
-	@RequestMapping("/batdongsan")
+	@RequestMapping(URL.GET_ALL_Batdongsan)
 	public List<Batdongsan> getAllBatdongsan() {
 		return batdongsanService.getAllBatdongsan();
 	}
