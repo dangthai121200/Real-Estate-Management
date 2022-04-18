@@ -224,4 +224,11 @@ public class Nhanvien implements Serializable {
 
 		return khachhang;
 	}
+	@Override
+	public String toString() {
+		return "Nhanvien [nvid=" + nvid + ", diachi=" + diachi + ", doanhthu=" + doanhthu + ", email=" + email
+				+ ", gioitinh=" + gioitinh + ", matkhau=" + matkhau + ", ngaysinh=" + ngaysinh + ", quyen=" + quyen
+				+ ", sdt=" + sdt + ", taikhoan=" + taikhoan + ", tennv=" + tennv + ", trangthai=" + trangthai
+				+ ", khachhangs=" + khachhangs + "]";
+	}
 }

@@ -13,4 +13,7 @@ public interface NhanvienRepository extends CrudRepository<Nhanvien, Integer> {
 	@Query("select nv from nhanvien nv where nv.taikhoan = :taikhoan and nv.matkhau = :matkhau")
 	Nhanvien login(@Param("taikhoan") String taikhoan, @Param("matkhau") String matkhau);
 
+	@Query("select nv from nhanvien nv where nv.taikhoan = :taikhoan")
+	Nhanvien findNhanvienByTaikhoan(@Param("taikhoan") String taikhoan);
+
 }

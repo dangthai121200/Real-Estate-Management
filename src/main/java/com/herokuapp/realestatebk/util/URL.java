@@ -20,4 +20,8 @@ public class URL {
 	public static final String UPDATE_Nhanvien  = "/nhanvien";
 	public static final String DELETE_Nhanvien = "/nhanvien/{id}";
 	public static final String LOGIN_Nhanvien = "/nhanvien/login";
+	
+	
+	//URL login
+	public static final String SUCCESS = "/success";
 }

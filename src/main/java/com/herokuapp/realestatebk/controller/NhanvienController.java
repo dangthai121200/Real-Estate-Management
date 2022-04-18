@@ -45,11 +45,9 @@ public class NhanvienController {
 	public Nhanvien deleteNhanvien(@PathVariable int id) throws Exception {
 		return nhanvienService.deleteNhanvien(id);
 	}
-
 	@PostMapping(URL.LOGIN_Nhanvien)
 	public Nhanvien loginNhanvien(@RequestBody FormLogin formLogin) {
 		Nhanvien nhanvien = nhanvienService.login(formLogin);
 		return nhanvien;
 	}
-
 }
