@@ -17,5 +17,5 @@ Khachhang
  - DELETE /khachhang/:id delete khachhang by id
  
  Authentication
-  - POST /login (Param: taikhoan, matkhau) note Phải sử dụng form để gửi không nhận dạng json
+  - POST /login (Param: taikhoan, matkhau) note Phải sử dụng form để gửi không nhận dạng json success true, fail:false
   - GET /logout
