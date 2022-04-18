@@ -15,3 +15,7 @@ Khachhang
  - POST /khachhang add khachhang
  - PUT /khachhang edit khachhang
  - DELETE /khachhang/:id delete khachhang by id
+ 
+ Authentication
+  - /login (Param: taikhoan, matkhau) note Phải sử dụng form để gửi không nhận dạng json
+  -/logout
