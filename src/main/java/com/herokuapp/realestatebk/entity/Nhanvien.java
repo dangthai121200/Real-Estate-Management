@@ -66,7 +66,7 @@ public class Nhanvien implements Serializable {
 	private byte trangthai;
 
 	// bi-directional many-to-one association to Khachhang
-	@OneToMany(mappedBy = "nhanvien", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhanvien", fetch = FetchType.LAZY)
 	@JsonIgnore
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private List<Khachhang> khachhangs;
