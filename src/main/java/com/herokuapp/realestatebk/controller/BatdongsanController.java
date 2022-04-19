@@ -41,8 +41,8 @@ public class BatdongsanController {
 	}
 
 	@GetMapping(URL.GET_Batdongsan_BY_ID)
-	public Batdongsan getBatdongsanByID(@PathVariable int id){
-		return null;
+	public Batdongsan getBatdongsanByID(@PathVariable int id) throws Exception{
+		return batdongsanService.getBatdongsanByID(id);
 	}
 
 }

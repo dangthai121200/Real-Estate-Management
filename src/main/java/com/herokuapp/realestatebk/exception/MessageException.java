@@ -10,4 +10,7 @@ public class MessageException {
 	public static final String messCanNotDeleteKhachhangHasHopdongkygui = "Không thể xóa khách hàng có hợp đồng ký gửi";
 	public static final String messCanNotDeleteKhachhangHasHopdongchuyennhuong = "Không thể xóa khách hàng có hợp đồng chuyển nhượng";
 	public static final String messKhachhangNotExists = "Khách hàng không tồn tại";
+	
+//	Batdongan 
+	public static final String messBatdongsanNotFound = "Không thể tìm thấy bất động sản";
 }

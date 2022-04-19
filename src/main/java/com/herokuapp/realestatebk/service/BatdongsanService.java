@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Khachhang;
 import com.herokuapp.realestatebk.entity.Loaibd;
+import com.herokuapp.realestatebk.exception.MessageException;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 import com.herokuapp.realestatebk.repository.KhachhangRespository;
@@ -45,5 +46,13 @@ public class BatdongsanService {
 			batdongsanEdit = batdongsanReponsitory.save(fBatdongsan.coverToBatdongsan(loaibd, khachhang));
 		}
 		return batdongsanEdit;
+	}
+
+
+	public Batdongsan getBatdongsanByID(int id) throws Exception {
+		if(batdongsanReponsitory.existsById(id))
+			return batdongsanReponsitory.findById(id).get();
+		else
+			throw new Exception(MessageException.messBatdongsanNotFound);
 	}
 }
