@@ -123,6 +123,21 @@ public class FormNhanvien {
 		this.trangthai = trangthai;
 	}
 
+	public void converToFormNhanvien(Nhanvien nhanvien) {
+		this.nvid = nhanvien.getNvid();
+		this.diachi = nhanvien.getDiachi();
+		this.doanhthu = nhanvien.getDoanhthu();
+		this.email = nhanvien.getEmail();
+		this.gioitinh = nhanvien.getGioitinh();
+		this.matkhau = nhanvien.getMatkhau();
+		this.ngaysinh = nhanvien.getNgaysinh();
+		this.quyen = nhanvien.getQuyen();
+		this.sdt = nhanvien.getSdt();
+		this.taikhoan = nhanvien.getTaikhoan();
+		this.tennv = nhanvien.getTennv();
+		this.trangthai = nhanvien.getTrangthai();
+	}
+
 	public Nhanvien coverToNhanvien() {
 		Nhanvien nhanvien = null;
 		if (Integer.valueOf(nvid) == null) {

@@ -7,12 +7,12 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.herokuapp.realestatebk.auth.UserDetailsConfig;
 import com.herokuapp.realestatebk.entity.Nhanvien;
 import com.herokuapp.realestatebk.exception.MessageException;
 import com.herokuapp.realestatebk.form.FormLogin;
@@ -74,9 +74,11 @@ public class NhanvienService implements UserDetailsService {
 		if (nhanvien == null) {
 			throw new UsernameNotFoundException(MessageException.messNhanvienNotExists);
 		}
+		FormNhanvien formNhanvien = new FormNhanvien();
+		formNhanvien.converToFormNhanvien(nhanvien);
 		Set<GrantedAuthority> authorities = new HashSet<>();
-		authorities.add(new SimpleGrantedAuthority(nhanvien.getQuyen()));
-		User nhanvienDetails = new User(nhanvien.getTaikhoan(), nhanvien.getMatkhau(), authorities);
+		authorities.add(new SimpleGrantedAuthority(formNhanvien.getQuyen()));
+		UserDetailsConfig nhanvienDetails = new UserDetailsConfig(formNhanvien, authorities);
 		return nhanvienDetails;
 	}
 }
