@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,15 +22,16 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.herokuapp.realestatebk.auth.UserDetailsConfig;
-import com.herokuapp.realestatebk.entity.Nhanvien;
 import com.herokuapp.realestatebk.form.FormNhanvien;
 import com.herokuapp.realestatebk.util.Role;
 import com.herokuapp.realestatebk.util.URL;
-import com.unboundid.util.json.JSONObject;
-import com.unboundid.util.json.JSONValue;
 
 @EnableWebSecurity
 public class ConfenrenceSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -40,6 +44,26 @@ public class ConfenrenceSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService);
 
 	}
+	
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.addAllowedOrigin(CorsConfiguration.ALL);
+		configuration.addAllowedMethod(CorsConfiguration.ALL);
+		configuration.addAllowedHeader(CorsConfiguration.ALL);
+		configuration.addAllowedOriginPattern(CorsConfiguration.ALL);
+		configuration.addExposedHeader(CorsConfiguration.ALL);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
+	
+//	@Bean
+//	SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+//		http
+//			.cors(cors -> cors.disable());
+//		return http.build();
+//	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -73,7 +97,9 @@ public class ConfenrenceSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().csrf().disable()
 			.logout()
 			.deleteCookies("JSESSIONID")
-			.invalidateHttpSession(true);
+			.invalidateHttpSession(true)
+			.and()
+			.cors().configurationSource(corsConfigurationSource());
 	}
 
 	@SuppressWarnings("deprecation")
