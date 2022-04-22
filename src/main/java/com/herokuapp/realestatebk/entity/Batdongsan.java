@@ -109,6 +109,55 @@ public class Batdongsan implements Serializable {
 
 	public Batdongsan() {
 	}
+	
+
+	public Batdongsan(int bdsid, float chieudai, float chieurong, float dientich, float dongia, String hinhanh,
+			float huehong, String masoqsdd, String mota, String phuong, String quan, String sonha, String tenduong,
+			String thanhpho, int tinhtrang, Khachhang khachhang, Loaibd loaibd) {
+		super();
+		this.bdsid = bdsid;
+		this.chieudai = chieudai;
+		this.chieurong = chieurong;
+		this.dientich = dientich;
+		this.dongia = dongia;
+		this.hinhanh = hinhanh;
+		this.huehong = huehong;
+		this.masoqsdd = masoqsdd;
+		this.mota = mota;
+		this.phuong = phuong;
+		this.quan = quan;
+		this.sonha = sonha;
+		this.tenduong = tenduong;
+		this.thanhpho = thanhpho;
+		this.tinhtrang = tinhtrang;
+		this.khachhang = khachhang;
+		this.loaibd = loaibd;
+	}
+
+	
+
+	public Batdongsan(float chieudai, float chieurong, float dientich, float dongia, String hinhanh, float huehong,
+			String masoqsdd, String mota, String phuong, String quan, String sonha, String tenduong, String thanhpho,
+			int tinhtrang, Khachhang khachhang, Loaibd loaibd) {
+		super();
+		this.chieudai = chieudai;
+		this.chieurong = chieurong;
+		this.dientich = dientich;
+		this.dongia = dongia;
+		this.hinhanh = hinhanh;
+		this.huehong = huehong;
+		this.masoqsdd = masoqsdd;
+		this.mota = mota;
+		this.phuong = phuong;
+		this.quan = quan;
+		this.sonha = sonha;
+		this.tenduong = tenduong;
+		this.thanhpho = thanhpho;
+		this.tinhtrang = tinhtrang;
+		this.khachhang = khachhang;
+		this.loaibd = loaibd;
+	}
+
 
 	public int getBdsid() {
 		return this.bdsid;
