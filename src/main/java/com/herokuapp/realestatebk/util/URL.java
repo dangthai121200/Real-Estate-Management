@@ -29,6 +29,7 @@ public class URL {
 	
 	//Url Yeucaukhachhang
 	public static final String GET_ALL_Yeucaukhachhang = "/yeucaukhachhang";
+	public static final String ADD_Yeucaukhachhang = "/yeucaukhachhang";
 	
 	//Url Hopdongkygui
 	public static final String GET_ALL_Hopdongkygui = "/hopdongkygui";

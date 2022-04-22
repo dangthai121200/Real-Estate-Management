@@ -69,6 +69,44 @@ public class Yeucaukhachhang implements Serializable {
 
 	public Yeucaukhachhang() {
 	}
+	
+	
+
+	public Yeucaukhachhang(int ycid, float daif, float dait, float dientich, float giaf, float giat, String mota,
+			float rongf, float rongt, String vitri, Khachhang khachhang, Loaibd loaibd) {
+		super();
+		this.ycid = ycid;
+		this.daif = daif;
+		this.dait = dait;
+		this.dientich = dientich;
+		this.giaf = giaf;
+		this.giat = giat;
+		this.mota = mota;
+		this.rongf = rongf;
+		this.rongt = rongt;
+		this.vitri = vitri;
+		this.khachhang = khachhang;
+		this.loaibd = loaibd;
+	}
+	
+	
+	public Yeucaukhachhang(float daif, float dait, float dientich, float giaf, float giat, String mota, float rongf,
+			float rongt, String vitri, Khachhang khachhang, Loaibd loaibd) {
+		super();
+		this.daif = daif;
+		this.dait = dait;
+		this.dientich = dientich;
+		this.giaf = giaf;
+		this.giat = giat;
+		this.mota = mota;
+		this.rongf = rongf;
+		this.rongt = rongt;
+		this.vitri = vitri;
+		this.khachhang = khachhang;
+		this.loaibd = loaibd;
+	}
+
+
 
 	public int getYcid() {
 		return this.ycid;
