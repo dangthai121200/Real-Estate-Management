@@ -30,6 +30,8 @@ public class URL {
 	//Url Yeucaukhachhang
 	public static final String GET_ALL_Yeucaukhachhang = "/yeucaukhachhang";
 	public static final String ADD_Yeucaukhachhang = "/yeucaukhachhang";
+	public static final String UPDATE_Yeucaukhachhang  = "/yeucaukhachhang";
+	public static final String DELETE_Yeucaukhachhang = "/yeucaukhachhang/{id}";
 	
 	//Url Hopdongkygui
 	public static final String GET_ALL_Hopdongkygui = "/hopdongkygui";

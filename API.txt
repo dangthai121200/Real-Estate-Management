@@ -4,8 +4,11 @@ Loaibd:
  - GET:/loaibd: get all list loaibd
 
 Batdongsan
- - GET: /batdongsan: get all list batdongsan
-
+ - GET: /batdongsan:  get all list batdongsan
+ - POST: /batdongsan:  add batdongsan
+ - PUT: /batdongsan:  edit batdongsan
+ - GET: /batdongsan/:id  get batdongsan by id
+ 
 Nhanvien:
  - GET: /nhanvien: get all list nhanvien
  - POST: /nhanvien: add nhanvien
@@ -14,15 +17,17 @@ Nhanvien:
  - POST : /nhanvien/login : login nhân viên (Param: taikhoan, matkhau)
 
 Khachhang
- - GET: /khachhang get all khachhang
- - POST /khachhang add khachhang
- - PUT /khachhang edit khachhang
- - DELETE /khachhang/:id delete khachhang by id
+ - GET: /khachhang  get all khachhang
+ - POST /khachhang  add khachhang
+ - PUT /khachhang  edit khachhang
+ - DELETE /khachhang/:id  delete khachhang by id
  
  Yeucaukhachhang:
- - GET:/yeucaukhachhang  get all list Yeucaukhachhang
- - Post:/yeucaukhachhang add Yeucaukhachhang
-
+ - GET:/yeucaukhachhang  get  all list Yeucaukhachhang
+ - Post:/yeucaukhachhang add  Yeucaukhachhang
+ - PUT /yeucaukhachhang edit  Yeucaukhachhang
+ - DELETE /yeucaukhachhang/:id  delete Yeucaukhachhang by id
+ 
  Hopdongkygui:
  - GET:/hopdongkygui: get all list Hopdongkygui
 
