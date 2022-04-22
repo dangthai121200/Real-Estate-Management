@@ -19,6 +19,21 @@ Khachhang
  - PUT /khachhang edit khachhang
  - DELETE /khachhang/:id delete khachhang by id
  
+ Yeucaukhachhang:
+ - GET:/yeucaukhachhang: get all list Yeucaukhachhang
+ 
+ Hopdongkygui:
+ - GET:/hopdongkygui: get all list Hopdongkygui
+ 
+ Hopdongchuyennhuong:
+ - GET:/hopdongchuyennhuong: get all list Hopdongchuyennhuong
+ 
+ Hopdongdatcoc:
+ - GET:/Hopdongdatcoc: get all list Hopdongdatcoc
+ 
+ Hinhbd:
+ - GET:/hinhbd: get all list Hinhbd
+ 
  Authentication
   - POST /login (Param: taikhoan, matkhau) note Phải sử dụng form để gửi không nhận dạng json success trả về thông tin, fail:false
   - GET /logout
