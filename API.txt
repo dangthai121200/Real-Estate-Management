@@ -1,5 +1,8 @@
 base user https://realestatebk.herokuapp.com
 
+Loaibd:
+ - GET:/loaibd: get all list loaibd
+
 Batdongsan
  - GET: /batdongsan: get all list batdongsan
 

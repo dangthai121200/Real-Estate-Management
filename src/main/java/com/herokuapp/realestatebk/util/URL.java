@@ -21,7 +21,24 @@ public class URL {
 	public static final String DELETE_Nhanvien = "/nhanvien/{id}";
 	public static final String LOGIN_Nhanvien = "/nhanvien/login";
 	
+	//Url Loaibd
+	public static final String GET_ALL_Loaibd = "/loaibd";
 	
+	//Url Yeucaukhachhang
+	public static final String GET_ALL_Yeucaukhachhang = "/yeucaukhachhang";
+	
+	//Url Hopdongkygui
+	public static final String GET_ALL_Hopdongkygui = "/hopdongkygui";
+	
+	//Url Hopdongchuyennhuong
+	public static final String GET_ALL_Hopdongchuyennhuong = "/hopdongchuyennhuong";
+		
+	//Url Hopdongdatcoc
+	public static final String GET_ALL_Hopdongdatcoc = "/Hopdongdatcoc";
+	
+	//Url Hinhbd
+	public static final String GET_ALL_Hinhbd = "/hinhbd";
+		
 	//URL login
 	public static final String SUCCESS = "/success";
 }
