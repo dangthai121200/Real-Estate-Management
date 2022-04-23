@@ -1,7 +1,5 @@
 package com.herokuapp.realestatebk.form;
 
-import java.util.List;
-
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Khachhang;
 import com.herokuapp.realestatebk.entity.Loaibd;
@@ -24,7 +22,7 @@ public class FormBatdongsan {
 	private int tinhtrang;
 	private int khachhang;
 	private int loaibd;
-	
+
 	public FormBatdongsan(float chieudai, float chieurong, float dientich, float dongia, String hinhanh, float huehong,
 			String masoqsdd, String mota, String phuong, String quan, String sonha, String tenduong, String thanhpho,
 			int tinhtrang, int khachhang, int loaibd) {
@@ -182,21 +180,19 @@ public class FormBatdongsan {
 	public void setLoaibd(int loaibd) {
 		this.loaibd = loaibd;
 	}
-	
+
 	public Batdongsan coverToBatdongsan(Loaibd loaibds, Khachhang khachHang) {
 		Batdongsan batdongsan = null;
 		if (Integer.valueOf(this.bdsid) == null) {
-			// use for add Batdongsan 
-			batdongsan = new Batdongsan(chieudai, chieurong, dientich, dongia, hinhanh,
-					huehong, masoqsdd, mota, phuong, quan, sonha, tenduong,
-					thanhpho, tinhtrang, khachHang, loaibds);
+			// use for add Batdongsan
+			batdongsan = new Batdongsan(chieudai, chieurong, dientich, dongia, hinhanh, huehong, masoqsdd, mota, phuong,
+					quan, sonha, tenduong, thanhpho, tinhtrang, khachHang, loaibds);
 		} else {
 			// use for update Batdongsan
-			batdongsan = new Batdongsan(bdsid ,chieudai, chieurong, dientich, dongia, hinhanh,
-					huehong, masoqsdd, mota, phuong, quan, sonha, tenduong,
-					thanhpho, tinhtrang, khachHang, loaibds);
+			batdongsan = new Batdongsan(bdsid, chieudai, chieurong, dientich, dongia, hinhanh, huehong, masoqsdd, mota,
+					phuong, quan, sonha, tenduong, thanhpho, tinhtrang, khachHang, loaibds);
 		}
 		return batdongsan;
 	}
-	
+
 }
