@@ -44,7 +44,8 @@ public class Hopdongdatcoc implements Serializable {
 	@Column(nullable = false)
 	private Date ngaylap;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
+	@JsonIgnore
 	private int tinhtrang;
 
 	@Column(nullable = false)
