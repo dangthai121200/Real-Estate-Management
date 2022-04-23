@@ -1,58 +1,55 @@
 package com.herokuapp.realestatebk.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
-import com.herokuapp.realestatebk.entity.Khachhang;
-import com.herokuapp.realestatebk.entity.Loaibd;
 import com.herokuapp.realestatebk.exception.MessageException;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
-import com.herokuapp.realestatebk.repository.KhachhangRespository;
-import com.herokuapp.realestatebk.repository.LoaibdRepository;
 
 @Service
 public class BatdongsanService {
 
 	@Autowired
 	private BatdongsanRepository batdongsanReponsitory;
-	
-	@Autowired
-	private KhachhangRespository khachhangRespository;
-	
-	@Autowired
-	private LoaibdRepository loaibdRepository;
 
-	public List<Batdongsan> getAllBatdongsan() {
-
-		return (List<Batdongsan>) batdongsanReponsitory.findAll();
+	public List<FormBatdongsan> getAllBatdongsan() {
+		List<FormBatdongsan> formBatdongsans = new ArrayList<>();
+		List<Batdongsan> batdongsans = (List<Batdongsan>) batdongsanReponsitory.findAll();
+		for (Batdongsan batdongsan : batdongsans) {
+			formBatdongsans.add(new FormBatdongsan(batdongsan));
+		}
+		return formBatdongsans;
 	}
 
-	public Batdongsan addBatdongsan(FormBatdongsan fBatdongsan) {
-		Loaibd loaibd = loaibdRepository.findById(fBatdongsan.getLoaibd()).get();
-		Khachhang khachhang = khachhangRespository.findById(fBatdongsan.getKhachhang()).get();
-		return batdongsanReponsitory.save(fBatdongsan.coverToBatdongsan(loaibd, khachhang));
+	public FormBatdongsan addBatdongsan(FormBatdongsan fBatdongsan) {
+		Batdongsan batdongsan = batdongsanReponsitory.save(fBatdongsan.coverToBatdongsan());
+		FormBatdongsan formBatdongsanAdd = new FormBatdongsan(batdongsan);
+		return formBatdongsanAdd;
 	}
 
-	public Batdongsan editBatdongsan(FormBatdongsan fBatdongsan) {
-		Batdongsan batdongsanEdit = null;
+	public FormBatdongsan editBatdongsan(FormBatdongsan fBatdongsan) {
+		FormBatdongsan formBatdongsanEdit = null;
 		boolean flag = batdongsanReponsitory.existsById(fBatdongsan.getBdsid());
 		if (flag) {
-			Loaibd loaibd = loaibdRepository.findById(fBatdongsan.getLoaibd()).get();
-			Khachhang khachhang = khachhangRespository.findById(fBatdongsan.getKhachhang()).get();
-			batdongsanEdit = batdongsanReponsitory.save(fBatdongsan.coverToBatdongsan(loaibd, khachhang));
+			Batdongsan batdongsan = batdongsanReponsitory.save(fBatdongsan.coverToBatdongsan());
+			formBatdongsanEdit = new FormBatdongsan(batdongsan);
 		}
-		return batdongsanEdit;
+		return formBatdongsanEdit;
 	}
 
+	public FormBatdongsan getBatdongsanByID(int id) throws Exception {
 
-	public Batdongsan getBatdongsanByID(int id) throws Exception {
-		if(batdongsanReponsitory.existsById(id))
-			return batdongsanReponsitory.findById(id).get();
-		else
+		if (batdongsanReponsitory.existsById(id)) {
+			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
+			FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
+			return formBatdongsan;
+		} else {
 			throw new Exception(MessageException.messBatdongsanNotFound);
+		}
 	}
 }

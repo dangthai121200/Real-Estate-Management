@@ -62,6 +62,44 @@ public class Hopdongchuyennhuong implements Serializable {
 	public Hopdongchuyennhuong() {
 	}
 
+	public Hopdongchuyennhuong(float giatri, Date ngaylap, byte trangthai, int bdsid, int dcid, int khid) {
+		this.giatri = giatri;
+		this.ngaylap = ngaylap;
+		this.trangthai = trangthai;
+		if (this.batdongsan == null) {
+			this.batdongsan = new Batdongsan();
+		}
+		this.batdongsan.setBdsid(bdsid);
+		if (this.hopdongdatcoc == null) {
+			this.hopdongdatcoc = new Hopdongdatcoc();
+		}
+		this.hopdongdatcoc.setDcid(dcid);
+		if (this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khid);
+	}
+
+	public Hopdongchuyennhuong(int cnid, float giatri, Date ngaylap, byte trangthai, int bdsid, int dcid, int khid) {
+		super();
+		this.cnid = cnid;
+		this.giatri = giatri;
+		this.ngaylap = ngaylap;
+		this.trangthai = trangthai;
+		if (this.batdongsan == null) {
+			this.batdongsan = new Batdongsan();
+		}
+		this.batdongsan.setBdsid(bdsid);
+		if (this.hopdongdatcoc == null) {
+			this.hopdongdatcoc = new Hopdongdatcoc();
+		}
+		this.hopdongdatcoc.setDcid(dcid);
+		if (this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khid);
+	}
+
 	public int getCnid() {
 		return this.cnid;
 	}

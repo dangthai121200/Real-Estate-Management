@@ -41,6 +41,23 @@ public class Hinhbd implements Serializable {
 	public Hinhbd() {
 	}
 
+	public Hinhbd(int hinhid, String hinh, int bdsid) {
+		this.hinhid = hinhid;
+		this.hinh = hinh;
+		if (this.batdongsan == null) {
+			this.batdongsan = new Batdongsan();
+		}
+		this.batdongsan.setBdsid(bdsid);
+	}
+
+	public Hinhbd(String hinh, int bdsid) {
+		this.hinh = hinh;
+		if (this.batdongsan == null) {
+			this.batdongsan = new Batdongsan();
+		}
+		this.batdongsan.setBdsid(bdsid);
+	}
+
 	public int getHinhid() {
 		return this.hinhid;
 	}

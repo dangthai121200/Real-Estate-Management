@@ -71,6 +71,39 @@ public class Hopdongdatcoc implements Serializable {
 	public Hopdongdatcoc() {
 	}
 
+	public Hopdongdatcoc(float giatri, Date ngayhethan, Date ngaylap, byte trangthai, int bdsid, int khid) {
+		super();
+		this.giatri = giatri;
+		this.ngayhethan = ngayhethan;
+		this.ngaylap = ngaylap;
+		this.trangthai = trangthai;
+		if (this.batdongsan == null) {
+			this.batdongsan = new Batdongsan();
+		}
+		this.batdongsan.setBdsid(bdsid);
+		if (this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khid);
+	}
+
+	public Hopdongdatcoc(int dcid, float giatri, Date ngayhethan, Date ngaylap, byte trangthai, int bdsid, int khid) {
+		super();
+		this.dcid = dcid;
+		this.giatri = giatri;
+		this.ngayhethan = ngayhethan;
+		this.ngaylap = ngaylap;
+		this.trangthai = trangthai;
+		if (this.batdongsan == null) {
+			this.batdongsan = new Batdongsan();
+		}
+		this.batdongsan.setBdsid(bdsid);
+		if (this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khid);
+	}
+
 	public int getDcid() {
 		return this.dcid;
 	}

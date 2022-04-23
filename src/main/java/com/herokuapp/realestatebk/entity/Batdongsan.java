@@ -113,7 +113,7 @@ public class Batdongsan implements Serializable {
 
 	public Batdongsan(int bdsid, float chieudai, float chieurong, float dientich, float dongia, String hinhanh,
 			float huehong, String masoqsdd, String mota, String phuong, String quan, String sonha, String tenduong,
-			String thanhpho, int tinhtrang, Khachhang khachhang, Loaibd loaibd) {
+			String thanhpho, int tinhtrang, int khid, int loaibdid) {
 		super();
 		this.bdsid = bdsid;
 		this.chieudai = chieudai;
@@ -130,15 +130,21 @@ public class Batdongsan implements Serializable {
 		this.tenduong = tenduong;
 		this.thanhpho = thanhpho;
 		this.tinhtrang = tinhtrang;
-		this.khachhang = khachhang;
-		this.loaibd = loaibd;
+		if(this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khid);
+		if(this.loaibd == null) {
+			this.loaibd = new Loaibd();
+		}
+		this.loaibd.setLoaiid(loaibdid);
 	}
 
 	
 
 	public Batdongsan(float chieudai, float chieurong, float dientich, float dongia, String hinhanh, float huehong,
 			String masoqsdd, String mota, String phuong, String quan, String sonha, String tenduong, String thanhpho,
-			int tinhtrang, Khachhang khachhang, Loaibd loaibd) {
+			int tinhtrang, int khid, int loaibdid) {
 		super();
 		this.chieudai = chieudai;
 		this.chieurong = chieurong;
@@ -154,8 +160,14 @@ public class Batdongsan implements Serializable {
 		this.tenduong = tenduong;
 		this.thanhpho = thanhpho;
 		this.tinhtrang = tinhtrang;
-		this.khachhang = khachhang;
-		this.loaibd = loaibd;
+		if(this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khid);
+		if(this.loaibd == null) {
+			this.loaibd = new Loaibd();
+		}
+		this.loaibd.setLoaiid(loaibdid);
 	}
 
 

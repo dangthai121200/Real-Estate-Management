@@ -1,8 +1,6 @@
 package com.herokuapp.realestatebk.form;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
-import com.herokuapp.realestatebk.entity.Khachhang;
-import com.herokuapp.realestatebk.entity.Loaibd;
 
 public class FormBatdongsan {
 	private int bdsid;
@@ -20,29 +18,30 @@ public class FormBatdongsan {
 	private String tenduong;
 	private String thanhpho;
 	private int tinhtrang;
-	private int khachhang;
-	private int loaibd;
+	private int khid;
+	private int loaibdid;
 
-	public FormBatdongsan(float chieudai, float chieurong, float dientich, float dongia, String hinhanh, float huehong,
-			String masoqsdd, String mota, String phuong, String quan, String sonha, String tenduong, String thanhpho,
-			int tinhtrang, int khachhang, int loaibd) {
-		super();
-		this.chieudai = chieudai;
-		this.chieurong = chieurong;
-		this.dientich = dientich;
-		this.dongia = dongia;
-		this.hinhanh = hinhanh;
-		this.huehong = huehong;
-		this.masoqsdd = masoqsdd;
-		this.mota = mota;
-		this.phuong = phuong;
-		this.quan = quan;
-		this.sonha = sonha;
-		this.tenduong = tenduong;
-		this.thanhpho = thanhpho;
-		this.tinhtrang = tinhtrang;
-		this.khachhang = khachhang;
-		this.loaibd = loaibd;
+	public FormBatdongsan(Batdongsan batdongsan) {
+		this.bdsid = batdongsan.getBdsid();
+		this.chieudai = batdongsan.getChieudai();
+		this.chieurong = batdongsan.getChieurong();
+		this.dientich = batdongsan.getDientich();
+		this.dongia = batdongsan.getDongia();
+		this.hinhanh = batdongsan.getHinhanh();
+		this.huehong = batdongsan.getHuehong();
+		this.masoqsdd = batdongsan.getMasoqsdd();
+		this.mota = batdongsan.getMota();
+		this.phuong = batdongsan.getPhuong();
+		this.quan = batdongsan.getQuan();
+		this.sonha = batdongsan.getSonha();
+		this.tenduong = batdongsan.getTenduong();
+		this.thanhpho = batdongsan.getThanhpho();
+		this.tinhtrang = batdongsan.getTinhtrang();
+		this.khid = batdongsan.getKhachhang().getKhid();
+		this.loaibdid = batdongsan.getLoaibd().getLoaiid();
+	}
+
+	public FormBatdongsan() {
 	}
 
 	public int getBdsid() {
@@ -165,34 +164,54 @@ public class FormBatdongsan {
 		this.tinhtrang = tinhtrang;
 	}
 
-	public int getKhachhang() {
-		return khachhang;
+	public int getKhid() {
+		return khid;
 	}
 
-	public void setKhachhang(int khachhang) {
-		this.khachhang = khachhang;
+	public void setKhid(int khid) {
+		this.khid = khid;
 	}
 
-	public int getLoaibd() {
-		return loaibd;
+	public int getLoaibdid() {
+		return loaibdid;
 	}
 
-	public void setLoaibd(int loaibd) {
-		this.loaibd = loaibd;
+	public void setLoaibdid(int loaibdid) {
+		this.loaibdid = loaibdid;
 	}
 
-	public Batdongsan coverToBatdongsan(Loaibd loaibds, Khachhang khachHang) {
+	public Batdongsan coverToBatdongsan() {
 		Batdongsan batdongsan = null;
 		if (Integer.valueOf(this.bdsid) == null) {
 			// use for add Batdongsan
 			batdongsan = new Batdongsan(chieudai, chieurong, dientich, dongia, hinhanh, huehong, masoqsdd, mota, phuong,
-					quan, sonha, tenduong, thanhpho, tinhtrang, khachHang, loaibds);
+					quan, sonha, tenduong, thanhpho, tinhtrang, khid, loaibdid);
 		} else {
 			// use for update Batdongsan
 			batdongsan = new Batdongsan(bdsid, chieudai, chieurong, dientich, dongia, hinhanh, huehong, masoqsdd, mota,
-					phuong, quan, sonha, tenduong, thanhpho, tinhtrang, khachHang, loaibds);
+					phuong, quan, sonha, tenduong, thanhpho, tinhtrang, khid, loaibdid);
 		}
 		return batdongsan;
+	}
+
+	public void convertToFormBatDongSan(Batdongsan batdongsan) {
+		this.bdsid = batdongsan.getBdsid();
+		this.chieudai = batdongsan.getChieudai();
+		this.chieurong = batdongsan.getChieurong();
+		this.dientich = batdongsan.getDientich();
+		this.dongia = batdongsan.getDongia();
+		this.hinhanh = batdongsan.getHinhanh();
+		this.huehong = batdongsan.getHuehong();
+		this.masoqsdd = batdongsan.getMasoqsdd();
+		this.mota = batdongsan.getMota();
+		this.phuong = batdongsan.getPhuong();
+		this.quan = batdongsan.getQuan();
+		this.sonha = batdongsan.getSonha();
+		this.tenduong = batdongsan.getTenduong();
+		this.thanhpho = batdongsan.getThanhpho();
+		this.tinhtrang = batdongsan.getTinhtrang();
+		this.khid = batdongsan.getKhachhang().getKhid();
+		this.loaibdid = batdongsan.getLoaibd().getLoaiid();
 	}
 
 }
