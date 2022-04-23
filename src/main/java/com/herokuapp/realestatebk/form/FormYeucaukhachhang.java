@@ -1,7 +1,5 @@
 package com.herokuapp.realestatebk.form;
 
-import com.herokuapp.realestatebk.entity.Khachhang;
-import com.herokuapp.realestatebk.entity.Loaibd;
 import com.herokuapp.realestatebk.entity.Yeucaukhachhang;
 
 public class FormYeucaukhachhang {
@@ -17,8 +15,7 @@ public class FormYeucaukhachhang {
 	private String vitri;
 	private int khachhang;
 	private int loaibd;
-	
-	
+
 	public FormYeucaukhachhang() {
 		super();
 	}
@@ -38,6 +35,22 @@ public class FormYeucaukhachhang {
 		this.vitri = vitri;
 		this.khachhang = khachhang;
 		this.loaibd = loaibd;
+	}
+
+	public FormYeucaukhachhang(Yeucaukhachhang yeucaukhachhang) {
+		super();
+		this.ycid = yeucaukhachhang.getYcid();
+		this.daif = yeucaukhachhang.getDaif();
+		this.dait = yeucaukhachhang.getDait();
+		this.dientich = yeucaukhachhang.getDientich();
+		this.giaf = yeucaukhachhang.getGiaf();
+		this.giat = yeucaukhachhang.getGiat();
+		this.mota = yeucaukhachhang.getMota();
+		this.rongf = yeucaukhachhang.getRongf();
+		this.rongt = yeucaukhachhang.getRongt();
+		this.vitri = yeucaukhachhang.getVitri();
+		this.khachhang = yeucaukhachhang.getKhachhang().getKhid();
+		this.loaibd = yeucaukhachhang.getLoaibd().getLoaiid();
 	}
 
 	public int getYcid() {
@@ -135,18 +148,19 @@ public class FormYeucaukhachhang {
 	public void setLoaibd(int loaibd) {
 		this.loaibd = loaibd;
 	}
-	
-	public Yeucaukhachhang coverToYeucaukhachhang(Khachhang khachhang, Loaibd loaibd) {
+
+	public Yeucaukhachhang coverToYeucaukhachhang() {
 		Yeucaukhachhang yeucaukhachhang = null;
 		if (Integer.valueOf(this.ycid) == null) {
 			// use for add Yeucaukhachhang
-			yeucaukhachhang = new Yeucaukhachhang(daif,dait,dientich,giaf,giat,mota,rongf,rongt,vitri,khachhang,loaibd);
+			yeucaukhachhang = new Yeucaukhachhang(daif, dait, dientich, giaf, giat, mota, rongf, rongt, vitri,
+					khachhang, loaibd);
 		} else {
 			// use for update Yeucaukhachhang
-			yeucaukhachhang = new Yeucaukhachhang(ycid,daif,dait,dientich,giaf,giat,mota,rongf,rongt,vitri,khachhang,loaibd);
+			yeucaukhachhang = new Yeucaukhachhang(ycid, daif, dait, dientich, giaf, giat, mota, rongf, rongt, vitri,
+					khachhang, loaibd);
 		}
 		return yeucaukhachhang;
 	}
-	
-	
+
 }
