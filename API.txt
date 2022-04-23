@@ -43,3 +43,6 @@ Khachhang
  Authentication
   - POST /login (Param: taikhoan, matkhau) note Phải sử dụng form để gửi không nhận dạng json success trả về thông tin, fail:false
   - GET /logout
+
+ Image 
+ - Post /uploadImage (Param: file) dùng form
