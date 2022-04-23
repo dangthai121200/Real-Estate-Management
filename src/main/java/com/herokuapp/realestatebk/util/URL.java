@@ -40,7 +40,7 @@ public class URL {
 	public static final String GET_ALL_Hopdongchuyennhuong = "/hopdongchuyennhuong";
 		
 	//Url Hopdongdatcoc
-	public static final String GET_ALL_Hopdongdatcoc = "/Hopdongdatcoc";
+	public static final String GET_ALL_Hopdongdatcoc = "/hopdongdatcoc";
 	
 	//Url Hinhbd
 	public static final String GET_ALL_Hinhbd = "/hinhbd";

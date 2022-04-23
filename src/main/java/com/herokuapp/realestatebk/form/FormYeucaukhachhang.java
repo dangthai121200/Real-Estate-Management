@@ -40,6 +40,22 @@ public class FormYeucaukhachhang {
 		this.loaibd = loaibd;
 	}
 
+	public FormYeucaukhachhang(Yeucaukhachhang yeucaukhachhang) {
+		super();
+		this.ycid = yeucaukhachhang.getYcid();
+		this.daif = yeucaukhachhang.getDaif();
+		this.dait = yeucaukhachhang.getDait();
+		this.dientich = yeucaukhachhang.getDientich();
+		this.giaf = yeucaukhachhang.getGiaf();
+		this.giat = yeucaukhachhang.getGiat();
+		this.mota = yeucaukhachhang.getMota();
+		this.rongf = yeucaukhachhang.getRongf();
+		this.rongt = yeucaukhachhang.getRongt();
+		this.vitri = yeucaukhachhang.getVitri();
+		this.khachhang = yeucaukhachhang.getKhachhang().getKhid();
+		this.loaibd = yeucaukhachhang.getLoaibd().getLoaiid();
+	}
+
 	public int getYcid() {
 		return ycid;
 	}
@@ -136,7 +152,7 @@ public class FormYeucaukhachhang {
 		this.loaibd = loaibd;
 	}
 	
-	public Yeucaukhachhang coverToYeucaukhachhang(Khachhang khachhang, Loaibd loaibd) {
+	public Yeucaukhachhang coverToYeucaukhachhang() {
 		Yeucaukhachhang yeucaukhachhang = null;
 		if (Integer.valueOf(this.ycid) == null) {
 			// use for add Yeucaukhachhang

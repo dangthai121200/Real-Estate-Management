@@ -73,7 +73,7 @@ public class Yeucaukhachhang implements Serializable {
 	
 
 	public Yeucaukhachhang(int ycid, float daif, float dait, float dientich, float giaf, float giat, String mota,
-			float rongf, float rongt, String vitri, Khachhang khachhang, Loaibd loaibd) {
+			float rongf, float rongt, String vitri, int khachhang, int loaibd) {
 		super();
 		this.ycid = ycid;
 		this.daif = daif;
@@ -85,13 +85,19 @@ public class Yeucaukhachhang implements Serializable {
 		this.rongf = rongf;
 		this.rongt = rongt;
 		this.vitri = vitri;
-		this.khachhang = khachhang;
-		this.loaibd = loaibd;
+		if(this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khachhang);
+		if(this.loaibd == null) {
+			this.loaibd = new Loaibd();
+		}
+		this.loaibd.setLoaiid(loaibd);
 	}
 	
 	
 	public Yeucaukhachhang(float daif, float dait, float dientich, float giaf, float giat, String mota, float rongf,
-			float rongt, String vitri, Khachhang khachhang, Loaibd loaibd) {
+			float rongt, String vitri, int khachhang, int loaibd) {
 		super();
 		this.daif = daif;
 		this.dait = dait;
@@ -102,8 +108,14 @@ public class Yeucaukhachhang implements Serializable {
 		this.rongf = rongf;
 		this.rongt = rongt;
 		this.vitri = vitri;
-		this.khachhang = khachhang;
-		this.loaibd = loaibd;
+		if(this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khachhang);
+		if(this.loaibd == null) {
+			this.loaibd = new Loaibd();
+		}
+		this.loaibd.setLoaiid(loaibd);
 	}
 
 
