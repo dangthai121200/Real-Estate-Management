@@ -4,6 +4,7 @@ public class MessageException {
 //	Nhanvien
 	public static final String messCanNotDeleteNhanvienHasKhachHang = "Không thể xóa nhân viên có khách hàng";
 	public static final String messNhanvienNotExists = "Nhân viên không tồn tại";
+	public static final String messCannotupdateNhanvien = "Không thể cập nhật nhân viên";
 	
 //	Khachhang
 	public static final String messCanNotDeleteKhachhangHasHopdongkygui = "Không thể xóa khách hàng có hợp đồng ký gửi";

@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,6 +21,7 @@ import com.herokuapp.realestatebk.form.FormLogin;
 import com.herokuapp.realestatebk.form.FormNhanvien;
 import com.herokuapp.realestatebk.repository.KhachhangRespository;
 import com.herokuapp.realestatebk.repository.NhanvienRepository;
+import com.herokuapp.realestatebk.util.Role;
 
 @Service
 public class NhanvienService implements UserDetailsService {
@@ -49,14 +51,24 @@ public class NhanvienService implements UserDetailsService {
 		FormNhanvien formNhanvien = null;
 		boolean flag = nhanvienRepository.existsById(fNhanvien.getNvid());
 		if (flag) {
-			Nhanvien nhanvien = nhanvienRepository.save(fNhanvien.coverToNhanvien());
-			formNhanvien = new FormNhanvien(nhanvien);
-			return formNhanvien;
+			UserDetailsConfig userDetails = (UserDetailsConfig) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			String taikhoan = userDetails.getFormNhanvien().getTaikhoan();
+			String matkhau = userDetails.getFormNhanvien().getMatkhau();
+			if (fNhanvien.getTaikhoan().equals(taikhoan) && fNhanvien.getMatkhau().equals(matkhau)
+					|| userDetails.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_ADMIN))) {
+				Nhanvien nhanvien = nhanvienRepository.save(fNhanvien.coverToNhanvien());
+				formNhanvien = new FormNhanvien(nhanvien);
+				return formNhanvien;
+			} else {
+				throw new Exception(MessageException.messCannotupdateNhanvien);
+			}
+
 		} else {
 			throw new Exception(MessageException.messNhanvienNotExists);
 		}
 	}
-	
+
 	public FormNhanvien deleteNhanvien(int id) throws Exception {
 		FormNhanvien formNhanvienDelete = null;
 		boolean flag = nhanvienRepository.existsById(id);
