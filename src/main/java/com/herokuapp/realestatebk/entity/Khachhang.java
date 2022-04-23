@@ -102,10 +102,9 @@ public class Khachhang implements Serializable {
 
 	public Khachhang() {
 	}
-	
+
 	public Khachhang(int khid, int cmnd, String diachi, String diachitt, String email, byte gioitinh, String hoten,
-			byte loaikh, String mota, Date ngaysinh, int sodienthoai, byte trangthai) {
-		super();
+			byte loaikh, String mota, Date ngaysinh, int sodienthoai, byte trangthai, int nvid) {
 		this.khid = khid;
 		this.cmnd = cmnd;
 		this.diachi = diachi;
@@ -118,17 +117,14 @@ public class Khachhang implements Serializable {
 		this.ngaysinh = ngaysinh;
 		this.sodienthoai = sodienthoai;
 		this.trangthai = trangthai;
-		this.batdongsans = null;
-		this.hopdongchuyennhuongs = null;
-		this.hopdongdatcocs = null;
-		this.hopdongkyguis = null;
-		this.nhanvien = null;
-		this.yeucaukhachhangs = null;
+		if (this.nhanvien == null) {
+			this.nhanvien = new Nhanvien();
+		}
+		this.nhanvien.setNvid(nvid);
 	}
-	
-	public Khachhang( int cmnd, String diachi, String diachitt, String email, byte gioitinh, String hoten,
-			byte loaikh, String mota, Date ngaysinh, int sodienthoai, byte trangthai) {
-		super();
+
+	public Khachhang(int cmnd, String diachi, String diachitt, String email, byte gioitinh, String hoten, byte loaikh,
+			String mota, Date ngaysinh, int sodienthoai, byte trangthai, int nvid) {
 		this.cmnd = cmnd;
 		this.diachi = diachi;
 		this.diachitt = diachitt;
@@ -140,41 +136,11 @@ public class Khachhang implements Serializable {
 		this.ngaysinh = ngaysinh;
 		this.sodienthoai = sodienthoai;
 		this.trangthai = trangthai;
-		this.batdongsans = null;
-		this.hopdongchuyennhuongs = null;
-		this.hopdongdatcocs = null;
-		this.hopdongkyguis = null;
-		this.nhanvien = null;
-		this.yeucaukhachhangs = null;
+		if (this.nhanvien == null) {
+			this.nhanvien = new Nhanvien();
+		}
+		this.nhanvien.setNvid(nvid);
 	}
-
-
-	public Khachhang(int khid, int cmnd, String diachi, String diachitt, String email, byte gioitinh, String hoten,
-			byte loaikh, String mota, Date ngaysinh, int sodienthoai, byte trangthai, List<Batdongsan> batdongsans,
-			List<Hopdongchuyennhuong> hopdongchuyennhuongs, List<Hopdongdatcoc> hopdongdatcocs,
-			List<Hopdongkygui> hopdongkyguis, Nhanvien nhanvien, List<Yeucaukhachhang> yeucaukhachhangs) {
-		super();
-		this.khid = khid;
-		this.cmnd = cmnd;
-		this.diachi = diachi;
-		this.diachitt = diachitt;
-		this.email = email;
-		this.gioitinh = gioitinh;
-		this.hoten = hoten;
-		this.loaikh = loaikh;
-		this.mota = mota;
-		this.ngaysinh = ngaysinh;
-		this.sodienthoai = sodienthoai;
-		this.trangthai = trangthai;
-		this.batdongsans = batdongsans;
-		this.hopdongchuyennhuongs = hopdongchuyennhuongs;
-		this.hopdongdatcocs = hopdongdatcocs;
-		this.hopdongkyguis = hopdongkyguis;
-		this.nhanvien = nhanvien;
-		this.yeucaukhachhangs = yeucaukhachhangs;
-	}
-
-
 
 	public int getKhid() {
 		return this.khid;

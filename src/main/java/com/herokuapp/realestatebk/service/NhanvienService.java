@@ -1,5 +1,6 @@
 package com.herokuapp.realestatebk.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,43 +30,54 @@ public class NhanvienService implements UserDetailsService {
 	@Autowired
 	private KhachhangRespository khachhangRespository;
 
-	public List<Nhanvien> getAllNhanvien() {
-		return (List<Nhanvien>) nhanvienRepository.findAll();
+	public List<FormNhanvien> getAllNhanvien() {
+		List<FormNhanvien> formNhanviens = new ArrayList<>();
+		List<Nhanvien> nhanviens = (List<Nhanvien>) nhanvienRepository.findAll();
+		for (Nhanvien nhanvien : nhanviens) {
+			formNhanviens.add(new FormNhanvien(nhanvien));
+		}
+		return formNhanviens;
 	}
 
-	public Nhanvien deleteNhanvien(int id) throws Exception {
-		Nhanvien nhanvienDelete = null;
+	public FormNhanvien addNhanvien(FormNhanvien fNhanvien) {
+		Nhanvien nhanvien = nhanvienRepository.save(fNhanvien.coverToNhanvien());
+		FormNhanvien formNhanvienAdd = new FormNhanvien(nhanvien);
+		return formNhanvienAdd;
+	}
+
+	public FormNhanvien editNhanvien(FormNhanvien fNhanvien) throws Exception {
+		FormNhanvien formNhanvien = null;
+		boolean flag = nhanvienRepository.existsById(fNhanvien.getNvid());
+		if (flag) {
+			Nhanvien nhanvien = nhanvienRepository.save(fNhanvien.coverToNhanvien());
+			formNhanvien = new FormNhanvien(nhanvien);
+			return formNhanvien;
+		} else {
+			throw new Exception(MessageException.messNhanvienNotExists);
+		}
+	}
+	
+	public FormNhanvien deleteNhanvien(int id) throws Exception {
+		FormNhanvien formNhanvienDelete = null;
 		boolean flag = nhanvienRepository.existsById(id);
 		if (flag) {
-			nhanvienDelete = nhanvienRepository.findById(id).get();
 			if (khachhangRespository.countKhachhangByNvID(id) > 0) {
 				throw new Exception(MessageException.messCanNotDeleteNhanvienHasKhachHang);
 			} else {
+				Nhanvien nhanvien = nhanvienRepository.findById(id).get();
 				nhanvienRepository.deleteById(id);
-				return nhanvienDelete;
+				formNhanvienDelete = new FormNhanvien(nhanvien);
+				return formNhanvienDelete;
 			}
 		} else {
 			throw new Exception(MessageException.messNhanvienNotExists);
 		}
 	}
 
-	public Nhanvien addNhanvien(FormNhanvien fNhanvien) {
-		Nhanvien nhanvienAdd = nhanvienRepository.save(fNhanvien.coverToNhanvien());
-		return nhanvienAdd;
-	}
-
-	public Nhanvien editNhanvien(FormNhanvien fNhanvien) {
-		Nhanvien nhanvienEdit = null;
-		boolean flag = nhanvienRepository.existsById(fNhanvien.getNvid());
-		if (flag) {
-			nhanvienEdit = nhanvienRepository.save(fNhanvien.coverToNhanvien());
-		}
-		return nhanvienEdit;
-	}
-
-	public Nhanvien login(FormLogin formLogin) {
+	public FormNhanvien login(FormLogin formLogin) {
 		Nhanvien nhanvien = nhanvienRepository.login(formLogin.getTaikhoan(), formLogin.getMatkhau());
-		return nhanvien;
+		FormNhanvien formNhanvien = new FormNhanvien(nhanvien);
+		return formNhanvien;
 	}
 
 	@Override

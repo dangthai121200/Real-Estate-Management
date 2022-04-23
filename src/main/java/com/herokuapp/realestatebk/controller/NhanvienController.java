@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.herokuapp.realestatebk.entity.Nhanvien;
 import com.herokuapp.realestatebk.form.FormLogin;
 import com.herokuapp.realestatebk.form.FormNhanvien;
 import com.herokuapp.realestatebk.service.NhanvienService;
@@ -24,30 +23,27 @@ public class NhanvienController {
 	private NhanvienService nhanvienService;
 
 	@GetMapping(URL.GET_ALL_Nhanvien)
-	public List<Nhanvien> getAllNhanvien() {
-		List<Nhanvien> nhanvienList = nhanvienService.getAllNhanvien();
-		return nhanvienList;
+	public List<FormNhanvien> getAllNhanvien() {
+		return nhanvienService.getAllNhanvien();
 	}
 
 	@PostMapping(URL.ADD_Nhanvien)
-	public Nhanvien addNhanvien(@RequestBody FormNhanvien fNhanvien) {
-		Nhanvien nhanvienAdd = nhanvienService.addNhanvien(fNhanvien);
-		return nhanvienAdd;
+	public FormNhanvien addNhanvien(@RequestBody FormNhanvien fNhanvien) {
+		return nhanvienService.addNhanvien(fNhanvien);
 	}
 
 	@PutMapping(URL.UPDATE_Nhanvien)
-	public Nhanvien editNhanvien(@RequestBody FormNhanvien fNhanvien) {
-		Nhanvien nhanvienEdit = nhanvienService.editNhanvien(fNhanvien);
-		return nhanvienEdit;
+	public FormNhanvien editNhanvien(@RequestBody FormNhanvien fNhanvien) throws Exception {
+		return nhanvienService.editNhanvien(fNhanvien);
 	}
 
 	@DeleteMapping(URL.DELETE_Nhanvien)
-	public Nhanvien deleteNhanvien(@PathVariable int id) throws Exception {
+	public FormNhanvien deleteNhanvien(@PathVariable int id) throws Exception {
 		return nhanvienService.deleteNhanvien(id);
 	}
+
 	@PostMapping(URL.LOGIN_Nhanvien)
-	public Nhanvien loginNhanvien(@RequestBody FormLogin formLogin) {
-		Nhanvien nhanvien = nhanvienService.login(formLogin);
-		return nhanvien;
+	public FormNhanvien loginNhanvien(@RequestBody FormLogin formLogin) {
+		return nhanvienService.login(formLogin);
 	}
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.herokuapp.realestatebk.entity.Khachhang;
 import com.herokuapp.realestatebk.form.FormKhachhang;
 import com.herokuapp.realestatebk.service.KhachhangService;
 import com.herokuapp.realestatebk.util.URL;
@@ -23,22 +22,22 @@ public class KhachhangController {
 	private KhachhangService khachhangService;
 
 	@GetMapping(URL.GET_ALL_Khachhang)
-	public List<Khachhang> getAllKhachhang() {
-		return (List<Khachhang>) khachhangService.getAllKhachhang();
+	public List<FormKhachhang> getAllKhachhang() {
+		return khachhangService.getAllKhachhang();
 	}
 
 	@PostMapping(URL.ADD_Khachhang)
-	public Khachhang addKhachhang(@RequestBody FormKhachhang fKhachhang) {
-		return (Khachhang) khachhangService.addKhachhang(fKhachhang);
+	public FormKhachhang addKhachhang(@RequestBody FormKhachhang fKhachhang) {
+		return khachhangService.addKhachhang(fKhachhang);
 	}
 
 	@PutMapping(URL.UPDATE_Khachhang)
-	public Khachhang editKhachhang(@RequestBody FormKhachhang fKhachhang) {
-		return (Khachhang) khachhangService.editKhachhang(fKhachhang);
+	public FormKhachhang editKhachhang(@RequestBody FormKhachhang fKhachhang) {
+		return khachhangService.editKhachhang(fKhachhang);
 	}
 
 	@DeleteMapping(URL.DELETE_Khachhang)
-	public Khachhang deleteKhachhang(@PathVariable int id) throws Exception {
-		return khachhangService.deleteNhanvien(id);
+	public FormKhachhang deleteKhachhang(@PathVariable int id) throws Exception {
+		return khachhangService.deleteKhachHang(id);
 	}
 }

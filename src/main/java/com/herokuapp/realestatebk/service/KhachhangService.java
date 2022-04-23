@@ -1,5 +1,6 @@
 package com.herokuapp.realestatebk.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,40 +20,49 @@ public class KhachhangService {
 	private KhachhangRespository khachhangRespository;
 
 	@Autowired
-	private HopdongkyguiRepository hopdongkyguiRepository;
-	
+	private HopdongchuyennhhuongRepository hopdongchuyennhhuongRepository;
+
 	@Autowired
-	private HopdongchuyennhhuongRepository hopdongchuyennhhuongRepository ;
-	
-	public List<Khachhang> getAllKhachhang() {
-		return (List<Khachhang>) khachhangRespository.findAll();
+	private HopdongkyguiRepository hopdongkyguiRepository;
+
+	public List<FormKhachhang> getAllKhachhang() {
+		List<FormKhachhang> formKhachhangs = new ArrayList<>();
+		List<Khachhang> khachhangs = (List<Khachhang>) khachhangRespository.findAll();
+		for (Khachhang khachhang : khachhangs) {
+			formKhachhangs.add(new FormKhachhang(khachhang));
+		}
+		return formKhachhangs;
 	}
 
-	public Khachhang addKhachhang(FormKhachhang fKhachhang) {
-		return (Khachhang) khachhangRespository.save(fKhachhang.coverToKhachhang());
+	public FormKhachhang addKhachhang(FormKhachhang fKhachhang) {
+		Khachhang khachhang = khachhangRespository.save(fKhachhang.coverToKhachhang());
+		FormKhachhang formKhachhangAdd = new FormKhachhang(khachhang);
+		return formKhachhangAdd;
 	}
 
-	public Khachhang editKhachhang(FormKhachhang fKhachhang) {
+	public FormKhachhang editKhachhang(FormKhachhang fKhachhang) {
 		Khachhang khachhangEdit = null;
+		FormKhachhang formKhachhangEdit = null;
 		boolean flag = khachhangRespository.existsById(fKhachhang.getKhid());
 		if (flag) {
 			khachhangEdit = khachhangRespository.save(fKhachhang.coverToKhachhang());
+			formKhachhangEdit = new FormKhachhang(khachhangEdit);
 		}
-		return khachhangEdit;
+		return formKhachhangEdit;
 	}
 
-	public Khachhang deleteNhanvien(int id) throws Exception {
-		Khachhang khachhangDelete = null;
+	public FormKhachhang deleteKhachHang(int id) throws Exception {
 		boolean flag = khachhangRespository.existsById(id);
 		if (flag) {
-			khachhangDelete = khachhangRespository.findById(id).get();
 			if (hopdongkyguiRepository.countHopdongkyguiByKhID(id) > 0) {
 				throw new Exception(MessageException.messCanNotDeleteKhachhangHasHopdongkygui);
 			} else if(hopdongchuyennhhuongRepository.countHopdongchuyennhuongByKhID(id) > 0) {
 				throw new Exception(MessageException.messCanNotDeleteKhachhangHasHopdongchuyennhuong);
 			} else {
+				Khachhang khachhang = khachhangRespository.findById(id).get();
 				khachhangRespository.deleteById(id);
-				return khachhangDelete;
+				FormKhachhang formKhachhangDelete = new FormKhachhang(khachhang);
+				return formKhachhangDelete;
 			}
 		} else {
 			throw new Exception(MessageException.messKhachhangNotExists);

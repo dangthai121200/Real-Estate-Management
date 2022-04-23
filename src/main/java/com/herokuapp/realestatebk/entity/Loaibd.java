@@ -44,6 +44,16 @@ public class Loaibd implements Serializable {
 	public Loaibd() {
 	}
 
+	public Loaibd(int loaiid, String tenloai) {
+		super();
+		this.loaiid = loaiid;
+		this.tenloai = tenloai;
+	}
+
+	public Loaibd(String tenloai) {
+		this.tenloai = tenloai;
+	}
+
 	public int getLoaiid() {
 		return this.loaiid;
 	}

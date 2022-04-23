@@ -2,12 +2,10 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.herokuapp.realestatebk.entity.Khachhang;
 
 public class FormKhachhang {
+
 	private int khid;
 	private int cmnd;
 	private String diachi;
@@ -17,30 +15,30 @@ public class FormKhachhang {
 	private String hoten;
 	private byte loaikh;
 	private String mota;
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date ngaysinh;
 	private int sodienthoai;
 	private byte trangthai;
+	private int nvid;
 
 	public FormKhachhang() {
-		super();
+
 	}
 
-	public FormKhachhang(int khid, int cmnd, String diachi, String diachitt, String email, byte gioitinh, String hoten,
-			byte loaikh, String mota, Date ngaysinh, int sodienthoai, byte trangthai) {
+	public FormKhachhang(Khachhang khachhang) {
 		super();
-		this.khid = khid;
-		this.cmnd = cmnd;
-		this.diachi = diachi;
-		this.diachitt = diachitt;
-		this.email = email;
-		this.gioitinh = gioitinh;
-		this.hoten = hoten;
-		this.loaikh = loaikh;
-		this.mota = mota;
-		this.ngaysinh = ngaysinh;
-		this.sodienthoai = sodienthoai;
-		this.trangthai = trangthai;
+		this.khid = khachhang.getKhid();
+		this.cmnd = khachhang.getCmnd();
+		this.diachi = khachhang.getDiachi();
+		this.diachitt = khachhang.getDiachitt();
+		this.email = khachhang.getEmail();
+		this.gioitinh = khachhang.getGioitinh();
+		this.hoten = khachhang.getHoten();
+		this.loaikh = khachhang.getLoaikh();
+		this.mota = khachhang.getMota();
+		this.ngaysinh = khachhang.getNgaysinh();
+		this.sodienthoai = khachhang.getSodienthoai();
+		this.trangthai = khachhang.getTrangthai();
+		this.nvid = khachhang.getNhanvien().getNvid();
 	}
 
 	public int getKhid() {
@@ -139,18 +137,42 @@ public class FormKhachhang {
 		this.trangthai = trangthai;
 	}
 
+	public int getNvid() {
+		return nvid;
+	}
+
+	public void setNvid(int nvid) {
+		this.nvid = nvid;
+	}
+
 	public Khachhang coverToKhachhang() {
 		Khachhang khachhang = null;
 		if (Integer.valueOf(this.khid) == null) {
 			// use for add khachhang
 			khachhang = new Khachhang(cmnd, diachi, diachitt, email, gioitinh, hoten, loaikh, mota, ngaysinh,
-					sodienthoai, trangthai);
+					sodienthoai, trangthai, nvid);
 		} else {
 			// use for update khachhang
 			khachhang = new Khachhang(khid, cmnd, diachi, diachitt, email, gioitinh, hoten, loaikh, mota, ngaysinh,
-					sodienthoai, trangthai);
+					sodienthoai, trangthai, nvid);
 		}
 		return khachhang;
+	}
+
+	public void convertToFormKhachHang(Khachhang khachhang) {
+		this.khid = khachhang.getKhid();
+		this.cmnd = khachhang.getCmnd();
+		this.diachi = khachhang.getDiachi();
+		this.diachitt = khachhang.getDiachitt();
+		this.email = khachhang.getEmail();
+		this.gioitinh = khachhang.getGioitinh();
+		this.hoten = khachhang.getHoten();
+		this.loaikh = khachhang.getLoaikh();
+		this.mota = khachhang.getMota();
+		this.ngaysinh = khachhang.getNgaysinh();
+		this.sodienthoai = khachhang.getSodienthoai();
+		this.trangthai = khachhang.getTrangthai();
+		this.nvid = khachhang.getNhanvien().getNvid();
 	}
 
 }
