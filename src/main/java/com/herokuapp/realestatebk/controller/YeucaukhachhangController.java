@@ -17,7 +17,7 @@ import com.herokuapp.realestatebk.util.URL;
 
 @RestController
 public class YeucaukhachhangController {
-	
+
 	@Autowired
 	private YeucaukhachhangService yeucaukhachhangService;
 
@@ -25,17 +25,17 @@ public class YeucaukhachhangController {
 	public List<FormYeucaukhachhang> getAllYeucaukhachhang() {
 		return yeucaukhachhangService.getAllYeucaukhachhang();
 	}
-	
+
 	@PostMapping(URL.ADD_Yeucaukhachhang)
 	public FormYeucaukhachhang addYeucaukhachhang(@RequestBody FormYeucaukhachhang fYeucaukhachhang) {
 		return yeucaukhachhangService.addyeucaukhachhang(fYeucaukhachhang);
 	}
-	
+
 	@PutMapping(URL.UPDATE_Yeucaukhachhang)
 	public FormYeucaukhachhang editYeucaukhachhang(@RequestBody FormYeucaukhachhang fYeucaukhachhang) {
 		return yeucaukhachhangService.editYeucaukhachhang(fYeucaukhachhang);
 	}
-	
+
 	@DeleteMapping(URL.DELETE_Yeucaukhachhang)
 	public FormYeucaukhachhang deleteYeucaukhachhang(@PathVariable int id) throws Exception {
 		return yeucaukhachhangService.deleteYeucaukhachhang(id);

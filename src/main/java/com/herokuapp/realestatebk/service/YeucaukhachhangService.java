@@ -13,10 +13,10 @@ import com.herokuapp.realestatebk.repository.YeucaukhachhangRepository;
 
 @Service
 public class YeucaukhachhangService {
-	
+
 	@Autowired
 	private YeucaukhachhangRepository yeucaukhachhangRepository;
-	
+
 	public List<FormYeucaukhachhang> getAllYeucaukhachhang() {
 		List<FormYeucaukhachhang> formYeucaukhachhangs = new ArrayList<FormYeucaukhachhang>();
 		List<Yeucaukhachhang> yeucaukhachhangs = (List<Yeucaukhachhang>) yeucaukhachhangRepository.findAll();
@@ -48,7 +48,7 @@ public class YeucaukhachhangService {
 			Yeucaukhachhang yeucaukhachhang = yeucaukhachhangRepository.findById(id).get();
 			formyeucaukhachhangDel = new FormYeucaukhachhang(yeucaukhachhang);
 			yeucaukhachhangRepository.deleteById(id);
-		}else
+		} else
 			throw new Exception(MessageException.messYeucaukhachhangNotExists);
 		return formyeucaukhachhangDel;
 	}

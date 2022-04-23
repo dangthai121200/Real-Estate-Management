@@ -69,8 +69,6 @@ public class Yeucaukhachhang implements Serializable {
 
 	public Yeucaukhachhang() {
 	}
-	
-	
 
 	public Yeucaukhachhang(int ycid, float daif, float dait, float dientich, float giaf, float giat, String mota,
 			float rongf, float rongt, String vitri, int khachhang, int loaibd) {
@@ -85,17 +83,16 @@ public class Yeucaukhachhang implements Serializable {
 		this.rongf = rongf;
 		this.rongt = rongt;
 		this.vitri = vitri;
-		if(this.khachhang == null) {
+		if (this.khachhang == null) {
 			this.khachhang = new Khachhang();
 		}
 		this.khachhang.setKhid(khachhang);
-		if(this.loaibd == null) {
+		if (this.loaibd == null) {
 			this.loaibd = new Loaibd();
 		}
 		this.loaibd.setLoaiid(loaibd);
 	}
-	
-	
+
 	public Yeucaukhachhang(float daif, float dait, float dientich, float giaf, float giat, String mota, float rongf,
 			float rongt, String vitri, int khachhang, int loaibd) {
 		super();
@@ -108,17 +105,15 @@ public class Yeucaukhachhang implements Serializable {
 		this.rongf = rongf;
 		this.rongt = rongt;
 		this.vitri = vitri;
-		if(this.khachhang == null) {
+		if (this.khachhang == null) {
 			this.khachhang = new Khachhang();
 		}
 		this.khachhang.setKhid(khachhang);
-		if(this.loaibd == null) {
+		if (this.loaibd == null) {
 			this.loaibd = new Loaibd();
 		}
 		this.loaibd.setLoaiid(loaibd);
 	}
-
-
 
 	public int getYcid() {
 		return this.ycid;
