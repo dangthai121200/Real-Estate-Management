@@ -35,7 +35,7 @@ Khachhang
  - GET:/hopdongchuyennhuong: get all list Hopdongchuyennhuong
 
  Hopdongdatcoc:
- - GET:/Hopdongdatcoc: get all list Hopdongdatcoc
+ - GET:/hopdongdatcoc: get all list Hopdongdatcoc
 
  Hinhbd:
  - GET:/hinhbd: get all list Hinhbd
