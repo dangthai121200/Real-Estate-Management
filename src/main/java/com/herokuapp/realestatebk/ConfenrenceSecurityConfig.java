@@ -66,14 +66,19 @@ public class ConfenrenceSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		//bat dong san
-		http.authorizeRequests().antMatchers(URL.GET_ALL_Batdongsan).hasAuthority(Role.ROLE_ADMIN);
-		
+		http.authorizeRequests().antMatchers(HttpMethod.GET, URL.GET_ALL_Batdongsan).hasAnyAuthority(Role.ROLE_SALE, Role.ROLE_ADMIN)
+								.antMatchers(HttpMethod.GET, URL.GET_Batdongsan_BY_ID).hasAnyAuthority(Role.ROLE_SALE, Role.ROLE_ADMIN)
+								.antMatchers(HttpMethod.POST, URL.ADD_Batdongsan).hasAuthority(Role.ROLE_ADMIN)
+								.antMatchers(HttpMethod.PUT, URL.UPDATE_Batdongsan).hasAuthority(Role.ROLE_ADMIN);
+								
 		//nhanvien 
 		http.authorizeRequests().antMatchers(HttpMethod.GET, URL.GET_ALL_Nhanvien).hasAuthority(Role.ROLE_ADMIN)
-								.antMatchers(HttpMethod.PUT, URL.UPDATE_Nhanvien).hasAnyAuthority(Role.ROLE_SALE, Role.ROLE_ADMIN);
+								.antMatchers(HttpMethod.POST, URL.UPDATE_Nhanvien).hasAuthority(Role.ROLE_ADMIN)
+								.antMatchers(HttpMethod.PUT, URL.UPDATE_Nhanvien).hasAnyAuthority(Role.ROLE_SALE, Role.ROLE_ADMIN)
+								.antMatchers(HttpMethod.DELETE, URL.DELETE_Nhanvien).hasAuthority(Role.ROLE_ADMIN);
 		
 		//khachhang
-		http.authorizeRequests().antMatchers(URL.GET_ALL_Khachhang).hasAuthority(Role.ROLE_ADMIN);
+		http.authorizeRequests().antMatchers(URL.GET_ALL_Khachhang).hasAnyAuthority(Role.ROLE_SALE, Role.ROLE_ADMIN);
 		
 		//hopdongchuyenhuong
 		http.authorizeRequests().antMatchers(URL.GET_ALL_Hopdongchuyennhuong).hasAuthority(Role.ROLE_ADMIN);
