@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongchuyennhuong;
@@ -14,6 +15,7 @@ import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class HopdongchuyennhuongService {
 
 	@Autowired
@@ -40,6 +42,7 @@ public class HopdongchuyennhuongService {
 				if (batdongsan.getHopdongchuyennhuongs().size() == 0) {
 					Hopdongchuyennhuong hopdongchuyennhuong = hopdongchuyennhhuongRepository
 							.save(formHopdongchuyennhuong.convertToHopdongchuyennhuong());
+					batdongsan.setTinhtrang(2);
 					return new FormHopdongchuyennhuong(hopdongchuyennhuong);
 				} else {
 					throw new Exception(MessageException.messHopdongchuyennhuongExists);
