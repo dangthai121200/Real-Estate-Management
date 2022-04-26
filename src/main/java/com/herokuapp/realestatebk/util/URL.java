@@ -42,9 +42,16 @@ public class URL {
 
 	// Url Hopdongchuyennhuong
 	public static final String GET_ALL_Hopdongchuyennhuong = "/hopdongchuyennhuong";
+	public static final String GET_Hopdongchuyennhuong_BY_ID = "/hopdongchuyennhuong/{id}";
+	public static final String ADD_Hopdongchuyennhuong = "/hopdongchuyennhuong";
+	public static final String UPDATE_Hopdongchuyennhuong = "/hopdongchuyennhuong";
+	public static final String DELETE_Hopdongchuyennhuong = "/hopdongchuyennhuong/{id}";
 
 	// Url Hopdongdatcoc
 	public static final String GET_ALL_Hopdongdatcoc = "/hopdongdatcoc";
+	public static final String GET_Hopdongdatcoc_BY_ID = "/hopdongdatcoc/{id}";
+	public static final String ADD_Hopdongdatcoc = "/hopdongdatcoc";
+	public static final String DELETE_Hopdongdatcoc = "/hopdongdatcoc/{id}";
 
 	// Url Hinhbd
 	public static final String GET_ALL_Hinhbd = "/hinhbd";

@@ -2,6 +2,9 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.herokuapp.realestatebk.entity.Hopdongchuyennhuong;
 
 public class FormHopdongchuyennhuong {
@@ -9,7 +12,8 @@ public class FormHopdongchuyennhuong {
 	private int cnid;
 
 	private float giatri;
-
+	
+	@Temporal(TemporalType.DATE)
 	private Date ngaylap;
 
 	private byte trangthai;

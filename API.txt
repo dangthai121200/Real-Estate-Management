@@ -35,9 +35,15 @@ Khachhang
  - DELETE /hopdongkygui/:id  delete Hopdongkygui by id
  Hopdongchuyennhuong:
  - GET:/hopdongchuyennhuong: get all list Hopdongchuyennhuong
+ - GET: /hopdongchuyennhuong/:id get hopdongchuyennhuong by id
+ - POST: /hopdongchuyennhuong add hopdongchuyennhuong
+ - DELETE: /hopdongchuyennhuong/:id delete hopdongchuyennhuong by id
 
  Hopdongdatcoc:
- - GET:/hopdongdatcoc: get all list Hopdongdatcoc
+ - GET: /hopdongdatcoc: get all list Hopdongdatcoc
+ - GET: /hopdongdatcoc/:id get hopdongdatcoc by id
+ - POST: /hopdongdatcoc add hopdongdatcoc
+ - DELETE: /hopdongdatcoc/:id delete hopdongdatcoc by id
 
  Hinhbd:
  - GET:/hinhbd: get all list Hinhbd

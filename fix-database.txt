@@ -3,3 +3,11 @@
 - thêm unique cho cột (taikhoan)(email) trong bảng nhanvien
 
 - thêm unique cho cột (cmnd) trong bảng khachhang
+
+- thêm unique cho cột (bdsid) trong bảng hopdongkygui
+
+- thêm unique cho cột (bdsid) trong bảng hopdongdatcoc
+
+- thêm unique cho cột (bdsid)(dcid) trong bảng hopdongchuyennhuong
+
+- thêm unique cho cột (masoqsdd) trong bảng batdongsan

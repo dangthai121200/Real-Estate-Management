@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.herokuapp.realestatebk.auth.UserDetailsConfig;
 import com.herokuapp.realestatebk.entity.Nhanvien;
@@ -24,6 +25,7 @@ import com.herokuapp.realestatebk.repository.NhanvienRepository;
 import com.herokuapp.realestatebk.util.Role;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class NhanvienService implements UserDetailsService {
 
 	@Autowired

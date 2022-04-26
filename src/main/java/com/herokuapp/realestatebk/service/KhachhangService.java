@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.herokuapp.realestatebk.entity.Khachhang;
 import com.herokuapp.realestatebk.exception.MessageException;
@@ -14,6 +15,7 @@ import com.herokuapp.realestatebk.repository.HopdongkyguiRepository;
 import com.herokuapp.realestatebk.repository.KhachhangRespository;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class KhachhangService {
 
 	@Autowired
