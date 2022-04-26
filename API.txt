@@ -31,8 +31,8 @@ Khachhang
  Hopdongkygui:
  - GET:/hopdongkygui: get all list Hopdongkygui
  - Post:/hopdongkygui add  Hopdongkygui
- - PUT /hopdongkygui edit  Hopdongkygui
  - DELETE /hopdongkygui/:id  delete Hopdongkygui by id
+ 
  Hopdongchuyennhuong:
  - GET:/hopdongchuyennhuong: get all list Hopdongchuyennhuong
  - GET: /hopdongchuyennhuong/:id get hopdongchuyennhuong by id

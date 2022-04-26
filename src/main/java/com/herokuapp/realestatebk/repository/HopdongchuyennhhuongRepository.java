@@ -17,4 +17,6 @@ public interface HopdongchuyennhhuongRepository extends CrudRepository<Hopdongch
 	@Query("select count(cn) from hopdongchuyennhuong cn where hopdongdatcoc.dcid = :dcid")
 	int countHopdongchuyennhuongByHopdongdatcocId(@Param("dcid") int dcid);
 	
+	@Query("select count(cn) from hopdongchuyennhuong cn where batdongsan.bdsid = :bdsid")
+	int countHopdongchuyennhuongByBdsID(@Param("bdsid") int bdsid);
 }
