@@ -3,10 +3,16 @@ package com.herokuapp.realestatebk.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.herokuapp.realestatebk.form.FormHopDongKyGui;
+import com.herokuapp.realestatebk.form.FormKhachhang;
 import com.herokuapp.realestatebk.service.HopdongkyguiService;
 import com.herokuapp.realestatebk.util.URL;
 
@@ -18,5 +24,20 @@ public class HopdongkyguiController {
 	@GetMapping(URL.GET_ALL_Hopdongkygui)
 	public List<FormHopDongKyGui> getAllHopdongkygui() {
 		return hopdongkyguiService.getAllHopdongkygui();
+	}
+	
+	@PostMapping(URL.ADD_Hopdongkygui)
+	public FormHopDongKyGui addHopdongkygui(@RequestBody FormHopDongKyGui formHopDongKyGui)  throws Exception  {
+		return hopdongkyguiService.addHopdongkygui(formHopDongKyGui);
+	}
+	
+	@PutMapping(URL.UPDATE_Hopdongkygui)
+	public FormHopDongKyGui editHopdongkygui(@RequestBody FormHopDongKyGui formHopDongKyGui) {
+		return hopdongkyguiService.editHopdongkygui(formHopDongKyGui);
+	}
+	
+	@DeleteMapping(URL.DELETE_Hopdongkygui)
+	public FormHopDongKyGui deleteHopdongkygui(@PathVariable int id) throws Exception {
+		return hopdongkyguiService.deleteHopdongkygui(id);
 	}
 }

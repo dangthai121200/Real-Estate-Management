@@ -6,6 +6,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.herokuapp.realestatebk.entity.Hopdongkygui;
+import com.herokuapp.realestatebk.entity.Khachhang;
 
 public class FormHopDongKyGui {
 
@@ -97,5 +98,16 @@ public class FormHopDongKyGui {
 	public void setKhid(int khid) {
 		this.khid = khid;
 	}
-
+	
+	public Hopdongkygui coverToHopdongkygui() {
+		Hopdongkygui hopdongkygui = null;
+		if (Integer.valueOf(this.kgid) == null) {
+			// use for add Hopdongkygui
+			hopdongkygui = new Hopdongkygui(chiphidv,giatri,ngaybd,ngayketthuc,trangthai,bdsid,khid);
+		} else {
+			// use for update Hopdongkygui
+			hopdongkygui = new Hopdongkygui(kgid,chiphidv,giatri,ngaybd,ngayketthuc,trangthai,bdsid,khid);
+		}
+		return hopdongkygui;
+	}
 }

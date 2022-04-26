@@ -35,6 +35,10 @@ public class URL {
 
 	// Url Hopdongkygui
 	public static final String GET_ALL_Hopdongkygui = "/hopdongkygui";
+	public static final String ADD_Hopdongkygui = "/hopdongkygui";
+	public static final String UPDATE_Hopdongkygui = "/hopdongkygui";
+	public static final String DELETE_Hopdongkygui = "/hopdongkygui/{id}";
+
 
 	// Url Hopdongchuyennhuong
 	public static final String GET_ALL_Hopdongchuyennhuong = "/hopdongchuyennhuong";

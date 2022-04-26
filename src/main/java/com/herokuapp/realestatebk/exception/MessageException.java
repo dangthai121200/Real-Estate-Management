@@ -16,4 +16,10 @@ public class MessageException {
 	
 //	Yeucaukhachhang
 	public static final String messYeucaukhachhangNotExists = "Yêu cầu khách hàng không tồn tại";
+	
+//	Hopdongkygui
+	public static final String messHopdongkyguiHasBdsInHopdongchuyennhuong = "Bất động sản đang trong quá trình chuyển nhượng";
+	public static final String messHopdongkyguiInProcessing = "Hợp đồng ký gửi còn thời hạn";
+	public static final String messHopdongkyguiNotExists = "Hợp đồng ký gửi không tồn tại";
+
 }

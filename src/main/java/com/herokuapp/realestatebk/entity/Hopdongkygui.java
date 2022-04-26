@@ -62,6 +62,46 @@ public class Hopdongkygui implements Serializable {
 
 	public Hopdongkygui() {
 	}
+	
+
+	public Hopdongkygui(int kgid, float chiphidv, float giatri, Date ngaybd, Date ngayketthuc, byte trangthai,
+			int bdsid, int khid) {
+		super();
+		this.kgid = kgid;
+		this.chiphidv = chiphidv;
+		this.giatri = giatri;
+		this.ngaybd = ngaybd;
+		this.ngayketthuc = ngayketthuc;
+		this.trangthai = trangthai;
+		if(this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khid);
+		if(this.batdongsan == null) {
+			this.batdongsan = new Batdongsan();
+		}
+		this.batdongsan.setBdsid(bdsid);	
+	}
+	
+	public Hopdongkygui(float chiphidv, float giatri, Date ngaybd, Date ngayketthuc, byte trangthai,
+			int bdsid, int khid) {
+		super();
+		this.chiphidv = chiphidv;
+		this.giatri = giatri;
+		this.ngaybd = ngaybd;
+		this.ngayketthuc = ngayketthuc;
+		this.trangthai = trangthai;
+		if(this.khachhang == null) {
+			this.khachhang = new Khachhang();
+		}
+		this.khachhang.setKhid(khid);
+		if(this.batdongsan == null) {
+			this.batdongsan = new Batdongsan();
+		}
+		this.batdongsan.setBdsid(bdsid);	
+	}
+
+
 
 	public int getKgid() {
 		return this.kgid;

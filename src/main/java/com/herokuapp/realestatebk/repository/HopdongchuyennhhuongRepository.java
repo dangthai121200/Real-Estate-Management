@@ -11,4 +11,7 @@ import com.herokuapp.realestatebk.entity.Hopdongchuyennhuong;
 public interface HopdongchuyennhhuongRepository extends CrudRepository<Hopdongchuyennhuong, Integer> {
 	@Query("select count(cn) from hopdongchuyennhuong cn where khachhang.khid = :khid")
 	int countHopdongchuyennhuongByKhID(@Param("khid") int khid);
+	
+	@Query("select count(kg) from hopdongkygui kg where batdongsan.bdsid = :bdsid")
+	int countHopdongchuyennhuongByBdsID(@Param("bdsid") int bdsid);
 }
