@@ -35,7 +35,7 @@ public class HopdongkyguiService {
 		return formHopDongKyGuis;
 	}
 
-	public FormHopDongKyGui addHopdongkygui(FormHopDongKyGui formHopDongKyGui)  throws Exception  {
+	public FormHopDongKyGui addHopdongkygui(FormHopDongKyGui formHopDongKyGui) throws Exception  {
 		boolean flag = batdongsanRepository.existsById(formHopDongKyGui.getBdsid());
 		if(flag) {
 			Hopdongkygui hopdongkygui = hopdongkyguiRepository.save(formHopDongKyGui.coverToHopdongkygui());
@@ -44,17 +44,6 @@ public class HopdongkyguiService {
 		}else
 			throw new Exception(MessageException.messBatdongsanNotFound);
 		
-	}
-
-	public FormHopDongKyGui editHopdongkygui(FormHopDongKyGui formHopDongKyGui) {
-		Hopdongkygui hopdongkyguiEdit = null;
-		FormHopDongKyGui formHopDongKyGuiEdit = null;
-		boolean flag = hopdongkyguiRepository.existsById(formHopDongKyGui.getKgid());
-		if (flag) {
-			hopdongkyguiEdit = hopdongkyguiRepository.save(formHopDongKyGui.coverToHopdongkygui());
-			formHopDongKyGuiEdit = new FormHopDongKyGui(hopdongkyguiEdit);
-		}
-		return formHopDongKyGuiEdit;
 	}
 
 	public FormHopDongKyGui deleteHopdongkygui(int id) throws Exception{
@@ -74,4 +63,6 @@ public class HopdongkyguiService {
 			throw new Exception(MessageException.messHopdongkyguiNotExists);
 		}
 	}
+	
+	
 }
