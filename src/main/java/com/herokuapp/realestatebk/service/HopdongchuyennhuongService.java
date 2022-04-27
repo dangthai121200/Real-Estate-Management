@@ -38,16 +38,18 @@ public class HopdongchuyennhuongService {
 			throws Exception {
 		Batdongsan batdongsan = batdongsanRepository.findById(formHopdongchuyennhuong.getBdsid()).get();
 		if (batdongsan != null) {
-			if (batdongsan.getHopdongdatcocs().size() == 1) {
+			if (batdongsan.getHopdongdatcocs().size() > 0) {
 				if (batdongsan.getHopdongchuyennhuongs().size() == 0) {
 					Hopdongchuyennhuong hopdongchuyennhuong = hopdongchuyennhhuongRepository
 							.save(formHopdongchuyennhuong.convertToHopdongchuyennhuong());
+					if (batdongsan.getHopdongdatcocs().size() > 0) {
+						batdongsan.getHopdongdatcocs().get(0).setTrangthai((byte) 0);
+					}
 					batdongsan.setTinhtrang(2);
 					return new FormHopdongchuyennhuong(hopdongchuyennhuong);
 				} else {
 					throw new Exception(MessageException.messHopdongchuyennhuongExists);
 				}
-
 			} else {
 				throw new Exception(MessageException.messHopdongchuyennhuongHaveNotHDDatcoc);
 			}
@@ -61,7 +63,12 @@ public class HopdongchuyennhuongService {
 		boolean flag = hopdongchuyennhhuongRepository.existsById(cnid);
 		if (flag) {
 			Hopdongchuyennhuong hopdongchuyennhuong = hopdongchuyennhhuongRepository.findById(cnid).get();
+			Batdongsan batdongsan = batdongsanRepository.findById(hopdongchuyennhuong.getBatdongsan().getBdsid()).get();
 			hopdongchuyennhhuongRepository.deleteById(cnid);
+			if (batdongsan.getHopdongdatcocs().size() > 0) {
+				batdongsan.getHopdongdatcocs().get(0).setTrangthai((byte) 0);
+			}
+			batdongsan.setTinhtrang(1);
 			return new FormHopdongchuyennhuong(hopdongchuyennhuong);
 		} else {
 			throw new Exception(MessageException.messHopdongchuyennhuongNotExists);

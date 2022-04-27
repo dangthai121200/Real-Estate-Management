@@ -23,7 +23,7 @@ public class HopdongdatcocService {
 
 	@Autowired
 	private BatdongsanRepository batdongsanRepository;
-	
+
 	@Autowired
 	private HopdongchuyennhhuongRepository hopdongchuyennhhuongRepository;
 
@@ -43,6 +43,9 @@ public class HopdongdatcocService {
 				if (batdongsan.getHopdongdatcocs().size() == 0) {
 					Hopdongdatcoc hopdongdatcoc = hopdongdatcocRepository
 							.save(formhopdongdatcoc.convertToHopdongdatcoc());
+					if (batdongsan.getHopdongkyguis().size() > 0) {
+						batdongsan.getHopdongkyguis().get(0).setTrangthai((byte) 1);
+					}
 					batdongsan.setTinhtrang(1);
 					return new Formhopdongdatcoc(hopdongdatcoc);
 				} else {
@@ -59,9 +62,14 @@ public class HopdongdatcocService {
 
 	public Formhopdongdatcoc deleteHopdongdatcoc(int id) throws Exception {
 		int count = hopdongchuyennhhuongRepository.countHopdongchuyennhuongByHopdongdatcocId(id);
-		if(count == 0) {
+		if (count == 0) {
 			Hopdongdatcoc hopdongdatcoc = hopdongdatcocRepository.findById(id).get();
+			Batdongsan batdongsan = batdongsanRepository.findById(hopdongdatcoc.getBatdongsan().getBdsid()).get();
 			hopdongdatcocRepository.deleteById(id);
+			if (batdongsan.getHopdongkyguis().size() > 0) {
+				batdongsan.getHopdongkyguis().get(0).setTrangthai((byte) 0);
+			}
+			batdongsan.setTinhtrang(0);
 			return new Formhopdongdatcoc(hopdongdatcoc);
 		} else {
 			throw new Exception(MessageException.messHopdongdatcocHaveHopdongchuyennhuong);
@@ -72,5 +80,5 @@ public class HopdongdatcocService {
 		Hopdongdatcoc hopdongdatcoc = hopdongdatcocRepository.findById(id).get();
 		return new Formhopdongdatcoc(hopdongdatcoc);
 	}
-	
+
 }

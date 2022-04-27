@@ -23,13 +23,12 @@ public class HopdongkyguiController {
 	public List<FormHopDongKyGui> getAllHopdongkygui() {
 		return hopdongkyguiService.getAllHopdongkygui();
 	}
-	
+
 	@PostMapping(URL.ADD_Hopdongkygui)
 	public FormHopDongKyGui addHopdongkygui(@RequestBody FormHopDongKyGui formHopDongKyGui) throws Exception {
 		return hopdongkyguiService.addHopdongkygui(formHopDongKyGui);
 	}
-	
-	
+
 	@DeleteMapping(URL.DELETE_Hopdongkygui)
 	public FormHopDongKyGui deleteHopdongkygui(@PathVariable int id) throws Exception {
 		return hopdongkyguiService.deleteHopdongkygui(id);

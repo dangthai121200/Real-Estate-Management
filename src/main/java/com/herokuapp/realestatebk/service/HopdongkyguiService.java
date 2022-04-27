@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongkygui;
 import com.herokuapp.realestatebk.exception.MessageException;
 import com.herokuapp.realestatebk.form.FormHopDongKyGui;
@@ -21,13 +22,13 @@ public class HopdongkyguiService {
 
 	@Autowired
 	private HopdongkyguiRepository hopdongkyguiRepository;
-	
+
 	@Autowired
 	private BatdongsanRepository batdongsanRepository;
-	
+
 	@Autowired
 	private HopdongchuyennhhuongRepository hopdongchuyennhhuongRepository;
-	
+
 	public List<FormHopDongKyGui> getAllHopdongkygui() {
 		List<FormHopDongKyGui> formHopDongKyGuis = new ArrayList<>();
 		List<Hopdongkygui> hopdongkyguis = (List<Hopdongkygui>) hopdongkyguiRepository.findAll();
@@ -37,24 +38,37 @@ public class HopdongkyguiService {
 		return formHopDongKyGuis;
 	}
 
-	public FormHopDongKyGui addHopdongkygui(FormHopDongKyGui formHopDongKyGui) throws Exception  {
+	public FormHopDongKyGui addHopdongkygui(FormHopDongKyGui formHopDongKyGui) throws Exception {
 		boolean flag = batdongsanRepository.existsById(formHopDongKyGui.getBdsid());
-		if(flag) {
-			Hopdongkygui hopdongkygui = hopdongkyguiRepository.save(formHopDongKyGui.coverToHopdongkygui());
-			FormHopDongKyGui fHopDongKyGui = new FormHopDongKyGui(hopdongkygui);
-			return fHopDongKyGui;
-		}else
+		if (flag) {
+			Batdongsan batdongsan = batdongsanRepository.findById(formHopDongKyGui.getBdsid()).get();
+			if(batdongsan.getHopdongkyguis().size() == 0) {
+				if (batdongsan.getHopdongdatcocs().size() == 0) {
+					if (batdongsan.getHopdongchuyennhuongs().size() == 0) {
+						Hopdongkygui hopdongkygui = hopdongkyguiRepository.save(formHopDongKyGui.coverToHopdongkygui());
+						return new FormHopDongKyGui(hopdongkygui);
+					} else {
+						throw new Exception(MessageException.messHopdongkyguiHasBdsInHopdongchuyennhuong);
+					}
+				} else {
+					throw new Exception(MessageException.messHopdongkyguiHasBdsInHopdongdatcoc);
+				}
+			} else {
+				throw new Exception(MessageException.messHopdongkyguiExists);
+			}
+		} else {
 			throw new Exception(MessageException.messBatdongsanNotFound);
-		
+		}
 	}
 
-	public FormHopDongKyGui deleteHopdongkygui(int id) throws Exception{
+	public FormHopDongKyGui deleteHopdongkygui(int id) throws Exception {
 		boolean flag = hopdongkyguiRepository.existsById(id);
 		if (flag) {
 			Hopdongkygui hopdongkygui = hopdongkyguiRepository.findById(id).get();
-			if (hopdongchuyennhhuongRepository.countHopdongchuyennhuongByBdsID(hopdongkygui.getBatdongsan().getBdsid()) > 0) {
+			if (hopdongchuyennhhuongRepository
+					.countHopdongchuyennhuongByBdsID(hopdongkygui.getBatdongsan().getBdsid()) > 0) {
 				throw new Exception(MessageException.messHopdongkyguiHasBdsInHopdongchuyennhuong);
-			} else if(hopdongkygui.getNgayketthuc().after(new Date())) {
+			} else if (hopdongkygui.getNgayketthuc().after(new Date())) {
 				throw new Exception(MessageException.messHopdongkyguiInProcessing);
 			} else {
 				hopdongkyguiRepository.deleteById(id);
@@ -65,6 +79,5 @@ public class HopdongkyguiService {
 			throw new Exception(MessageException.messHopdongkyguiNotExists);
 		}
 	}
-	
-	
+
 }

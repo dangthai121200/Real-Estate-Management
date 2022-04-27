@@ -21,12 +21,14 @@ public class MessageException {
 	
 //	Hopdongkygui
 	public static final String messHopdongkyguiHasBdsInHopdongchuyennhuong = "Bất động sản đang trong quá trình chuyển nhượng";
+	public static final String messHopdongkyguiHasBdsInHopdongdatcoc = "Bất động sản đang trong quá trình đặt cọc";
 	public static final String messHopdongkyguiInProcessing = "Hợp đồng ký gửi còn thời hạn";
 	public static final String messHopdongkyguiNotExists = "Hợp đồng ký gửi không tồn tại";
+	public static final String messHopdongkyguiExists = "Bất động sản đã có hợp đồng ký gửi";
 
 	// Hopdongchuyennhuong
 	public static final String messHopdongchuyennhuongNotExists = "Hợp đồng chuyển nhượng không tồn tại";
-	public static final String messHopdongchuyennhuongExists = "Đã có hợp đồng chuyển nhượng";
+	public static final String messHopdongchuyennhuongExists = "Bất động sản đã có hợp đồng chuyển nhượng";
 	public static final String messHopdongchuyennhuongHaveNotHDDatcoc = "Bất động sản chưa có hợp đồng đặt cọc";
 
 	// Hợp đồng đặt cọc
