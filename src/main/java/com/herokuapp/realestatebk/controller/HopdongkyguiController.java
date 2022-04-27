@@ -7,13 +7,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.herokuapp.realestatebk.entity.Hopdongkygui;
 import com.herokuapp.realestatebk.form.FormHopDongKyGui;
-import com.herokuapp.realestatebk.form.FormKhachhang;
 import com.herokuapp.realestatebk.service.HopdongkyguiService;
 import com.herokuapp.realestatebk.util.URL;
 

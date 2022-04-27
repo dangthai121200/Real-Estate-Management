@@ -18,13 +18,11 @@ public class MessageException {
 
 	// Yeucaukhachhang
 	public static final String messYeucaukhachhangNotExists = "Yêu cầu khách hàng không tồn tại";
-<<<<<<< HEAD
 	
 //	Hopdongkygui
 	public static final String messHopdongkyguiHasBdsInHopdongchuyennhuong = "Bất động sản đang trong quá trình chuyển nhượng";
 	public static final String messHopdongkyguiInProcessing = "Hợp đồng ký gửi còn thời hạn";
 	public static final String messHopdongkyguiNotExists = "Hợp đồng ký gửi không tồn tại";
-=======
 
 	// Hopdongchuyennhuong
 	public static final String messHopdongchuyennhuongNotExists = "Hợp đồng chuyển nhượng không tồn tại";
@@ -33,6 +31,5 @@ public class MessageException {
 
 	// Hợp đồng đặt cọc
 	public static final String messHopdongdatcocHaveHopdongchuyennhuong = "Hợp Đồng Đặt Cọc đang trong Hợp Đồng Chuyển Nhượng";
->>>>>>> 97a9d38c2ec42954db33830faf01a1a31a518447
 
 }

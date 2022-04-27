@@ -49,21 +49,21 @@ public class HopdongkyguiService {
 	}
 
 	public FormHopDongKyGui deleteHopdongkygui(int id) throws Exception{
-//		boolean flag = hopdongkyguiRepository.existsById(id);
-//		if (flag) {
-//			Hopdongkygui hopdongkygui = hopdongkyguiRepository.findById(id).get();
-//			if (hopdongchuyennhhuongRepository.countHopdongchuyennhuongByBdsID(hopdongkygui.getBatdongsan().getBdsid()) > 0) {
-//				throw new Exception(MessageException.messHopdongkyguiHasBdsInHopdongchuyennhuong);
-//			} else if(hopdongkygui.getNgayketthuc().after(new Date())) {
-//				throw new Exception(MessageException.messHopdongkyguiInProcessing);
-//			} else {
-//				hopdongkyguiRepository.deleteById(id);
-//				FormHopDongKyGui formHopDongKyGuiDel = new FormHopDongKyGui(hopdongkygui);
-//				return formHopDongKyGuiDel;
-//			}
-//		} else {
+		boolean flag = hopdongkyguiRepository.existsById(id);
+		if (flag) {
+			Hopdongkygui hopdongkygui = hopdongkyguiRepository.findById(id).get();
+			if (hopdongchuyennhhuongRepository.countHopdongchuyennhuongByBdsID(hopdongkygui.getBatdongsan().getBdsid()) > 0) {
+				throw new Exception(MessageException.messHopdongkyguiHasBdsInHopdongchuyennhuong);
+			} else if(hopdongkygui.getNgayketthuc().after(new Date())) {
+				throw new Exception(MessageException.messHopdongkyguiInProcessing);
+			} else {
+				hopdongkyguiRepository.deleteById(id);
+				FormHopDongKyGui formHopDongKyGuiDel = new FormHopDongKyGui(hopdongkygui);
+				return formHopDongKyGuiDel;
+			}
+		} else {
 			throw new Exception(MessageException.messHopdongkyguiNotExists);
-//		}
+		}
 	}
 	
 	
