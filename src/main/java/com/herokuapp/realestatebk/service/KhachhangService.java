@@ -71,4 +71,14 @@ public class KhachhangService {
 		}
 	}
 
+	public FormKhachhang getKhachhangByID(int id) throws Exception {
+		boolean flag = khachhangRespository.existsById(id);
+		if (flag) {
+			Khachhang khachhang = khachhangRespository.findById(id).get();
+			FormKhachhang formKhachhang = new FormKhachhang(khachhang);
+			return formKhachhang;
+		} else 
+			throw new Exception(MessageException.messKhachhangNotExists);
+	}
+
 }
