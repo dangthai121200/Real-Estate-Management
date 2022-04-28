@@ -17,20 +17,20 @@ public class FormAddHopdongkygui {
 	@Temporal(TemporalType.DATE)
 	private Date ngayketthuc;
 	private byte trangthai;
-	private Batdongsan batdongsan;
 	private int khid;
+	private FormBatdongsan formBatdongsan;
 
 	public FormAddHopdongkygui() {
 	}
 
-	public FormAddHopdongkygui(Hopdongkygui hopdongkygui) {
+	public FormAddHopdongkygui(Hopdongkygui hopdongkygui, Batdongsan batdongsan) {
 		this.kgid = hopdongkygui.getKgid();
 		this.chiphidv = hopdongkygui.getChiphidv();
 		this.giatri = hopdongkygui.getGiatri();
 		this.ngaybd = hopdongkygui.getNgaybd();
 		this.ngayketthuc = hopdongkygui.getNgayketthuc();
 		this.trangthai = hopdongkygui.getTrangthai();
-		this.batdongsan = hopdongkygui.getBatdongsan();
+		this.formBatdongsan = new FormBatdongsan(batdongsan);
 		this.khid = hopdongkygui.getKhachhang().getKhid();
 	}
 
@@ -82,12 +82,12 @@ public class FormAddHopdongkygui {
 		this.trangthai = trangthai;
 	}
 
-	public Batdongsan getBatdongsan() {
-		return batdongsan;
+	public FormBatdongsan getFormBatdongsan() {
+		return formBatdongsan;
 	}
 
-	public void setBatdongsan(Batdongsan batdongsan) {
-		this.batdongsan = batdongsan;
+	public void setFormBatdongsan(FormBatdongsan formBatdongsan) {
+		this.formBatdongsan = formBatdongsan;
 	}
 
 	public int getKhid() {
@@ -97,16 +97,10 @@ public class FormAddHopdongkygui {
 	public void setKhid(int khid) {
 		this.khid = khid;
 	}
-	
+
 	public Hopdongkygui coverToHopdongkygui() {
-		Hopdongkygui hopdongkygui = null;
-		if (Integer.valueOf(this.kgid) == null) {
-			// use for add Hopdongkygui
-			hopdongkygui = new Hopdongkygui(chiphidv,giatri,ngaybd,ngayketthuc,trangthai,batdongsan.getBdsid(),khid);
-		} else {
-			// use for update Hopdongkygui
-			hopdongkygui = new Hopdongkygui(kgid,chiphidv,giatri,ngaybd,ngayketthuc,trangthai,batdongsan.getBdsid(),khid);
-		}
+		Hopdongkygui hopdongkygui = new Hopdongkygui(chiphidv, giatri, ngaybd, ngayketthuc, trangthai,
+				formBatdongsan.getBdsid(), khid);
 		return hopdongkygui;
 	}
 }

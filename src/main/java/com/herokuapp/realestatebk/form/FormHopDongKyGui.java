@@ -6,7 +6,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.herokuapp.realestatebk.entity.Hopdongkygui;
-import com.herokuapp.realestatebk.entity.Khachhang;
 
 public class FormHopDongKyGui {
 

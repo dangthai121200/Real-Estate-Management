@@ -12,6 +12,7 @@ import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongkygui;
 import com.herokuapp.realestatebk.exception.MessageException;
 import com.herokuapp.realestatebk.form.FormAddHopdongkygui;
+import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.form.FormHopDongKyGui;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
@@ -40,10 +41,10 @@ public class HopdongkyguiService {
 	}
 
 	public FormAddHopdongkygui addHopdongkygui(FormAddHopdongkygui formAddHopdongkygui) throws Exception {
-		Batdongsan batdongsan = batdongsanRepository.save(formAddHopdongkygui.getBatdongsan());
-		formAddHopdongkygui.setBatdongsan(batdongsan);
+		Batdongsan batdongsan = batdongsanRepository.save(formAddHopdongkygui.getFormBatdongsan().coverToBatdongsan());
+		formAddHopdongkygui.setFormBatdongsan(new FormBatdongsan(batdongsan));
 		Hopdongkygui hopdongkygui = hopdongkyguiRepository.save(formAddHopdongkygui.coverToHopdongkygui());
-		return new FormAddHopdongkygui(hopdongkygui);
+		return new FormAddHopdongkygui(hopdongkygui, batdongsan);
 	}
 
 	public FormHopDongKyGui deleteHopdongkygui(int id) throws Exception {
