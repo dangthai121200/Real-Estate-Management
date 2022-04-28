@@ -395,4 +395,7 @@ public class Batdongsan implements Serializable {
 		return hopdongkygui;
 	}
 
+	
+	
+
 }
