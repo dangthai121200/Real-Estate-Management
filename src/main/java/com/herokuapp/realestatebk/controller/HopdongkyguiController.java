@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.herokuapp.realestatebk.entity.Batdongsan;
+import com.herokuapp.realestatebk.form.FormAddHopdongkygui;
 import com.herokuapp.realestatebk.form.FormHopDongKyGui;
 import com.herokuapp.realestatebk.service.HopdongkyguiService;
 import com.herokuapp.realestatebk.util.URL;
@@ -25,8 +27,8 @@ public class HopdongkyguiController {
 	}
 
 	@PostMapping(URL.ADD_Hopdongkygui)
-	public FormHopDongKyGui addHopdongkygui(@RequestBody FormHopDongKyGui formHopDongKyGui) throws Exception {
-		return hopdongkyguiService.addHopdongkygui(formHopDongKyGui);
+	public FormAddHopdongkygui addHopdongkygui(@RequestBody FormAddHopdongkygui formAddHopdongkygui) throws Exception {
+		return hopdongkyguiService.addHopdongkygui(formAddHopdongkygui);
 	}
 
 	@DeleteMapping(URL.DELETE_Hopdongkygui)

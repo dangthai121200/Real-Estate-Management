@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongkygui;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.form.FormAddHopdongkygui;
 import com.herokuapp.realestatebk.form.FormHopDongKyGui;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
@@ -38,27 +39,11 @@ public class HopdongkyguiService {
 		return formHopDongKyGuis;
 	}
 
-	public FormHopDongKyGui addHopdongkygui(FormHopDongKyGui formHopDongKyGui) throws Exception {
-		boolean flag = batdongsanRepository.existsById(formHopDongKyGui.getBdsid());
-		if (flag) {
-			Batdongsan batdongsan = batdongsanRepository.findById(formHopDongKyGui.getBdsid()).get();
-			if(batdongsan.getHopdongkyguis().size() == 0) {
-				if (batdongsan.getHopdongdatcocs().size() == 0) {
-					if (batdongsan.getHopdongchuyennhuongs().size() == 0) {
-						Hopdongkygui hopdongkygui = hopdongkyguiRepository.save(formHopDongKyGui.coverToHopdongkygui());
-						return new FormHopDongKyGui(hopdongkygui);
-					} else {
-						throw new Exception(MessageException.messHopdongkyguiHasBdsInHopdongchuyennhuong);
-					}
-				} else {
-					throw new Exception(MessageException.messHopdongkyguiHasBdsInHopdongdatcoc);
-				}
-			} else {
-				throw new Exception(MessageException.messHopdongkyguiExists);
-			}
-		} else {
-			throw new Exception(MessageException.messBatdongsanNotFound);
-		}
+	public FormAddHopdongkygui addHopdongkygui(FormAddHopdongkygui formAddHopdongkygui) throws Exception {
+		Batdongsan batdongsan = batdongsanRepository.save(formAddHopdongkygui.getBatdongsan());
+		formAddHopdongkygui.setBatdongsan(batdongsan);
+		Hopdongkygui hopdongkygui = hopdongkyguiRepository.save(formAddHopdongkygui.coverToHopdongkygui());
+		return new FormAddHopdongkygui(hopdongkygui);
 	}
 
 	public FormHopDongKyGui deleteHopdongkygui(int id) throws Exception {
