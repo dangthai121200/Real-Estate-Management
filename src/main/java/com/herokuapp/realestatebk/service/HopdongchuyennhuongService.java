@@ -43,7 +43,7 @@ public class HopdongchuyennhuongService {
 					Hopdongchuyennhuong hopdongchuyennhuong = hopdongchuyennhhuongRepository
 							.save(formHopdongchuyennhuong.convertToHopdongchuyennhuong());
 					if (batdongsan.getHopdongdatcocs().size() > 0) {
-						batdongsan.getHopdongdatcocs().get(0).setTrangthai((byte) 0);
+						batdongsan.getHopdongdatcocs().get(0).setTrangthai((byte) 1);
 					}
 					batdongsan.setTinhtrang(2);
 					return new FormHopdongchuyennhuong(hopdongchuyennhuong);
