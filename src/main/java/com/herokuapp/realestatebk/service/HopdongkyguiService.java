@@ -80,4 +80,14 @@ public class HopdongkyguiService {
 		}
 	}
 
+	public FormHopDongKyGui getHopdongkyguiByID(int id) throws Exception {
+		boolean flag = hopdongkyguiRepository.existsById(id);
+		if (flag) {
+			Hopdongkygui hopdongkygui = hopdongkyguiRepository.findById(id).get();
+			FormHopDongKyGui formHopDongKyGui = new FormHopDongKyGui(hopdongkygui);
+			return formHopDongKyGui;
+		} else 
+			throw new Exception(MessageException.messHopdongkyguiNotExists);
+	}
+
 }

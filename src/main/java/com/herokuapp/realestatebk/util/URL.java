@@ -16,6 +16,7 @@ public class URL {
 	public static final String ADD_Khachhang = "/khachhang";
 	public static final String UPDATE_Khachhang = "/khachhang";
 	public static final String DELETE_Khachhang = "/khachhang/{id}";
+	public static final String GET_Khachhang_BY_ID = "/khachhang/{id}";
 
 	// URL nhanvien
 	public static final String GET_ALL_Nhanvien = "/nhanvien";
@@ -37,6 +38,7 @@ public class URL {
 	public static final String GET_ALL_Hopdongkygui = "/hopdongkygui";
 	public static final String ADD_Hopdongkygui = "/hopdongkygui";
 	public static final String DELETE_Hopdongkygui = "/hopdongkygui/{id}";
+	public static final String GET_Hopdongkygui_BY_ID = "/hopdongkygui/{id}";
 
 
 	// Url Hopdongchuyennhuong

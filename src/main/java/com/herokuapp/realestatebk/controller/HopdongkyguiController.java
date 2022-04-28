@@ -33,4 +33,9 @@ public class HopdongkyguiController {
 	public FormHopDongKyGui deleteHopdongkygui(@PathVariable int id) throws Exception {
 		return hopdongkyguiService.deleteHopdongkygui(id);
 	}
+	
+	@GetMapping(URL.GET_Hopdongkygui_BY_ID)
+	public FormHopDongKyGui getHopdongkyguiByID(@PathVariable int id) throws Exception {
+		return hopdongkyguiService.getHopdongkyguiByID(id);
+	}
 }

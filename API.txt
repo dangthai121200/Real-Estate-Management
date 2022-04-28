@@ -21,6 +21,8 @@ Khachhang
  - POST /khachhang  add khachhang
  - PUT /khachhang  edit khachhang
  - DELETE /khachhang/:id  delete khachhang by id
+ - GET: /khachhang/:id  get khachhang by id
+ 
  
  Yeucaukhachhang:
  - GET:/yeucaukhachhang  get  all list Yeucaukhachhang
@@ -32,6 +34,7 @@ Khachhang
  - GET:/hopdongkygui: get all list Hopdongkygui
  - Post:/hopdongkygui add  Hopdongkygui
  - DELETE /hopdongkygui/:id  delete Hopdongkygui by id
+ - GET:/hopdongkygui/:id : get Hopdongkygui by id
  
  Hopdongchuyennhuong:
  - GET:/hopdongchuyennhuong: get all list Hopdongchuyennhuong

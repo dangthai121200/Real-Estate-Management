@@ -40,4 +40,10 @@ public class KhachhangController {
 	public FormKhachhang deleteKhachhang(@PathVariable int id) throws Exception {
 		return khachhangService.deleteKhachHang(id);
 	}
+	
+	@GetMapping(URL.GET_Khachhang_BY_ID)
+	public FormKhachhang getKhachhangByID(@PathVariable int id) throws Exception  {
+		return khachhangService.getKhachhangByID(id);
+	}
+
 }
