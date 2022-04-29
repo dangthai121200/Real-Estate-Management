@@ -3,6 +3,7 @@ package com.herokuapp.realestatebk.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
@@ -39,22 +40,30 @@ public class MainController {
 	}
 
 	@PostMapping("/uploadImage")
-	public String uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+	public String uploadImage(@RequestParam("listImage") List<MultipartFile> listImage) throws IOException {
+		StringBuffer buffer = new StringBuffer();
+		for (MultipartFile image : listImage) {
+			buffer.append(image.getOriginalFilename()+",");
+			//uploadImageToImgbb(image);
+		}
+		return buffer.toString();
+	}
+
+	public ResponseEntity<String> uploadImageToImgbb(MultipartFile file) {
 		RestOperations restOperations = new RestTemplate();
+		MultiValueMap<String, Object> paramList = new LinkedMultiValueMap<String, Object>();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-		System.out.println(Byte.BYTES);
-		MultiValueMap<String, Object> paramList = new LinkedMultiValueMap<String, Object>();
 		paramList.add("image", new FileSystemResource(convert(file)));
 		paramList.add("key", "202ff31aa3a14568fce9ea1d7e65966b");
 		HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<MultiValueMap<String, Object>>(paramList,
 				headers);
 		ResponseEntity<String> result = restOperations.postForEntity("https://api.imgbb.com/1/upload", request,
 				String.class);
-		return "suucess";
+		return result;
 	}
 
-	public static File convert(MultipartFile file) {
+	public File convert(MultipartFile file) {
 		File convFile = new File(file.getOriginalFilename());
 		try {
 			convFile.createNewFile();
