@@ -44,7 +44,7 @@ public class MainController {
 		StringBuffer buffer = new StringBuffer();
 		for (MultipartFile image : listImage) {
 			buffer.append(image.getOriginalFilename()+",");
-			//uploadImageToImgbb(image);
+			uploadImageToImgbb(image);
 		}
 		return buffer.toString();
 	}
@@ -54,12 +54,16 @@ public class MainController {
 		MultiValueMap<String, Object> paramList = new LinkedMultiValueMap<String, Object>();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-		paramList.add("image", new FileSystemResource(convert(file)));
+		File coverFile = convert(file);
+		paramList.add("image", new FileSystemResource(coverFile));
 		paramList.add("key", "202ff31aa3a14568fce9ea1d7e65966b");
 		HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<MultiValueMap<String, Object>>(paramList,
 				headers);
 		ResponseEntity<String> result = restOperations.postForEntity("https://api.imgbb.com/1/upload", request,
 				String.class);
+		if(coverFile.exists()) {
+			coverFile.delete();
+		}
 		return result;
 	}
 
@@ -71,10 +75,8 @@ public class MainController {
 			fos.write(file.getBytes());
 			fos.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return convFile;
 	}
 }
