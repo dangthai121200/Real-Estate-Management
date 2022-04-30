@@ -11,16 +11,12 @@ public class FormHinhBd {
 		super();
 
 	}
-	
-	
 
 	public FormHinhBd(Hinhbd hinhbd) {
 		this.hinhid = hinhbd.getHinhid();
-		this.bdsid = hinhbd.getHinhid();
+		this.bdsid = hinhbd.getBatdongsan().getBdsid();
 		this.hinh = hinhbd.getHinh();
 	}
-
-
 
 	public int getHinhid() {
 		return hinhid;
@@ -52,13 +48,13 @@ public class FormHinhBd {
 			return new Hinhbd(this.hinh, this.bdsid);
 		} else {
 			// user for update
-			return new Hinhbd(this.bdsid, this.hinh, this.bdsid);
+			return new Hinhbd(this.hinhid, this.hinh, this.bdsid);
 		}
 	}
 
 	public void converToFormHinhBd(Hinhbd hinhbd) {
 		this.hinhid = hinhbd.getHinhid();
-		this.bdsid = hinhbd.getHinhid();
+		this.bdsid = hinhbd.getBatdongsan().getBdsid();
 		this.hinh = hinhbd.getHinh();
 	}
 

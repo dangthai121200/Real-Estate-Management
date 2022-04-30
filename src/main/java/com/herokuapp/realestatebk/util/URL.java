@@ -56,6 +56,7 @@ public class URL {
 
 	// Url Hinhbd
 	public static final String GET_ALL_Hinhbd = "/hinhbd";
+	public static final String ADD_IMAGE_MULTI = "/uploadImage";
 
 	// URL login
 	public static final String SUCCESS = "/success";

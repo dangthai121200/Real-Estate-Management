@@ -50,6 +50,10 @@ public class Hinhbd implements Serializable {
 		this.batdongsan.setBdsid(bdsid);
 	}
 
+	public Hinhbd(String hinh) {
+		this.hinh = hinh;
+	}
+
 	public Hinhbd(String hinh, int bdsid) {
 		this.hinh = hinh;
 		if (this.batdongsan == null) {

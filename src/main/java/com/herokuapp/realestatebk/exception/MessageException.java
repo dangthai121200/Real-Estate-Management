@@ -33,5 +33,8 @@ public class MessageException {
 
 	// Hợp đồng đặt cọc
 	public static final String messHopdongdatcocHaveHopdongchuyennhuong = "Hợp Đồng Đặt Cọc đang trong Hợp Đồng Chuyển Nhượng";
+	
+	//Upload image
+	public static final String messNotExistsImage = "Danh sách ảnh không được rỗng";
 
 }

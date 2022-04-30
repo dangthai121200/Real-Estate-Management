@@ -1,7 +1,6 @@
 package com.herokuapp.realestatebk.form;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
-import com.herokuapp.realestatebk.util.URL;
 
 public class FormBatdongsan {
 	private int bdsid;
@@ -28,7 +27,7 @@ public class FormBatdongsan {
 		this.chieurong = batdongsan.getChieurong();
 		this.dientich = batdongsan.getDientich();
 		this.dongia = batdongsan.getDongia();
-		this.hinhanh = URL.HOST_IMAGE + batdongsan.getHinhanh();
+		this.hinhanh = batdongsan.getHinhanh();
 		this.huehong = batdongsan.getHuehong();
 		this.masoqsdd = batdongsan.getMasoqsdd();
 		this.mota = batdongsan.getMota();
@@ -201,7 +200,7 @@ public class FormBatdongsan {
 		this.chieurong = batdongsan.getChieurong();
 		this.dientich = batdongsan.getDientich();
 		this.dongia = batdongsan.getDongia();
-		this.hinhanh = URL.HOST_IMAGE + batdongsan.getHinhanh();
+		this.hinhanh = batdongsan.getHinhanh();
 		this.huehong = batdongsan.getHuehong();
 		this.masoqsdd = batdongsan.getMasoqsdd();
 		this.mota = batdongsan.getMota();
