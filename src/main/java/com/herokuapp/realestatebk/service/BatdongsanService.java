@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.exception.MessageException;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
+import com.herokuapp.realestatebk.form.FormHinhBd;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 
 @Service
@@ -23,7 +24,13 @@ public class BatdongsanService {
 		List<FormBatdongsan> formBatdongsans = new ArrayList<>();
 		List<Batdongsan> batdongsans = (List<Batdongsan>) batdongsanReponsitory.findAll();
 		for (Batdongsan batdongsan : batdongsans) {
-			formBatdongsans.add(new FormBatdongsan(batdongsan));
+			FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
+			List<FormHinhBd> formHinhBds = new ArrayList<>();
+			batdongsan.getHinhbds().forEach(hinhBds -> {
+				formHinhBds.add(new FormHinhBd(hinhBds));
+			});
+			formBatdongsan.setFormhinhBdList(formHinhBds);
+			formBatdongsans.add(formBatdongsan);
 		}
 		return formBatdongsans;
 	}

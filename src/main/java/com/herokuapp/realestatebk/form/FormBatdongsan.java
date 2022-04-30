@@ -1,5 +1,7 @@
 package com.herokuapp.realestatebk.form;
 
+import java.util.List;
+
 import com.herokuapp.realestatebk.entity.Batdongsan;
 
 public class FormBatdongsan {
@@ -20,6 +22,7 @@ public class FormBatdongsan {
 	private int tinhtrang;
 	private int khid;
 	private int loaibdid;
+	private List<FormHinhBd> formhinhBdList;
 
 	public FormBatdongsan(Batdongsan batdongsan) {
 		this.bdsid = batdongsan.getBdsid();
@@ -46,6 +49,14 @@ public class FormBatdongsan {
 
 	public int getBdsid() {
 		return bdsid;
+	}
+
+	public List<FormHinhBd> getFormhinhBdList() {
+		return formhinhBdList;
+	}
+
+	public void setFormhinhBdList(List<FormHinhBd> formhinhBdList) {
+		this.formhinhBdList = formhinhBdList;
 	}
 
 	public void setBdsid(int bdsid) {
