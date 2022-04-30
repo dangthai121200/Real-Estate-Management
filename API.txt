@@ -56,4 +56,4 @@ Khachhang
   - GET /logout
 
  Image 
- - Post /uploadImage (Param: file) dùng form
+ - Post /uploadImage (Param: listImage) dùng form có thể nhiều ảnh cùng 1 lúc
