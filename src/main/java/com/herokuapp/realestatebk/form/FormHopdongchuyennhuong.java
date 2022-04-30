@@ -22,7 +22,7 @@ public class FormHopdongchuyennhuong {
 	private int bdsid;
 	@NotNull(message = "Thiếu mã hợp đồng đặt cọc")
 	private int dcid;
-	@NotNull(message = "Thiếu mã khách hang")
+	@NotNull(message = "Thiếu mã khách hàng")
 	private int khid;
 
 	public FormHopdongchuyennhuong() {

@@ -7,6 +7,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.herokuapp.realestatebk.entity.Khachhang;
 
@@ -14,8 +15,7 @@ public class FormKhachhang {
 
 	private int khid;
 	@NotNull(message = "Thiếu CMND")
-	@Min(value = 9, message = "nhập 9 số")
-	@Max(value = 9, message = "nhập 9 số")
+	@Size(min = 9, max = 9, message = "Nhập đử 9 số")
 	private int cmnd;
 	@NotEmpty(message = "Thiếu địa chỉ")
 	private String diachi;
@@ -32,10 +32,10 @@ public class FormKhachhang {
 	private String mota;
 	@NotNull(message = "Thiếu ngày sinh")
 	private Date ngaysinh;
+	@NotNull(message = "thiếu số điện thoại")
 	private int sodienthoai;
 	@NotNull(message = "thiếu trạng thái")
 	private byte trangthai;
-	@NotNull(message = "Thiếu mã nhân viên")
 	private int nvid;
 
 	public FormKhachhang() {

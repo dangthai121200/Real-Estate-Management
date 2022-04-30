@@ -20,7 +20,6 @@ public class FormBatdongsan {
 	private String hinhanh;
 	@NotNull(message = "Thiếu huê hồng")
 	private float huehong;
-	@NotEmpty(message = "Thiếu mã số quyền sử dụng đất")
 	private String masoqsdd;
 	private String mota;
 	@NotEmpty(message = "Thiếu phường")
