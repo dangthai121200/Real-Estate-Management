@@ -2,7 +2,11 @@ package com.herokuapp.realestatebk.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.hibernate.boot.jaxb.spi.Binding;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,12 +31,18 @@ public class KhachhangController {
 	}
 
 	@PostMapping(URL.ADD_Khachhang)
-	public FormKhachhang addKhachhang(@RequestBody FormKhachhang fKhachhang) {
+	public FormKhachhang addKhachhang(@RequestBody @Valid FormKhachhang fKhachhang,BindingResult bindingResult) throws Exception {
+		if(bindingResult.hasErrors()) {
+			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
+		} 
 		return khachhangService.addKhachhang(fKhachhang);
 	}
 
 	@PutMapping(URL.UPDATE_Khachhang)
-	public FormKhachhang editKhachhang(@RequestBody FormKhachhang fKhachhang) {
+	public FormKhachhang editKhachhang(@RequestBody @Valid FormKhachhang fKhachhang,BindingResult bindingResult)throws Exception {
+		if(bindingResult.hasErrors()) {
+			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
+		} 
 		return khachhangService.editKhachhang(fKhachhang);
 	}
 

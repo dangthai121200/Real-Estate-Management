@@ -2,7 +2,10 @@ package com.herokuapp.realestatebk.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,12 +30,18 @@ public class BatdongsanController {
 	}
 
 	@PostMapping(URL.ADD_Batdongsan)
-	public FormBatdongsan addBatdongsan(@RequestBody FormBatdongsan fBatdongsan) {
+	public FormBatdongsan addBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan, BindingResult bindingResult) throws Exception {
+		if(bindingResult.hasErrors()) {
+			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
+		} 
 		return batdongsanService.addBatdongsan(fBatdongsan);
 	}
 
 	@PutMapping(URL.UPDATE_Batdongsan)
-	public FormBatdongsan editBatdongsan(@RequestBody FormBatdongsan fBatdongsan) {
+	public FormBatdongsan editBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan, BindingResult bindingResult) throws Exception {
+		if(bindingResult.hasErrors()) {
+			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
+		} 
 		return batdongsanService.editBatdongsan(fBatdongsan);
 	}
 

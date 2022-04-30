@@ -1,19 +1,32 @@
 package com.herokuapp.realestatebk.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import com.herokuapp.realestatebk.entity.Yeucaukhachhang;
 
 public class FormYeucaukhachhang {
 	private int ycid;
+	@NotNull(message = "Thiếu chiều dài từ ")
 	private float daif;
+	@NotNull(message = "Thiếu chiều dài đến ")
 	private float dait;
+	@NotNull(message = "Thiếu diện tích")
 	private float dientich;
+	@NotNull(message = "Thiếu giá giá trị từ")
 	private float giaf;
+	@NotNull(message = "Thiếu giá trị đến")
 	private float giat;
 	private String mota;
+	@NotNull(message = "Thiếu chiều rộng từ")
 	private float rongf;
+	@NotNull(message = "Thiếu chiều rộng đến")
 	private float rongt;
+	@NotEmpty(message = "Thiếu vị trí")
 	private String vitri;
+	@NotNull(message = "Thiếu khách hàng")
 	private int khachhang;
+	@NotNull(message = "Thiếu loại bất động sản")
 	private int loaibd;
 
 	public FormYeucaukhachhang() {

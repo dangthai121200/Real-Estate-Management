@@ -2,7 +2,10 @@ package com.herokuapp.realestatebk.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +33,10 @@ public class HopdongdatcocController {
 	}
 	
 	@PostMapping(URL.ADD_Hopdongdatcoc)
-	public Formhopdongdatcoc addHopdongdatcoc(@RequestBody Formhopdongdatcoc formhopdongdatcoc) throws Exception {
+	public Formhopdongdatcoc addHopdongdatcoc(@RequestBody @Valid Formhopdongdatcoc formhopdongdatcoc, BindingResult bindingResult ) throws Exception {
+		if(bindingResult.hasErrors()) {
+			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
+		} 
 		return hopdongdatcocService.addHopdongdatcoc(formhopdongdatcoc);
 	}
 	

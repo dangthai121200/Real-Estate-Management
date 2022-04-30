@@ -4,23 +4,34 @@ import java.util.Date;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.herokuapp.realestatebk.entity.Nhanvien;
 
 public class FormNhanvien {
 
 	private int nvid;
+	@NotEmpty(message = "Thiếu địa chỉ")
 	private String diachi;
 	private float doanhthu;
+	@Email(message = "Email không hợp lệ")
 	private String email;
 	private byte gioitinh;
+	@NotEmpty(message = "Thiếu mật khẩu")
 	private String matkhau;
+	@NotNull(message = "Thiếu ngày sinh")
 	@Temporal(TemporalType.DATE)
 	private Date ngaysinh;
+	@NotEmpty(message = "Thiếu quyền")
 	private String quyen;
 	private int sdt;
+	@NotEmpty(message = "Thiếu tài khoản")
 	private String taikhoan;
+	@NotEmpty(message = "Thiếu tên nhân viên")
 	private String tennv;
+	@NotNull(message = "Thiếu trạng thái")
 	private byte trangthai;
 
 	public FormNhanvien() {

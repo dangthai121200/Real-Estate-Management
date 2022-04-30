@@ -2,24 +2,24 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import com.herokuapp.realestatebk.entity.Hopdongdatcoc;
 
 public class Formhopdongdatcoc {
 
 	private int dcid;
-
+	@NotNull(message = "Thiếu giá trị")
 	private float giatri;
-
+	@NotNull(message = "Thiếu ngày hết hạn")
 	private Date ngayhethan;
-
+	@NotNull(message = "Thiếu ngày lập")
 	private Date ngaylap;
-
+	@NotNull(message = "Thiếu trạng thái")
 	private byte trangthai;
-
-	// private List<Hopdongchuyennhuong> hopdongchuyennhuongs;
-
+	@NotNull(message = "Thiếu id bất động sản")
 	private int bdsid;
-
+	@NotNull(message = "Thiếu mã khách hàng")
 	private int khid;
 
 	public Formhopdongdatcoc() {

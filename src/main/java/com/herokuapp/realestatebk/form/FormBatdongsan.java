@@ -2,25 +2,42 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import com.herokuapp.realestatebk.entity.Batdongsan;
 
 public class FormBatdongsan {
 	private int bdsid;
+	@NotNull(message = "Thiếu chiều dài")
 	private float chieudai;
+	@NotNull(message = "Thiếu chiều rộng")
 	private float chieurong;
+	@NotNull(message = "Thiếu diện tích")
 	private float dientich;
+	@NotNull(message = "Thiếu đơn giá")
 	private float dongia;
 	private String hinhanh;
+	@NotNull(message = "Thiếu huê hồng")
 	private float huehong;
+	@NotEmpty(message = "Thiếu mã số quyền sử dụng đất")
 	private String masoqsdd;
 	private String mota;
+	@NotEmpty(message = "Thiếu phường")
 	private String phuong;
+	@NotEmpty(message = "Thiếu quận")
 	private String quan;
+	@NotEmpty(message = "Thiếu số nhà")
 	private String sonha;
+	@NotEmpty(message = "Thiếu tên đường")
 	private String tenduong;
+	@NotEmpty(message = "Thiếu thành phố")
 	private String thanhpho;
+	@NotNull(message = "Thiếu tình trạng")
 	private int tinhtrang;
+	@NotNull(message = "Thiếu mã khách hàng")
 	private int khid;
+	@NotNull(message = "Thiếu loại bất động sản")
 	private int loaibdid;
 	private List<FormHinhBd> formhinhBdList;
 

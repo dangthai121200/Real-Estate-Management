@@ -2,7 +2,10 @@ package com.herokuapp.realestatebk.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.form.FormAddHopdongkygui;
 import com.herokuapp.realestatebk.form.FormHopDongKyGui;
 import com.herokuapp.realestatebk.service.HopdongkyguiService;
@@ -27,7 +29,10 @@ public class HopdongkyguiController {
 	}
 
 	@PostMapping(URL.ADD_Hopdongkygui)
-	public FormAddHopdongkygui addHopdongkygui(@RequestBody FormAddHopdongkygui formAddHopdongkygui) throws Exception {
+	public FormAddHopdongkygui addHopdongkygui(@RequestBody @Valid FormAddHopdongkygui formAddHopdongkygui, BindingResult bindingResult) throws Exception {
+		if(bindingResult.hasErrors()) {
+			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
+		} 
 		return hopdongkyguiService.addHopdongkygui(formAddHopdongkygui);
 	}
 
