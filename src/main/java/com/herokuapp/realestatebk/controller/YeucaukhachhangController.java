@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,12 +30,14 @@ public class YeucaukhachhangController {
 	}
 
 	@PostMapping(URL.ADD_Yeucaukhachhang)
-	public FormYeucaukhachhang addYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang) throws Exception {
+	public FormYeucaukhachhang addYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang)
+			throws Exception {
 		return yeucaukhachhangService.addyeucaukhachhang(fYeucaukhachhang);
 	}
 
 	@PutMapping(URL.UPDATE_Yeucaukhachhang)
-	public FormYeucaukhachhang editYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang) throws Exception {
+	public FormYeucaukhachhang editYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang)
+			throws Exception {
 		return yeucaukhachhangService.editYeucaukhachhang(fYeucaukhachhang);
 	}
 

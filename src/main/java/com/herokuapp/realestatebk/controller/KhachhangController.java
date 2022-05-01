@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.hibernate.boot.jaxb.spi.Binding;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,12 +30,12 @@ public class KhachhangController {
 	}
 
 	@PostMapping(URL.ADD_Khachhang)
-	public FormKhachhang addKhachhang(@RequestBody @Valid FormKhachhang fKhachhang) throws Exception {
+	public FormKhachhang addKhachhang(@RequestBody @Valid FormKhachhang fKhachhang) throws RealEsateException {
 		return khachhangService.addKhachhang(fKhachhang);
 	}
 
 	@PutMapping(URL.UPDATE_Khachhang)
-	public FormKhachhang editKhachhang(@RequestBody @Valid FormKhachhang fKhachhang)throws Exception {
+	public FormKhachhang editKhachhang(@RequestBody @Valid FormKhachhang fKhachhang) throws RealEsateException {
 		return khachhangService.editKhachhang(fKhachhang);
 	}
 
@@ -45,9 +43,9 @@ public class KhachhangController {
 	public FormKhachhang deleteKhachhang(@PathVariable int id) throws RealEsateException {
 		return khachhangService.deleteKhachHang(id);
 	}
-	
+
 	@GetMapping(URL.GET_Khachhang_BY_ID)
-	public FormKhachhang getKhachhangByID(@PathVariable int id) throws RealEsateException  {
+	public FormKhachhang getKhachhangByID(@PathVariable int id) throws RealEsateException {
 		return khachhangService.getKhachhangByID(id);
 	}
 
