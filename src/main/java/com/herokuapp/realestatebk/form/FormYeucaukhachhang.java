@@ -1,5 +1,6 @@
 package com.herokuapp.realestatebk.form;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -8,18 +9,24 @@ import com.herokuapp.realestatebk.entity.Yeucaukhachhang;
 public class FormYeucaukhachhang {
 	private int ycid;
 	@NotNull(message = "Thiếu chiều dài từ ")
+	@Min(0)
 	private float daif;
 	@NotNull(message = "Thiếu chiều dài đến ")
+	@Min(0)
 	private float dait;
 	@NotNull(message = "Thiếu diện tích")
 	private float dientich;
+	@Min(0)
 	@NotNull(message = "Thiếu giá giá trị từ")
 	private float giaf;
+	@Min(0)
 	@NotNull(message = "Thiếu giá trị đến")
 	private float giat;
 	private String mota;
+	@Min(0)
 	@NotNull(message = "Thiếu chiều rộng từ")
 	private float rongf;
+	@Min(0)
 	@NotNull(message = "Thiếu chiều rộng đến")
 	private float rongt;
 	@NotEmpty(message = "Thiếu vị trí")

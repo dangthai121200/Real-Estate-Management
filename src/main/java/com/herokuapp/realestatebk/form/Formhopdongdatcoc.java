@@ -2,6 +2,7 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.herokuapp.realestatebk.entity.Hopdongdatcoc;
@@ -10,6 +11,7 @@ public class Formhopdongdatcoc {
 
 	private int dcid;
 	@NotNull(message = "Thiếu giá trị")
+	@Min(0)
 	private float giatri;
 	@NotNull(message = "Thiếu ngày hết hạn")
 	private Date ngayhethan;

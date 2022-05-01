@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.herokuapp.realestatebk.entity.Hopdongchuyennhuong;
@@ -12,6 +13,7 @@ public class FormHopdongchuyennhuong {
 
 	private int cnid;
 	@NotNull(message = "Thiếu giá trị")
+	@Min(0)
 	private float giatri;
 	@NotNull(message = "Thiếu ngày lập")
 	@Temporal(TemporalType.DATE)
