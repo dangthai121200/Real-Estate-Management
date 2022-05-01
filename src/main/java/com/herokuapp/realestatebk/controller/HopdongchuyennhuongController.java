@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormHopdongchuyennhuong;
 import com.herokuapp.realestatebk.service.HopdongchuyennhuongService;
 import com.herokuapp.realestatebk.util.URL;
@@ -32,12 +33,12 @@ public class HopdongchuyennhuongController {
 
 	@PostMapping(URL.ADD_Hopdongchuyennhuong)
 	public FormHopdongchuyennhuong addHopdongchuyennhuong(@RequestBody FormHopdongchuyennhuong formHopdongchuyennhuong)
-			throws Exception {
+			throws RealEsateException {
 		return hopdongchuyennhuongService.addHopdongchuyennhuong(formHopdongchuyennhuong);
 	}
 
 	@DeleteMapping(URL.DELETE_Hopdongchuyennhuong)
-	public FormHopdongchuyennhuong deleteHopdongchuyennhuong(@PathVariable("id") int cnid) throws Exception {
+	public FormHopdongchuyennhuong deleteHopdongchuyennhuong(@PathVariable("id") int cnid) throws RealEsateException {
 		return hopdongchuyennhuongService.deleteHopdongchuyennhuong(cnid);
 	}
 }

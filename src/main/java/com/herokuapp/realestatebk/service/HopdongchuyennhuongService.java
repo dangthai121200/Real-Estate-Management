@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongchuyennhuong;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormHopdongchuyennhuong;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
@@ -35,7 +36,7 @@ public class HopdongchuyennhuongService {
 	}
 
 	public FormHopdongchuyennhuong addHopdongchuyennhuong(FormHopdongchuyennhuong formHopdongchuyennhuong)
-			throws Exception {
+			throws RealEsateException {
 		Batdongsan batdongsan = batdongsanRepository.findById(formHopdongchuyennhuong.getBdsid()).get();
 		if (batdongsan != null) {
 			if (batdongsan.getHopdongdatcocs().size() > 0) {
@@ -48,18 +49,18 @@ public class HopdongchuyennhuongService {
 					batdongsan.setTinhtrang(2);
 					return new FormHopdongchuyennhuong(hopdongchuyennhuong);
 				} else {
-					throw new Exception(MessageException.messHopdongchuyennhuongExists);
+					throw new RealEsateException(MessageException.messHopdongchuyennhuongExists);
 				}
 			} else {
-				throw new Exception(MessageException.messHopdongchuyennhuongHaveNotHDDatcoc);
+				throw new RealEsateException(MessageException.messHopdongchuyennhuongHaveNotHDDatcoc);
 			}
 		} else {
-			throw new Exception(MessageException.messBatdongsanNotFound);
+			throw new RealEsateException(MessageException.messBatdongsanNotFound);
 		}
 
 	}
 
-	public FormHopdongchuyennhuong deleteHopdongchuyennhuong(int cnid) throws Exception {
+	public FormHopdongchuyennhuong deleteHopdongchuyennhuong(int cnid) throws RealEsateException {
 		boolean flag = hopdongchuyennhhuongRepository.existsById(cnid);
 		if (flag) {
 			Hopdongchuyennhuong hopdongchuyennhuong = hopdongchuyennhhuongRepository.findById(cnid).get();
@@ -71,7 +72,7 @@ public class HopdongchuyennhuongService {
 			batdongsan.setTinhtrang(1);
 			return new FormHopdongchuyennhuong(hopdongchuyennhuong);
 		} else {
-			throw new Exception(MessageException.messHopdongchuyennhuongNotExists);
+			throw new RealEsateException(MessageException.messHopdongchuyennhuongNotExists);
 		}
 	}
 

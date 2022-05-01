@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.form.FormHinhBd;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
@@ -51,14 +52,14 @@ public class BatdongsanService {
 		return formBatdongsanEdit;
 	}
 
-	public FormBatdongsan getBatdongsanByID(int id) throws Exception {
+	public FormBatdongsan getBatdongsanByID(int id) throws RealEsateException {
 
 		if (batdongsanReponsitory.existsById(id)) {
 			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
 			FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
 			return formBatdongsan;
 		} else {
-			throw new Exception(MessageException.messBatdongsanNotFound);
+			throw new RealEsateException(MessageException.messBatdongsanNotFound);
 		}
 	}
 }

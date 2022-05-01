@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongdatcoc;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.Formhopdongdatcoc;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
@@ -36,7 +37,7 @@ public class HopdongdatcocService {
 		return formhopdongdatcocs;
 	}
 
-	public Formhopdongdatcoc addHopdongdatcoc(Formhopdongdatcoc formhopdongdatcoc) throws Exception {
+	public Formhopdongdatcoc addHopdongdatcoc(Formhopdongdatcoc formhopdongdatcoc) throws RealEsateException {
 		Batdongsan batdongsan = batdongsanRepository.findById(formhopdongdatcoc.getBdsid()).get();
 		if (batdongsan != null) {
 			if (batdongsan.getHopdongkyguis().size() == 1) {
@@ -49,18 +50,18 @@ public class HopdongdatcocService {
 					batdongsan.setTinhtrang(1);
 					return new Formhopdongdatcoc(hopdongdatcoc);
 				} else {
-					throw new Exception(MessageException.messBatdongsanHaveHDDatcoc);
+					throw new RealEsateException(MessageException.messBatdongsanHaveHDDatcoc);
 				}
 			} else {
-				throw new Exception(MessageException.messBatdongsanNotHaveHDKyGui);
+				throw new RealEsateException(MessageException.messBatdongsanNotHaveHDKyGui);
 			}
 		} else {
-			throw new Exception(MessageException.messBatdongsanNotFound);
+			throw new RealEsateException(MessageException.messBatdongsanNotFound);
 		}
 
 	}
 
-	public Formhopdongdatcoc deleteHopdongdatcoc(int id) throws Exception {
+	public Formhopdongdatcoc deleteHopdongdatcoc(int id) throws RealEsateException {
 		int count = hopdongchuyennhhuongRepository.countHopdongchuyennhuongByHopdongdatcocId(id);
 		if (count == 0) {
 			Hopdongdatcoc hopdongdatcoc = hopdongdatcocRepository.findById(id).get();
@@ -72,7 +73,7 @@ public class HopdongdatcocService {
 			batdongsan.setTinhtrang(0);
 			return new Formhopdongdatcoc(hopdongdatcoc);
 		} else {
-			throw new Exception(MessageException.messHopdongdatcocHaveHopdongchuyennhuong);
+			throw new RealEsateException(MessageException.messHopdongdatcocHaveHopdongchuyennhuong);
 		}
 	}
 

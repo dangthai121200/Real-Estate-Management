@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class HandleException {
 
-	@ExceptionHandler(Exception.class)
+	@ExceptionHandler(RealEsateException.class)
 	public ResponseEntity<String> handleException(Exception ex) {
 		ex.printStackTrace();
 		return ResponseEntity.badRequest().body(ex.getMessage());

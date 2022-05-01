@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormKhachhang;
 import com.herokuapp.realestatebk.service.KhachhangService;
 import com.herokuapp.realestatebk.util.URL;
@@ -37,12 +38,12 @@ public class KhachhangController {
 	}
 
 	@DeleteMapping(URL.DELETE_Khachhang)
-	public FormKhachhang deleteKhachhang(@PathVariable int id) throws Exception {
+	public FormKhachhang deleteKhachhang(@PathVariable int id) throws RealEsateException {
 		return khachhangService.deleteKhachHang(id);
 	}
 	
 	@GetMapping(URL.GET_Khachhang_BY_ID)
-	public FormKhachhang getKhachhangByID(@PathVariable int id) throws Exception  {
+	public FormKhachhang getKhachhangByID(@PathVariable int id) throws RealEsateException  {
 		return khachhangService.getKhachhangByID(id);
 	}
 

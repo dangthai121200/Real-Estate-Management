@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.herokuapp.realestatebk.auth.UserDetailsConfig;
 import com.herokuapp.realestatebk.entity.Nhanvien;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormLogin;
 import com.herokuapp.realestatebk.form.FormNhanvien;
 import com.herokuapp.realestatebk.repository.KhachhangRespository;
@@ -49,7 +50,7 @@ public class NhanvienService implements UserDetailsService {
 		return formNhanvienAdd;
 	}
 
-	public FormNhanvien editNhanvien(FormNhanvien fNhanvien) throws Exception {
+	public FormNhanvien editNhanvien(FormNhanvien fNhanvien) throws RealEsateException {
 		FormNhanvien formNhanvien = null;
 		boolean flag = nhanvienRepository.existsById(fNhanvien.getNvid());
 		if (flag) {
@@ -63,20 +64,20 @@ public class NhanvienService implements UserDetailsService {
 				formNhanvien = new FormNhanvien(nhanvien);
 				return formNhanvien;
 			} else {
-				throw new Exception(MessageException.messCannotupdateNhanvien);
+				throw new RealEsateException(MessageException.messCannotupdateNhanvien);
 			}
 
 		} else {
-			throw new Exception(MessageException.messNhanvienNotExists);
+			throw new RealEsateException(MessageException.messNhanvienNotExists);
 		}
 	}
 
-	public FormNhanvien deleteNhanvien(int id) throws Exception {
+	public FormNhanvien deleteNhanvien(int id) throws RealEsateException {
 		FormNhanvien formNhanvienDelete = null;
 		boolean flag = nhanvienRepository.existsById(id);
 		if (flag) {
 			if (khachhangRespository.countKhachhangByNvID(id) > 0) {
-				throw new Exception(MessageException.messCanNotDeleteNhanvienHasKhachHang);
+				throw new RealEsateException(MessageException.messCanNotDeleteNhanvienHasKhachHang);
 			} else {
 				Nhanvien nhanvien = nhanvienRepository.findById(id).get();
 				nhanvienRepository.deleteById(id);
@@ -84,7 +85,7 @@ public class NhanvienService implements UserDetailsService {
 				return formNhanvienDelete;
 			}
 		} else {
-			throw new Exception(MessageException.messNhanvienNotExists);
+			throw new RealEsateException(MessageException.messNhanvienNotExists);
 		}
 	}
 

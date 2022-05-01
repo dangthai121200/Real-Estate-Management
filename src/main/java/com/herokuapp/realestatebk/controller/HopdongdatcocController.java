@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.Formhopdongdatcoc;
 import com.herokuapp.realestatebk.service.HopdongdatcocService;
 import com.herokuapp.realestatebk.util.URL;
@@ -30,12 +31,12 @@ public class HopdongdatcocController {
 	}
 	
 	@PostMapping(URL.ADD_Hopdongdatcoc)
-	public Formhopdongdatcoc addHopdongdatcoc(@RequestBody Formhopdongdatcoc formhopdongdatcoc) throws Exception {
+	public Formhopdongdatcoc addHopdongdatcoc(@RequestBody Formhopdongdatcoc formhopdongdatcoc) throws RealEsateException {
 		return hopdongdatcocService.addHopdongdatcoc(formhopdongdatcoc);
 	}
 	
 	@DeleteMapping(URL.DELETE_Hopdongdatcoc)
-	public Formhopdongdatcoc deleteHopdongdatcoc(@PathVariable("id") int id) throws Exception {
+	public Formhopdongdatcoc deleteHopdongdatcoc(@PathVariable("id") int id) throws RealEsateException {
 		return hopdongdatcocService.deleteHopdongdatcoc(id);
 	}
 }

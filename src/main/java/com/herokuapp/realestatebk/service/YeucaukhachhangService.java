@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.herokuapp.realestatebk.entity.Yeucaukhachhang;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormYeucaukhachhang;
 import com.herokuapp.realestatebk.repository.YeucaukhachhangRepository;
 
@@ -43,7 +44,7 @@ public class YeucaukhachhangService {
 		return formyeucaukhachhangEdit;
 	}
 
-	public FormYeucaukhachhang deleteYeucaukhachhang(int id) throws Exception {
+	public FormYeucaukhachhang deleteYeucaukhachhang(int id) throws RealEsateException {
 		FormYeucaukhachhang formyeucaukhachhangDel = null;
 		boolean flag = yeucaukhachhangRepository.existsById(id);
 		if (flag) {
@@ -51,7 +52,7 @@ public class YeucaukhachhangService {
 			formyeucaukhachhangDel = new FormYeucaukhachhang(yeucaukhachhang);
 			yeucaukhachhangRepository.deleteById(id);
 		} else
-			throw new Exception(MessageException.messYeucaukhachhangNotExists);
+			throw new RealEsateException(MessageException.messYeucaukhachhangNotExists);
 		return formyeucaukhachhangDel;
 	}
 

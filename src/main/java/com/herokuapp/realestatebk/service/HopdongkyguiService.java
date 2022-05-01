@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongkygui;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormAddHopdongkygui;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.form.FormHopDongKyGui;
@@ -40,40 +41,40 @@ public class HopdongkyguiService {
 		return formHopDongKyGuis;
 	}
 
-	public FormAddHopdongkygui addHopdongkygui(FormAddHopdongkygui formAddHopdongkygui) throws Exception {
+	public FormAddHopdongkygui addHopdongkygui(FormAddHopdongkygui formAddHopdongkygui) throws RealEsateException {
 		Batdongsan batdongsan = batdongsanRepository.save(formAddHopdongkygui.getFormBatdongsan().coverToBatdongsan());
 		formAddHopdongkygui.setFormBatdongsan(new FormBatdongsan(batdongsan));
 		Hopdongkygui hopdongkygui = hopdongkyguiRepository.save(formAddHopdongkygui.coverToHopdongkygui());
 		return new FormAddHopdongkygui(hopdongkygui, batdongsan);
 	}
 
-	public FormHopDongKyGui deleteHopdongkygui(int id) throws Exception {
+	public FormHopDongKyGui deleteHopdongkygui(int id) throws RealEsateException {
 		boolean flag = hopdongkyguiRepository.existsById(id);
 		if (flag) {
 			Hopdongkygui hopdongkygui = hopdongkyguiRepository.findById(id).get();
 			if (hopdongchuyennhhuongRepository
 					.countHopdongchuyennhuongByBdsID(hopdongkygui.getBatdongsan().getBdsid()) > 0) {
-				throw new Exception(MessageException.messHopdongkyguiHasBdsInHopdongchuyennhuong);
+				throw new RealEsateException(MessageException.messHopdongkyguiHasBdsInHopdongchuyennhuong);
 			} else if (hopdongkygui.getNgayketthuc().after(new Date())) {
-				throw new Exception(MessageException.messHopdongkyguiInProcessing);
+				throw new RealEsateException(MessageException.messHopdongkyguiInProcessing);
 			} else {
 				hopdongkyguiRepository.deleteById(id);
 				FormHopDongKyGui formHopDongKyGuiDel = new FormHopDongKyGui(hopdongkygui);
 				return formHopDongKyGuiDel;
 			}
 		} else {
-			throw new Exception(MessageException.messHopdongkyguiNotExists);
+			throw new RealEsateException(MessageException.messHopdongkyguiNotExists);
 		}
 	}
 
-	public FormHopDongKyGui getHopdongkyguiByID(int id) throws Exception {
+	public FormHopDongKyGui getHopdongkyguiByID(int id) throws RealEsateException {
 		boolean flag = hopdongkyguiRepository.existsById(id);
 		if (flag) {
 			Hopdongkygui hopdongkygui = hopdongkyguiRepository.findById(id).get();
 			FormHopDongKyGui formHopDongKyGui = new FormHopDongKyGui(hopdongkygui);
 			return formHopDongKyGui;
 		} else 
-			throw new Exception(MessageException.messHopdongkyguiNotExists);
+			throw new RealEsateException(MessageException.messHopdongkyguiNotExists);
 	}
 
 }
