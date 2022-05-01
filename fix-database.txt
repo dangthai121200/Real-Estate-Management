@@ -2,7 +2,7 @@
 
 - thêm unique cho cột (taikhoan)(email) trong bảng nhanvien
 
-- thêm unique cho cột (cmnd) trong bảng khachhang
+- thêm unique cho cột (cmnd)(dienthoai)(email) trong bảng khachhang
 
 - thêm unique cho cột (bdsid) trong bảng hopdongkygui
 
