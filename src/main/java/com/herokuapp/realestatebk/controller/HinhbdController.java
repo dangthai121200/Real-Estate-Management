@@ -2,6 +2,8 @@ package com.herokuapp.realestatebk.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,7 @@ public class HinhbdController {
 	}
 
 	@PostMapping(value = URL.ADD_IMAGE_MULTI, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<String> uploadImage(FormUploadImage formUploadImage)
+	public List<String> uploadImage(@Valid FormUploadImage formUploadImage)
 			throws RealEsateException, JsonMappingException, JsonProcessingException {
 		return hinhbdService.uploadImage(formUploadImage);
 	}

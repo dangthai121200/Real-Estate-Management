@@ -29,6 +29,7 @@ public class HandleException extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
+		ex.printStackTrace();
 		StringBuilder error = new StringBuilder();
 		for (ObjectError objectError : ex.getAllErrors()) {
 			error.append(objectError.getDefaultMessage());
