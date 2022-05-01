@@ -1,5 +1,6 @@
 package com.herokuapp.realestatebk.controller;
 
+import java.net.BindException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -32,10 +33,8 @@ public class NhanvienController {
 	}
 
 	@PostMapping(URL.ADD_Nhanvien)
-	public FormNhanvien addNhanvien(@RequestBody @Valid FormNhanvien fNhanvien, BindingResult bindingResult) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormNhanvien addNhanvien(@RequestBody @Valid FormNhanvien fNhanvien) throws Exception {
+		
 		return nhanvienService.addNhanvien(fNhanvien);
 	}
 
