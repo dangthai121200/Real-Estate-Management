@@ -13,7 +13,6 @@ import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.form.FormHinhBd;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
-import com.herokuapp.realestatebk.repository.HinhbdRepository;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -21,9 +20,6 @@ public class BatdongsanService {
 
 	@Autowired
 	private BatdongsanRepository batdongsanReponsitory;
-
-	@Autowired
-	private HinhbdRepository hinhbdRepository;
 
 	public List<FormBatdongsan> getAllBatdongsan() {
 		List<FormBatdongsan> formBatdongsans = new ArrayList<>();
@@ -67,7 +63,7 @@ public class BatdongsanService {
 		}
 	}
 
-	public FormBatdongsan deleteBatdongsan(int id) throws Exception {
+	public FormBatdongsan deleteBatdongsan(int id) throws RealEsateException {
 		boolean flag = batdongsanReponsitory.existsById(id);
 		if (flag) {
 			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
@@ -78,17 +74,17 @@ public class BatdongsanService {
 						batdongsanReponsitory.deleteById(id);
 						return formBatdongsan;
 					} else {
-						throw new Exception(MessageException.messBatdongsanHaveHDDatcoc);
+						throw new RealEsateException(MessageException.messBatdongsanHaveHDDatcoc);
 					}
 				} else {
-					throw new Exception(MessageException.messBatdongsanHaveHDDatcoc);
+					throw new RealEsateException(MessageException.messBatdongsanHaveHDDatcoc);
 				}
 			} else {
-				throw new Exception(MessageException.messBatdongsanHaveHDChuyennhuong);
+				throw new RealEsateException(MessageException.messBatdongsanHaveHDChuyennhuong);
 			}
 
 		} else {
-			throw new Exception(MessageException.messBatdongsanNotFound);
+			throw new RealEsateException(MessageException.messBatdongsanNotFound);
 		}
 	}
 }

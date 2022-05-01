@@ -42,9 +42,9 @@ public class BatdongsanController {
 	public FormBatdongsan getBatdongsanByID(@PathVariable int id) throws RealEsateException {
 		return batdongsanService.getBatdongsanByID(id);
 	}
-	
+
 	@DeleteMapping(URL.DELETE_Batdongsan)
-	public FormBatdongsan deleteBatdongsan(@PathVariable int id) throws Exception {
+	public FormBatdongsan deleteBatdongsan(@PathVariable int id) throws RealEsateException {
 		return batdongsanService.deleteBatdongsan(id);
 	}
 
