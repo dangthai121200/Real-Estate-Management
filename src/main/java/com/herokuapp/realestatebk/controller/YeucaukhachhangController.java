@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormYeucaukhachhang;
 import com.herokuapp.realestatebk.service.YeucaukhachhangService;
 import com.herokuapp.realestatebk.util.URL;
@@ -40,7 +41,7 @@ public class YeucaukhachhangController {
 	}
 
 	@DeleteMapping(URL.DELETE_Yeucaukhachhang)
-	public FormYeucaukhachhang deleteYeucaukhachhang(@PathVariable int id) throws Exception {
+	public FormYeucaukhachhang deleteYeucaukhachhang(@PathVariable int id) throws RealEsateException {
 		return yeucaukhachhangService.deleteYeucaukhachhang(id);
 	}
 }

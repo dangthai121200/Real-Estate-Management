@@ -10,10 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongdatcoc;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.Formhopdongdatcoc;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
 import com.herokuapp.realestatebk.repository.HopdongdatcocRepository;
+import com.herokuapp.realestatebk.util.Status;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -36,43 +38,46 @@ public class HopdongdatcocService {
 		return formhopdongdatcocs;
 	}
 
-	public Formhopdongdatcoc addHopdongdatcoc(Formhopdongdatcoc formhopdongdatcoc) throws Exception {
+	public Formhopdongdatcoc addHopdongdatcoc(Formhopdongdatcoc formhopdongdatcoc) throws RealEsateException {
 		Batdongsan batdongsan = batdongsanRepository.findById(formhopdongdatcoc.getBdsid()).get();
 		if (batdongsan != null) {
-			if (batdongsan.getHopdongkyguis().size() == 1) {
-				if (batdongsan.getHopdongdatcocs().size() == 0) {
+			if (batdongsan.getHopdongkyguis().size() > 0) // required batdongsan has hopdongkygui
+			{
+				if (batdongsan.getHopdongdatcocs().size() == 0) // required batdongsan has not hopdongdatcoc
+				{
 					Hopdongdatcoc hopdongdatcoc = hopdongdatcocRepository
 							.save(formhopdongdatcoc.convertToHopdongdatcoc());
-					if (batdongsan.getHopdongkyguis().size() > 0) {
-						batdongsan.getHopdongkyguis().get(0).setTrangthai((byte) 1);
-					}
-					batdongsan.setTinhtrang(1);
+					// Batdongsan has one hopdongkygui
+					// but in entity hopdongkygui is list so you should get at 0
+					batdongsan.getHopdongkyguis().get(0).setTrangthai((byte) Status.HDKG_HAS_HD_DAT_COC);
+					batdongsan.setTinhtrang(Status.BDS_HAS_HD_DAT_COC);
 					return new Formhopdongdatcoc(hopdongdatcoc);
 				} else {
-					throw new Exception(MessageException.messBatdongsanHaveHDDatcoc);
+					throw new RealEsateException(MessageException.messBatdongsanHaveHDDatcoc);
 				}
 			} else {
-				throw new Exception(MessageException.messBatdongsanNotHaveHDKyGui);
+				throw new RealEsateException(MessageException.messBatdongsanNotHaveHDKyGui);
 			}
 		} else {
-			throw new Exception(MessageException.messBatdongsanNotFound);
+			throw new RealEsateException(MessageException.messBatdongsanNotFound);
 		}
 
 	}
 
-	public Formhopdongdatcoc deleteHopdongdatcoc(int id) throws Exception {
+	public Formhopdongdatcoc deleteHopdongdatcoc(int id) throws RealEsateException {
 		int count = hopdongchuyennhhuongRepository.countHopdongchuyennhuongByHopdongdatcocId(id);
 		if (count == 0) {
+			// get information hopdatcoc delete
 			Hopdongdatcoc hopdongdatcoc = hopdongdatcocRepository.findById(id).get();
 			Batdongsan batdongsan = batdongsanRepository.findById(hopdongdatcoc.getBatdongsan().getBdsid()).get();
 			hopdongdatcocRepository.deleteById(id);
 			if (batdongsan.getHopdongkyguis().size() > 0) {
-				batdongsan.getHopdongkyguis().get(0).setTrangthai((byte) 0);
+				batdongsan.getHopdongkyguis().get(0).setTrangthai((byte) Status.HDKG_HAS_NOT_HD_DAT_COC);
 			}
-			batdongsan.setTinhtrang(0);
+			batdongsan.setTinhtrang(Status.BDS_HAS_HD_KY_GUI);
 			return new Formhopdongdatcoc(hopdongdatcoc);
 		} else {
-			throw new Exception(MessageException.messHopdongdatcocHaveHopdongchuyennhuong);
+			throw new RealEsateException(MessageException.messHopdongdatcocHaveHopdongchuyennhuong);
 		}
 	}
 

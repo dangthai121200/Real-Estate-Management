@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.herokuapp.realestatebk.entity.Khachhang;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormKhachhang;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
 import com.herokuapp.realestatebk.repository.HopdongkyguiRepository;
@@ -53,13 +54,13 @@ public class KhachhangService {
 		return formKhachhangEdit;
 	}
 
-	public FormKhachhang deleteKhachHang(int id) throws Exception {
+	public FormKhachhang deleteKhachHang(int id) throws RealEsateException {
 		boolean flag = khachhangRespository.existsById(id);
 		if (flag) {
 			if (hopdongkyguiRepository.countHopdongkyguiByKhID(id) > 0) {
-				throw new Exception(MessageException.messCanNotDeleteKhachhangHasHopdongkygui);
+				throw new RealEsateException(MessageException.messCanNotDeleteKhachhangHasHopdongkygui);
 			} else if(hopdongchuyennhhuongRepository.countHopdongchuyennhuongByKhID(id) > 0) {
-				throw new Exception(MessageException.messCanNotDeleteKhachhangHasHopdongchuyennhuong);
+				throw new RealEsateException(MessageException.messCanNotDeleteKhachhangHasHopdongchuyennhuong);
 			} else {
 				Khachhang khachhang = khachhangRespository.findById(id).get();
 				khachhangRespository.deleteById(id);
@@ -67,18 +68,18 @@ public class KhachhangService {
 				return formKhachhangDelete;
 			}
 		} else {
-			throw new Exception(MessageException.messKhachhangNotExists);
+			throw new RealEsateException(MessageException.messKhachhangNotExists);
 		}
 	}
 
-	public FormKhachhang getKhachhangByID(int id) throws Exception {
+	public FormKhachhang getKhachhangByID(int id) throws RealEsateException {
 		boolean flag = khachhangRespository.existsById(id);
 		if (flag) {
 			Khachhang khachhang = khachhangRespository.findById(id).get();
 			FormKhachhang formKhachhang = new FormKhachhang(khachhang);
 			return formKhachhang;
 		} else 
-			throw new Exception(MessageException.messKhachhangNotExists);
+			throw new RealEsateException(MessageException.messKhachhangNotExists);
 	}
 
 }

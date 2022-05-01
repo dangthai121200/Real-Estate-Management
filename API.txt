@@ -8,6 +8,8 @@ Batdongsan
  - POST: /batdongsan:  add batdongsan
  - PUT: /batdongsan:  edit batdongsan
  - GET: /batdongsan/:id  get batdongsan by id
+ - DELETE: /batdongsan/:id : delete batdongsan by id
+ 
  
 Nhanvien:
  - GET: /nhanvien: get all list nhanvien

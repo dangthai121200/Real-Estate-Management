@@ -3,6 +3,7 @@ package com.herokuapp.realestatebk.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -87,7 +88,7 @@ public class Batdongsan implements Serializable {
 	private Loaibd loaibd;
 
 	// bi-directional many-to-one association to Hinhbd
-	@OneToMany(mappedBy = "batdongsan", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "batdongsan", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Hinhbd> hinhbds;
 
@@ -109,7 +110,6 @@ public class Batdongsan implements Serializable {
 
 	public Batdongsan() {
 	}
-	
 
 	public Batdongsan(int bdsid, float chieudai, float chieurong, float dientich, float dongia, String hinhanh,
 			float huehong, String masoqsdd, String mota, String phuong, String quan, String sonha, String tenduong,
@@ -130,17 +130,15 @@ public class Batdongsan implements Serializable {
 		this.tenduong = tenduong;
 		this.thanhpho = thanhpho;
 		this.tinhtrang = tinhtrang;
-		if(this.khachhang == null) {
+		if (this.khachhang == null) {
 			this.khachhang = new Khachhang();
 		}
 		this.khachhang.setKhid(khid);
-		if(this.loaibd == null) {
+		if (this.loaibd == null) {
 			this.loaibd = new Loaibd();
 		}
 		this.loaibd.setLoaiid(loaibdid);
 	}
-
-	
 
 	public Batdongsan(float chieudai, float chieurong, float dientich, float dongia, String hinhanh, float huehong,
 			String masoqsdd, String mota, String phuong, String quan, String sonha, String tenduong, String thanhpho,
@@ -160,16 +158,15 @@ public class Batdongsan implements Serializable {
 		this.tenduong = tenduong;
 		this.thanhpho = thanhpho;
 		this.tinhtrang = tinhtrang;
-		if(this.khachhang == null) {
+		if (this.khachhang == null) {
 			this.khachhang = new Khachhang();
 		}
 		this.khachhang.setKhid(khid);
-		if(this.loaibd == null) {
+		if (this.loaibd == null) {
 			this.loaibd = new Loaibd();
 		}
 		this.loaibd.setLoaiid(loaibdid);
 	}
-
 
 	public int getBdsid() {
 		return this.bdsid;
@@ -394,8 +391,5 @@ public class Batdongsan implements Serializable {
 
 		return hopdongkygui;
 	}
-
-	
-	
 
 }

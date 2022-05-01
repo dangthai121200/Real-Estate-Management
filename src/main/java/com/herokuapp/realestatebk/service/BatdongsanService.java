@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.form.FormHinhBd;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
@@ -51,14 +52,39 @@ public class BatdongsanService {
 		return formBatdongsanEdit;
 	}
 
-	public FormBatdongsan getBatdongsanByID(int id) throws Exception {
+	public FormBatdongsan getBatdongsanByID(int id) throws RealEsateException {
 
 		if (batdongsanReponsitory.existsById(id)) {
 			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
 			FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
 			return formBatdongsan;
 		} else {
-			throw new Exception(MessageException.messBatdongsanNotFound);
+			throw new RealEsateException(MessageException.messBatdongsanNotFound);
+		}
+	}
+
+	public FormBatdongsan deleteBatdongsan(int id) throws RealEsateException {
+		boolean flag = batdongsanReponsitory.existsById(id);
+		if (flag) {
+			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
+			if (batdongsan.getHopdongchuyennhuongs().size() == 0) {
+				if (batdongsan.getHopdongdatcocs().size() == 0) {
+					if (batdongsan.getHopdongkyguis().size() == 0) {
+						FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
+						batdongsanReponsitory.deleteById(id);
+						return formBatdongsan;
+					} else {
+						throw new RealEsateException(MessageException.messBatdongsanHaveHDDatcoc);
+					}
+				} else {
+					throw new RealEsateException(MessageException.messBatdongsanHaveHDDatcoc);
+				}
+			} else {
+				throw new RealEsateException(MessageException.messBatdongsanHaveHDChuyennhuong);
+			}
+
+		} else {
+			throw new RealEsateException(MessageException.messBatdongsanNotFound);
 		}
 	}
 }

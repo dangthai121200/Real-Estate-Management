@@ -20,11 +20,14 @@ import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hinhbd;
 import com.herokuapp.realestatebk.exception.MessageException;
+import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormHinhBd;
 import com.herokuapp.realestatebk.form.FormUploadImage;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
@@ -33,6 +36,10 @@ import com.herokuapp.realestatebk.repository.HinhbdRepository;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class HinhbdService {
+	public static final int MAX_LIST_IMAGE = 5;
+	public static final int MIN_LIST_IMAGE = 1;
+	
+	
 	@Autowired
 	private HinhbdRepository hinhbdRepository;
 
@@ -48,7 +55,7 @@ public class HinhbdService {
 		return formHinhBds;
 	}
 
-	public List<String> uploadImage(FormUploadImage formUploadImage) throws Exception {
+	public List<String> uploadImage(FormUploadImage formUploadImage) throws RealEsateException, JsonMappingException, JsonProcessingException {
 		boolean flag = batdongsanRepository.existsById(formUploadImage.getBdsid());
 		List<String> listUrlImage = new ArrayList<>();
 		ObjectMapper mapper = new ObjectMapper();
@@ -58,17 +65,18 @@ public class HinhbdService {
 		if (flag) {
 			Batdongsan batdongsan = batdongsanRepository.findById(formUploadImage.getBdsid()).get();
 			// required list max is 5 and min is 1
-			if (formUploadImage.getListImage().size() > 0 && formUploadImage.getListImage().size() < 5) {
+			if (formUploadImage.getListImage().size() >= MIN_LIST_IMAGE && formUploadImage.getListImage().size() <= MAX_LIST_IMAGE) {
 				// get image first for avatar of batdongsan, name image is bdsid
-				body = uploadImageToImgbb(formUploadImage.getListImage().get(0), String.valueOf(formUploadImage.getBdsid()))
-						.getBody();
+				body = uploadImageToImgbb(formUploadImage.getListImage().get(0),
+						String.valueOf(formUploadImage.getBdsid())).getBody();
 				jsonNode = mapper.readTree(body);
 				urlImage = jsonNode.get("data").get("display_url").asText();
 				batdongsan.setHinhanh(urlImage);
 				listUrlImage.add(urlImage);
 				// set list image to hinhbatdongsan, name image is bdsid
 				for (int i = 1; i < formUploadImage.getListImage().size(); i++) {
-					body = uploadImageToImgbb(formUploadImage.getListImage().get(i), String.valueOf(formUploadImage.getBdsid())).getBody();
+					body = uploadImageToImgbb(formUploadImage.getListImage().get(i),
+							String.valueOf(formUploadImage.getBdsid())).getBody();
 					jsonNode = mapper.readTree(body);
 					urlImage = jsonNode.get("data").get("display_url").asText();
 					hinhbdRepository.save(new Hinhbd(urlImage, formUploadImage.getBdsid()));
@@ -76,10 +84,10 @@ public class HinhbdService {
 				}
 				return listUrlImage;
 			} else {
-				throw new Exception(MessageException.messNotExistsImage);
+				throw new RealEsateException(MessageException.messNotExistsImage);
 			}
 		} else {
-			throw new Exception(MessageException.messBatdongsanNotFound);
+			throw new RealEsateException(MessageException.messBatdongsanNotFound);
 		}
 
 	}

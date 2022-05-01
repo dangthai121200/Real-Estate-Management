@@ -39,12 +39,12 @@ public class NhanvienController {
 	}
 
 	@PutMapping(URL.UPDATE_Nhanvien)
-	public FormNhanvien editNhanvien(@RequestBody @Valid FormNhanvien fNhanvien) throws Exception {
+	public FormNhanvien editNhanvien(@RequestBody @Valid FormNhanvien fNhanvien) throws RealEsateException {
 		return nhanvienService.editNhanvien(fNhanvien);
 	}
 
 	@DeleteMapping(URL.DELETE_Nhanvien)
-	public FormNhanvien deleteNhanvien(@PathVariable int id) throws Exception {
+	public FormNhanvien deleteNhanvien(@PathVariable int id) throws RealEsateException {
 		return nhanvienService.deleteNhanvien(id);
 	}
 

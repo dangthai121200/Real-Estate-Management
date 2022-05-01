@@ -13,7 +13,9 @@ public class MessageException {
 
 	// Batdongan
 	public static final String messBatdongsanNotFound = "Không thể tìm thấy bất động sản";
+	public static final String messBatdongsanHaveHDKygui = "Bất động sản đã có hợp đồng ký gửi";
 	public static final String messBatdongsanHaveHDDatcoc = "Bất động sản đã có hợp đồng đặt cọc";
+	public static final String messBatdongsanHaveHDChuyennhuong = "Bất động sản đã có hợp đồng chuyển nhượng";
 	public static final String messBatdongsanNotHaveHDKyGui = "Bất động sản chưa có hợp đồng ký gửi";
 
 	// Yeucaukhachhang
