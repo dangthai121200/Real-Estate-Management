@@ -20,10 +20,10 @@ public class BatdongsanService {
 
 	@Autowired
 	private BatdongsanRepository batdongsanReponsitory;
-	
-	@Autowired 
+
+	@Autowired
 	private HinhbdRepository hinhbdRepository;
-	
+
 	public List<FormBatdongsan> getAllBatdongsan() {
 		List<FormBatdongsan> formBatdongsans = new ArrayList<>();
 		List<Batdongsan> batdongsans = (List<Batdongsan>) batdongsanReponsitory.findAll();
@@ -67,12 +67,25 @@ public class BatdongsanService {
 	}
 
 	public FormBatdongsan deleteBatdongsan(int id) throws Exception {
-		if (batdongsanReponsitory.existsById(id)) {
+		boolean flag = batdongsanReponsitory.existsById(id);
+		if (flag) {
 			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
-			FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
-			batdongsanReponsitory.deleteById(id);
-			hinhbdRepository.deleteHinhbdByBdsID(id);
-			return formBatdongsan;
+			if (batdongsan.getHopdongchuyennhuongs().size() == 0) {
+				if (batdongsan.getHopdongdatcocs().size() == 0) {
+					if (batdongsan.getHopdongkyguis().size() == 0) {
+						FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
+						batdongsanReponsitory.deleteById(id);
+						return formBatdongsan;
+					} else {
+						throw new Exception(MessageException.messBatdongsanHaveHDDatcoc);
+					}
+				} else {
+					throw new Exception(MessageException.messBatdongsanHaveHDDatcoc);
+				}
+			} else {
+				throw new Exception(MessageException.messBatdongsanHaveHDChuyennhuong);
+			}
+
 		} else {
 			throw new Exception(MessageException.messBatdongsanNotFound);
 		}
