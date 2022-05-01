@@ -30,18 +30,12 @@ public class YeucaukhachhangController {
 	}
 
 	@PostMapping(URL.ADD_Yeucaukhachhang)
-	public FormYeucaukhachhang addYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang, BindingResult bindingResult) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormYeucaukhachhang addYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang) throws Exception {
 		return yeucaukhachhangService.addyeucaukhachhang(fYeucaukhachhang);
 	}
 
 	@PutMapping(URL.UPDATE_Yeucaukhachhang)
-	public FormYeucaukhachhang editYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang, BindingResult bindingResult) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormYeucaukhachhang editYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang) throws Exception {
 		return yeucaukhachhangService.editYeucaukhachhang(fYeucaukhachhang);
 	}
 

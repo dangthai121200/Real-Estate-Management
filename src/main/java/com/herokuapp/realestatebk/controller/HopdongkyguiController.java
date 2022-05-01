@@ -29,10 +29,7 @@ public class HopdongkyguiController {
 	}
 
 	@PostMapping(URL.ADD_Hopdongkygui)
-	public FormAddHopdongkygui addHopdongkygui(@RequestBody @Valid FormAddHopdongkygui formAddHopdongkygui, BindingResult bindingResult) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormAddHopdongkygui addHopdongkygui(@RequestBody @Valid FormAddHopdongkygui formAddHopdongkygui) throws Exception {
 		return hopdongkyguiService.addHopdongkygui(formAddHopdongkygui);
 	}
 

@@ -30,18 +30,12 @@ public class BatdongsanController {
 	}
 
 	@PostMapping(URL.ADD_Batdongsan)
-	public FormBatdongsan addBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan, BindingResult bindingResult) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormBatdongsan addBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan) throws Exception {
 		return batdongsanService.addBatdongsan(fBatdongsan);
 	}
 
 	@PutMapping(URL.UPDATE_Batdongsan)
-	public FormBatdongsan editBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan, BindingResult bindingResult) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormBatdongsan editBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan) throws Exception {
 		return batdongsanService.editBatdongsan(fBatdongsan);
 	}
 

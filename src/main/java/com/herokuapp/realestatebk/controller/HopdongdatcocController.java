@@ -33,10 +33,7 @@ public class HopdongdatcocController {
 	}
 	
 	@PostMapping(URL.ADD_Hopdongdatcoc)
-	public Formhopdongdatcoc addHopdongdatcoc(@RequestBody @Valid Formhopdongdatcoc formhopdongdatcoc, BindingResult bindingResult ) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public Formhopdongdatcoc addHopdongdatcoc(@RequestBody @Valid Formhopdongdatcoc formhopdongdatcoc ) throws Exception {
 		return hopdongdatcocService.addHopdongdatcoc(formhopdongdatcoc);
 	}
 	

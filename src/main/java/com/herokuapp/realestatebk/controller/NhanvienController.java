@@ -39,10 +39,7 @@ public class NhanvienController {
 	}
 
 	@PutMapping(URL.UPDATE_Nhanvien)
-	public FormNhanvien editNhanvien(@RequestBody @Valid FormNhanvien fNhanvien, BindingResult bindingResult) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormNhanvien editNhanvien(@RequestBody @Valid FormNhanvien fNhanvien) throws Exception {
 		return nhanvienService.editNhanvien(fNhanvien);
 	}
 

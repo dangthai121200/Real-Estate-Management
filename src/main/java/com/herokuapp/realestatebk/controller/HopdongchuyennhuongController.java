@@ -34,11 +34,8 @@ public class HopdongchuyennhuongController {
 	}
 
 	@PostMapping(URL.ADD_Hopdongchuyennhuong)
-	public FormHopdongchuyennhuong addHopdongchuyennhuong(@RequestBody @Valid FormHopdongchuyennhuong formHopdongchuyennhuong, BindingResult bindingResult)
+	public FormHopdongchuyennhuong addHopdongchuyennhuong(@RequestBody @Valid FormHopdongchuyennhuong formHopdongchuyennhuong)
 			throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
 		return hopdongchuyennhuongService.addHopdongchuyennhuong(formHopdongchuyennhuong);
 	}
 

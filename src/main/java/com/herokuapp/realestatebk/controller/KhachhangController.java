@@ -31,18 +31,12 @@ public class KhachhangController {
 	}
 
 	@PostMapping(URL.ADD_Khachhang)
-	public FormKhachhang addKhachhang(@RequestBody @Valid FormKhachhang fKhachhang,BindingResult bindingResult) throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormKhachhang addKhachhang(@RequestBody @Valid FormKhachhang fKhachhang) throws Exception {
 		return khachhangService.addKhachhang(fKhachhang);
 	}
 
 	@PutMapping(URL.UPDATE_Khachhang)
-	public FormKhachhang editKhachhang(@RequestBody @Valid FormKhachhang fKhachhang,BindingResult bindingResult)throws Exception {
-		if(bindingResult.hasErrors()) {
-			throw new Exception(bindingResult.getAllErrors().get(0).getDefaultMessage());
-		} 
+	public FormKhachhang editKhachhang(@RequestBody @Valid FormKhachhang fKhachhang)throws Exception {
 		return khachhangService.editKhachhang(fKhachhang);
 	}
 
