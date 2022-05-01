@@ -4,20 +4,31 @@ import java.util.Date;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import com.herokuapp.realestatebk.entity.Hopdongkygui;
 
 public class FormHopDongKyGui {
 
 	private int kgid;
+	@NotNull(message = "Thiếu chi phí dịch vụ")
+	@Min(value = 1, message = "Thiếu chi phí dịch vụ")
 	private float chiphidv;
+	@NotNull(message = "Thiếu giá trị")
+	@Min(value = 1, message = "Giá trị phải lớn hơn 1")
 	private float giatri;
 	@Temporal(TemporalType.DATE)
+	@NotNull(message = "Thiếu ngày bắt đầu")
 	private Date ngaybd;
 	@Temporal(TemporalType.DATE)
+	@NotNull(message = "Thiếu ngày kết thúc")
 	private Date ngayketthuc;
+	@NotNull(message = "Thiếu trạng thái")
 	private byte trangthai;
+	@NotNull(message = "Thiếu bất động sản")
 	private int bdsid;
+	@NotNull(message = "Thiếu khách hàng")
 	private int khid;
 
 	public FormHopDongKyGui() {

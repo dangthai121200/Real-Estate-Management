@@ -2,21 +2,38 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import com.herokuapp.realestatebk.entity.Khachhang;
 
 public class FormKhachhang {
 
 	private int khid;
+	@Max(999999999)
+	@Min(0)
 	private int cmnd;
+	@NotEmpty(message = "Thiếu địa chỉ")
 	private String diachi;
+	@NotEmpty(message = "Thiếu địa chỉ thường trú")
 	private String diachitt;
+	@Email(message = "Email hông hợp lệ")
 	private String email;
+	@NotNull(message = "Thiếu giới tính")
 	private byte gioitinh;
+	@NotEmpty(message = "Thiếu họ tên")
 	private String hoten;
+	@NotNull(message = "Thiếu loại khách hàng")
 	private byte loaikh;
 	private String mota;
+	@NotNull(message = "Thiếu ngày sinh")
 	private Date ngaysinh;
+	@NotNull(message = "thiếu số điện thoại")
 	private int sodienthoai;
+	@NotNull(message = "thiếu trạng thái")
 	private byte trangthai;
 	private int nvid;
 

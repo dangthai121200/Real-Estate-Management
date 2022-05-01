@@ -38,5 +38,6 @@ public class MessageException {
 	
 	//Upload image
 	public static final String messNotExistsImage = "Danh sách ảnh không được rỗng";
+	
 
 }
