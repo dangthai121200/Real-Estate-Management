@@ -10,6 +10,7 @@ public class URL {
 	public static final String ADD_Batdongsan = "/batdongsan";
 	public static final String UPDATE_Batdongsan = "/batdongsan";
 	public static final String GET_Batdongsan_BY_ID = "/batdongsan/{id}";
+	public static final String DELETE_Batdongsan = "/batdongsan/{id}";
 
 	// Url khachhang
 	public static final String GET_ALL_Khachhang = "/khachhang";

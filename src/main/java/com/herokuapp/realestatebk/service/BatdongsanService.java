@@ -13,6 +13,7 @@ import com.herokuapp.realestatebk.exception.RealEsateException;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.form.FormHinhBd;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
+import com.herokuapp.realestatebk.repository.HinhbdRepository;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -20,6 +21,9 @@ public class BatdongsanService {
 
 	@Autowired
 	private BatdongsanRepository batdongsanReponsitory;
+
+	@Autowired
+	private HinhbdRepository hinhbdRepository;
 
 	public List<FormBatdongsan> getAllBatdongsan() {
 		List<FormBatdongsan> formBatdongsans = new ArrayList<>();
@@ -60,6 +64,31 @@ public class BatdongsanService {
 			return formBatdongsan;
 		} else {
 			throw new RealEsateException(MessageException.messBatdongsanNotFound);
+		}
+	}
+
+	public FormBatdongsan deleteBatdongsan(int id) throws Exception {
+		boolean flag = batdongsanReponsitory.existsById(id);
+		if (flag) {
+			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
+			if (batdongsan.getHopdongchuyennhuongs().size() == 0) {
+				if (batdongsan.getHopdongdatcocs().size() == 0) {
+					if (batdongsan.getHopdongkyguis().size() == 0) {
+						FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
+						batdongsanReponsitory.deleteById(id);
+						return formBatdongsan;
+					} else {
+						throw new Exception(MessageException.messBatdongsanHaveHDDatcoc);
+					}
+				} else {
+					throw new Exception(MessageException.messBatdongsanHaveHDDatcoc);
+				}
+			} else {
+				throw new Exception(MessageException.messBatdongsanHaveHDChuyennhuong);
+			}
+
+		} else {
+			throw new Exception(MessageException.messBatdongsanNotFound);
 		}
 	}
 }
