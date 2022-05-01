@@ -12,6 +12,7 @@ import com.herokuapp.realestatebk.exception.MessageException;
 import com.herokuapp.realestatebk.form.FormBatdongsan;
 import com.herokuapp.realestatebk.form.FormHinhBd;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
+import com.herokuapp.realestatebk.repository.HinhbdRepository;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -19,7 +20,10 @@ public class BatdongsanService {
 
 	@Autowired
 	private BatdongsanRepository batdongsanReponsitory;
-
+	
+	@Autowired 
+	private HinhbdRepository hinhbdRepository;
+	
 	public List<FormBatdongsan> getAllBatdongsan() {
 		List<FormBatdongsan> formBatdongsans = new ArrayList<>();
 		List<Batdongsan> batdongsans = (List<Batdongsan>) batdongsanReponsitory.findAll();
@@ -67,6 +71,7 @@ public class BatdongsanService {
 			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
 			FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
 			batdongsanReponsitory.deleteById(id);
+			hinhbdRepository.deleteHinhbdByBdsID(id);
 			return formBatdongsan;
 		} else {
 			throw new Exception(MessageException.messBatdongsanNotFound);
