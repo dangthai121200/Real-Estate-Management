@@ -61,4 +61,15 @@ public class BatdongsanService {
 			throw new Exception(MessageException.messBatdongsanNotFound);
 		}
 	}
+
+	public FormBatdongsan deleteBatdongsan(int id) throws Exception {
+		if (batdongsanReponsitory.existsById(id)) {
+			Batdongsan batdongsan = batdongsanReponsitory.findById(id).get();
+			FormBatdongsan formBatdongsan = new FormBatdongsan(batdongsan);
+			batdongsanReponsitory.deleteById(id);
+			return formBatdongsan;
+		} else {
+			throw new Exception(MessageException.messBatdongsanNotFound);
+		}
+	}
 }
