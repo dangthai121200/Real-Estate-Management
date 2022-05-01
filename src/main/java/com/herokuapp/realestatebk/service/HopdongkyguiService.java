@@ -73,7 +73,7 @@ public class HopdongkyguiService {
 			Hopdongkygui hopdongkygui = hopdongkyguiRepository.findById(id).get();
 			FormHopDongKyGui formHopDongKyGui = new FormHopDongKyGui(hopdongkygui);
 			return formHopDongKyGui;
-		} else 
+		} else
 			throw new RealEsateException(MessageException.messHopdongkyguiNotExists);
 	}
 

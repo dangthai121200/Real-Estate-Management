@@ -36,6 +36,10 @@ import com.herokuapp.realestatebk.repository.HinhbdRepository;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class HinhbdService {
+	public static final int MAX_LIST_IMAGE = 5;
+	public static final int MIN_LIST_IMAGE = 1;
+	
+	
 	@Autowired
 	private HinhbdRepository hinhbdRepository;
 
@@ -61,7 +65,7 @@ public class HinhbdService {
 		if (flag) {
 			Batdongsan batdongsan = batdongsanRepository.findById(formUploadImage.getBdsid()).get();
 			// required list max is 5 and min is 1
-			if (formUploadImage.getListImage().size() > 0 && formUploadImage.getListImage().size() < 5) {
+			if (formUploadImage.getListImage().size() >= MIN_LIST_IMAGE && formUploadImage.getListImage().size() <= MAX_LIST_IMAGE) {
 				// get image first for avatar of batdongsan, name image is bdsid
 				body = uploadImageToImgbb(formUploadImage.getListImage().get(0),
 						String.valueOf(formUploadImage.getBdsid())).getBody();
