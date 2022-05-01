@@ -2,6 +2,7 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -9,8 +10,10 @@ import com.herokuapp.realestatebk.entity.Batdongsan;
 
 public class FormBatdongsan {
 	private int bdsid;
+	@Min(value = 1, message = "Chiều dài lớn hơn 1")
 	@NotNull(message = "Thiếu chiều dài")
 	private float chieudai;
+	@Min(value = 1, message = "Chiều rộng lớn hơn 1")
 	@NotNull(message = "Thiếu chiều rộng")
 	private float chieurong;
 	@NotNull(message = "Thiếu diện tích")

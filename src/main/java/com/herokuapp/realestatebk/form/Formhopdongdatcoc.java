@@ -11,7 +11,7 @@ public class Formhopdongdatcoc {
 
 	private int dcid;
 	@NotNull(message = "Thiếu giá trị")
-	@Min(0)
+	@Min(value = 1, message = "Giá trị phải lớn hơn 1")
 	private float giatri;
 	@NotNull(message = "Thiếu ngày hết hạn")
 	private Date ngayhethan;

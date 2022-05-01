@@ -13,10 +13,10 @@ public class FormHopDongKyGui {
 
 	private int kgid;
 	@NotNull(message = "Thiếu chi phí dịch vụ")
-	@Min(0)
+	@Min(value = 1, message = "Thiếu chi phí dịch vụ")
 	private float chiphidv;
 	@NotNull(message = "Thiếu giá trị")
-	@Min(0)
+	@Min(value = 1, message = "Giá trị phải lớn hơn 1")
 	private float giatri;
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Thiếu ngày bắt đầu")

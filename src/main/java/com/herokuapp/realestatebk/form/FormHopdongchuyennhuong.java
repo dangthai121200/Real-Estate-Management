@@ -13,7 +13,7 @@ public class FormHopdongchuyennhuong {
 
 	private int cnid;
 	@NotNull(message = "Thiếu giá trị")
-	@Min(0)
+	@Min(value = 1, message = "giá trị phải lớn hơn 1")
 	private float giatri;
 	@NotNull(message = "Thiếu ngày lập")
 	@Temporal(TemporalType.DATE)

@@ -9,24 +9,25 @@ import com.herokuapp.realestatebk.entity.Yeucaukhachhang;
 public class FormYeucaukhachhang {
 	private int ycid;
 	@NotNull(message = "Thiếu chiều dài từ ")
-	@Min(0)
+	@Min(value = 1, message = "Chiều dài từ phải lớn hơn 1")
 	private float daif;
 	@NotNull(message = "Thiếu chiều dài đến ")
-	@Min(0)
+	@Min(value = 1, message = "Chiều dài đến phải lớn hơn 1")
 	private float dait;
 	@NotNull(message = "Thiếu diện tích")
+	@Min(value = 1, message = "thiếu diện tích")
 	private float dientich;
-	@Min(0)
-	@NotNull(message = "Thiếu giá giá trị từ")
+	@Min(value = 1, message = "Giá trị từ phải lớn hơn 1")
+	@NotNull(message = "Thiếu giá trị từ")
 	private float giaf;
-	@Min(0)
+	@Min(value = 1, message = "Giá trị đến phải lớn hơn 1")
 	@NotNull(message = "Thiếu giá trị đến")
 	private float giat;
 	private String mota;
-	@Min(0)
+	@Min(value = 1, message = "Chiều rộng từ phải lớn hơn 1")
 	@NotNull(message = "Thiếu chiều rộng từ")
 	private float rongf;
-	@Min(0)
+	@Min(value = 1, message = "chiều rộng đến phải lớn hơn 1")
 	@NotNull(message = "Thiếu chiều rộng đến")
 	private float rongt;
 	@NotEmpty(message = "Thiếu vị trí")
