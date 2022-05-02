@@ -32,14 +32,14 @@ import com.herokuapp.realestatebk.form.FormHinhBd;
 import com.herokuapp.realestatebk.form.FormUploadImage;
 import com.herokuapp.realestatebk.repository.BatdongsanRepository;
 import com.herokuapp.realestatebk.repository.HinhbdRepository;
+import com.herokuapp.realestatebk.util.URL;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class HinhbdService {
 	public static final int MAX_LIST_IMAGE = 5;
 	public static final int MIN_LIST_IMAGE = 1;
-	
-	
+
 	@Autowired
 	private HinhbdRepository hinhbdRepository;
 
@@ -55,30 +55,27 @@ public class HinhbdService {
 		return formHinhBds;
 	}
 
-	public List<String> uploadImage(FormUploadImage formUploadImage) throws RealEsateException, JsonMappingException, JsonProcessingException {
+	public List<String> uploadImage(FormUploadImage formUploadImage)
+			throws RealEsateException, JsonMappingException, JsonProcessingException {
 		boolean flag = batdongsanRepository.existsById(formUploadImage.getBdsid());
 		List<String> listUrlImage = new ArrayList<>();
-		ObjectMapper mapper = new ObjectMapper();
 		String body = "";
-		JsonNode jsonNode = null;
 		String urlImage = "";
 		if (flag) {
-			Batdongsan batdongsan = batdongsanRepository.findById(formUploadImage.getBdsid()).get();
 			// required list max is 5 and min is 1
-			if (formUploadImage.getListImage().size() >= MIN_LIST_IMAGE && formUploadImage.getListImage().size() <= MAX_LIST_IMAGE) {
-				// get image first for avatar of batdongsan, name image is bdsid
-				body = uploadImageToImgbb(formUploadImage.getListImage().get(0),
-						String.valueOf(formUploadImage.getBdsid())).getBody();
-				jsonNode = mapper.readTree(body);
-				urlImage = jsonNode.get("data").get("display_url").asText();
-				batdongsan.setHinhanh(urlImage);
-				listUrlImage.add(urlImage);
+			if (formUploadImage.getListImage().size() >= MIN_LIST_IMAGE
+					&& formUploadImage.getListImage().size() <= MAX_LIST_IMAGE) {
+				Batdongsan batdongsan = batdongsanRepository.findById(formUploadImage.getBdsid()).get();
+				if (batdongsan.getHinhanh() == null || batdongsan.getHinhanh().isEmpty()) {
+					// get image first for avatar of batdongsan, name image is bdsid
+					urlImage = setAvatarForBatDongSan(batdongsan, formUploadImage.getListImage().get(0));
+					listUrlImage.add(urlImage);
+				}
 				// set list image to hinhbatdongsan, name image is bdsid
-				for (int i = 1; i < formUploadImage.getListImage().size(); i++) {
+				for (int i = 0; i < formUploadImage.getListImage().size(); i++) {
 					body = uploadImageToImgbb(formUploadImage.getListImage().get(i),
 							String.valueOf(formUploadImage.getBdsid())).getBody();
-					jsonNode = mapper.readTree(body);
-					urlImage = jsonNode.get("data").get("display_url").asText();
+					urlImage = getDataFormJsonImage(body);
 					hinhbdRepository.save(new Hinhbd(urlImage, formUploadImage.getBdsid()));
 					listUrlImage.add(urlImage);
 				}
@@ -89,28 +86,41 @@ public class HinhbdService {
 		} else {
 			throw new RealEsateException(MessageException.messBatdongsanNotFound);
 		}
-
 	}
 
-	public ResponseEntity<String> uploadImageToImgbb(MultipartFile file, String nameImage) {
+	public String setAvatarForBatDongSan(Batdongsan batdongsan, MultipartFile image)
+			throws JsonMappingException, JsonProcessingException {
+		String body = uploadImageToImgbb(image, String.valueOf(batdongsan.getBdsid())).getBody();
+		String urlImage = getDataFormJsonImage(body);
+		batdongsan.setHinhanh(urlImage);
+		return urlImage;
+	}
+
+	private String getDataFormJsonImage(String data) throws JsonMappingException, JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode jsonNode = mapper.readTree(data);
+		String urlImage = jsonNode.get("data").get("display_url").asText();
+		return urlImage;
+	}
+
+	private ResponseEntity<String> uploadImageToImgbb(MultipartFile file, String nameImage) {
 		RestOperations restOperations = new RestTemplate();
 		MultiValueMap<String, Object> paramList = new LinkedMultiValueMap<String, Object>();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		File coverFile = convert(file, nameImage);
-		paramList.add("image", new FileSystemResource(coverFile));
-		paramList.add("key", "202ff31aa3a14568fce9ea1d7e65966b");
+		paramList.add(URL.PARAM_IMAGE, new FileSystemResource(coverFile));
+		paramList.add(URL.PARAM_KEY, URL.KEY_UPLOAD_IMAGE);
 		HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<MultiValueMap<String, Object>>(paramList,
 				headers);
-		ResponseEntity<String> result = restOperations.postForEntity("https://api.imgbb.com/1/upload", request,
-				String.class);
+		ResponseEntity<String> result = restOperations.postForEntity(URL.API_UPLOAD_IMAGE, request, String.class);
 		if (coverFile.exists()) {
 			coverFile.delete();
 		}
 		return result;
 	}
 
-	public File convert(MultipartFile file, String nameImage) {
+	private File convert(MultipartFile file, String nameImage) {
 		File convFile = new File(nameImage);
 		try {
 			convFile.createNewFile();

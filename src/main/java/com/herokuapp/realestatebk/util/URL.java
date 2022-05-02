@@ -63,5 +63,8 @@ public class URL {
 	public static final String SUCCESS = "/success";
 
 	// URL host save image
-	public static final String HOST_IMAGE = "https://i.ibb.co";
+	public static final String API_UPLOAD_IMAGE = "https://api.imgbb.com/1/upload";
+	public static final String KEY_UPLOAD_IMAGE = "202ff31aa3a14568fce9ea1d7e65966b";
+	public static final String PARAM_IMAGE = "image";
+	public static final String PARAM_KEY = "key";
 }
