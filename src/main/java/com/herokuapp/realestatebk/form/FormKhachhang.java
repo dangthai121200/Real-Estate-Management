@@ -14,8 +14,8 @@ public class FormKhachhang {
 
 	private int khid;
 
-	@Max(999999999)
-	@Min(99999999)
+	@Max(value = 999999999, message = "Chứng minh nhân dân phải đủ 9 số")
+	@Min(value = 99999999, message = "Chứng minh nhân dân phải đủ 9 số")
 	private int cmnd;
 
 	@NotEmpty(message = "Thiếu địa chỉ")
