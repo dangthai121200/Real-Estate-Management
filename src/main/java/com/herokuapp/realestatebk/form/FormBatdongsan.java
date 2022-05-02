@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.herokuapp.realestatebk.entity.Batdongsan;
 
@@ -23,6 +24,7 @@ public class FormBatdongsan {
 	private String hinhanh;
 	@NotNull(message = "Thiếu huê hồng")
 	private float huehong;
+	@Size(min = 8, max = 8, message = "mã số quyền sửa dụng đất chỉ được tối đa 8 ký tự")
 	private String masoqsdd;
 	private String mota;
 	@NotEmpty(message = "Thiếu phường")

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -29,6 +30,7 @@ public class FormAddHopdongkygui {
 	@NotNull(message = "Thiếu mã khách hàng")
 	private int khid;
 	@NotNull(message = "Thiếu thông tin bất động sản")
+	@Valid
 	private FormBatdongsan formBatdongsan;
 
 	public FormAddHopdongkygui() {
