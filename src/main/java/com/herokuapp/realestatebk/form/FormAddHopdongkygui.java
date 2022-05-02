@@ -12,23 +12,31 @@ import com.herokuapp.realestatebk.entity.Batdongsan;
 import com.herokuapp.realestatebk.entity.Hopdongkygui;
 
 public class FormAddHopdongkygui {
+
 	private int kgid;
+
 	@NotNull(message = "Thiếu chi phí dịch vụ")
 	@Min(value = 1, message = "Thiếu chi phí dịch vụ")
 	private float chiphidv;
+
 	@NotNull(message = "Thiếu giá trị")
 	@Min(value = 1, message = "giá trị lớn hơn 1")
 	private float giatri;
+
 	@NotNull(message = "Thiếu Ngày bắt đầu")
 	@Temporal(TemporalType.DATE)
 	private Date ngaybd;
+
 	@NotNull(message = "Thiếu ngày kết thúc")
 	@Temporal(TemporalType.DATE)
 	private Date ngayketthuc;
+
 	@NotNull(message = "Thiếu trang thái")
 	private byte trangthai;
+
 	@NotNull(message = "Thiếu mã khách hàng")
 	private int khid;
+
 	@NotNull(message = "Thiếu thông tin bất động sản")
 	@Valid
 	private FormBatdongsan formBatdongsan;

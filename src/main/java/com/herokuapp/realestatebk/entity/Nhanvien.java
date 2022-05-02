@@ -224,6 +224,7 @@ public class Nhanvien implements Serializable {
 
 		return khachhang;
 	}
+
 	@Override
 	public String toString() {
 		return "Nhanvien [nvid=" + nvid + ", diachi=" + diachi + ", doanhthu=" + doanhthu + ", email=" + email

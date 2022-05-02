@@ -7,6 +7,7 @@ import com.herokuapp.realestatebk.entity.Loaibd;
 public class FormLoaibd {
 
 	private int loaiid;
+
 	@NotEmpty(message = "Thiếu tên loại bất động sản")
 	private String tenloai;
 

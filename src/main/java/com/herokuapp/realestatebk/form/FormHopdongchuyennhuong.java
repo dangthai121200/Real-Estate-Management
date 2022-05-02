@@ -12,18 +12,24 @@ import com.herokuapp.realestatebk.entity.Hopdongchuyennhuong;
 public class FormHopdongchuyennhuong {
 
 	private int cnid;
+
 	@NotNull(message = "Thiếu giá trị")
 	@Min(value = 1, message = "giá trị phải lớn hơn 1")
 	private float giatri;
+
 	@NotNull(message = "Thiếu ngày lập")
 	@Temporal(TemporalType.DATE)
 	private Date ngaylap;
+
 	@NotNull(message = "Thiếu trạng thái")
 	private byte trangthai;
+
 	@NotNull(message = "Thiếu id bắt đống sản")
 	private int bdsid;
+
 	@NotNull(message = "Thiếu mã hợp đồng đặt cọc")
 	private int dcid;
+
 	@NotNull(message = "Thiếu mã khách hàng")
 	private int khid;
 
@@ -98,10 +104,11 @@ public class FormHopdongchuyennhuong {
 	}
 
 	public Hopdongchuyennhuong convertToHopdongchuyennhuong() {
-		if(Integer.valueOf(this.cnid) == null) {
+		if (Integer.valueOf(this.cnid) == null) {
 			return new Hopdongchuyennhuong(this.giatri, this.ngaylap, this.trangthai, this.bdsid, this.dcid, this.khid);
-		}else {
-			return new Hopdongchuyennhuong(this.cnid, this.giatri, this.ngaylap, this.trangthai, this.bdsid, this.dcid, this.khid);
+		} else {
+			return new Hopdongchuyennhuong(this.cnid, this.giatri, this.ngaylap, this.trangthai, this.bdsid, this.dcid,
+					this.khid);
 		}
 	}
 

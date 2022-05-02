@@ -31,13 +31,13 @@ public class YeucaukhachhangController {
 
 	@PostMapping(URL.ADD_Yeucaukhachhang)
 	public FormYeucaukhachhang addYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang)
-			throws Exception {
+			throws RealEsateException {
 		return yeucaukhachhangService.addyeucaukhachhang(fYeucaukhachhang);
 	}
 
 	@PutMapping(URL.UPDATE_Yeucaukhachhang)
 	public FormYeucaukhachhang editYeucaukhachhang(@RequestBody @Valid FormYeucaukhachhang fYeucaukhachhang)
-			throws Exception {
+			throws RealEsateException {
 		return yeucaukhachhangService.editYeucaukhachhang(fYeucaukhachhang);
 	}
 

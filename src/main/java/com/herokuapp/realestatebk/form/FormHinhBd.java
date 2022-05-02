@@ -3,8 +3,11 @@ package com.herokuapp.realestatebk.form;
 import com.herokuapp.realestatebk.entity.Hinhbd;
 
 public class FormHinhBd {
+
 	private int hinhid;
+
 	private String hinh;
+
 	private int bdsid;
 
 	public FormHinhBd() {

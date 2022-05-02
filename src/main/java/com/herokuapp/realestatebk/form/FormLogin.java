@@ -3,6 +3,7 @@ package com.herokuapp.realestatebk.form;
 public class FormLogin {
 
 	private String taikhoan;
+
 	private String matkhau;
 
 	public FormLogin() {

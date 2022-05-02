@@ -31,12 +31,12 @@ public class BatdongsanController {
 	}
 
 	@PostMapping(URL.ADD_Batdongsan)
-	public FormBatdongsan addBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan) throws Exception {
+	public FormBatdongsan addBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan) throws RealEsateException {
 		return batdongsanService.addBatdongsan(fBatdongsan);
 	}
 
 	@PutMapping(URL.UPDATE_Batdongsan)
-	public FormBatdongsan editBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan) throws Exception {
+	public FormBatdongsan editBatdongsan(@RequestBody @Valid FormBatdongsan fBatdongsan) throws RealEsateException {
 		return batdongsanService.editBatdongsan(fBatdongsan);
 	}
 

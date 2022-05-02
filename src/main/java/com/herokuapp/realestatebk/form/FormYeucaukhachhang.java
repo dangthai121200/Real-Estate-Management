@@ -7,33 +7,45 @@ import javax.validation.constraints.NotNull;
 import com.herokuapp.realestatebk.entity.Yeucaukhachhang;
 
 public class FormYeucaukhachhang {
+
 	private int ycid;
+
 	@NotNull(message = "Thiếu chiều dài từ ")
 	@Min(value = 1, message = "Chiều dài từ phải lớn hơn 1")
 	private float daif;
+
 	@NotNull(message = "Thiếu chiều dài đến ")
 	@Min(value = 1, message = "Chiều dài đến phải lớn hơn 1")
 	private float dait;
+
 	@NotNull(message = "Thiếu diện tích")
 	@Min(value = 1, message = "thiếu diện tích")
 	private float dientich;
+
 	@Min(value = 1, message = "Giá trị từ phải lớn hơn 1")
 	@NotNull(message = "Thiếu giá trị từ")
 	private float giaf;
+
 	@Min(value = 1, message = "Giá trị đến phải lớn hơn 1")
 	@NotNull(message = "Thiếu giá trị đến")
 	private float giat;
+
 	private String mota;
+
 	@Min(value = 1, message = "Chiều rộng từ phải lớn hơn 1")
 	@NotNull(message = "Thiếu chiều rộng từ")
 	private float rongf;
+
 	@Min(value = 1, message = "chiều rộng đến phải lớn hơn 1")
 	@NotNull(message = "Thiếu chiều rộng đến")
 	private float rongt;
+
 	@NotEmpty(message = "Thiếu vị trí")
 	private String vitri;
+
 	@NotNull(message = "Thiếu khách hàng")
 	private int khachhang;
+
 	@NotNull(message = "Thiếu loại bất động sản")
 	private int loaibd;
 
