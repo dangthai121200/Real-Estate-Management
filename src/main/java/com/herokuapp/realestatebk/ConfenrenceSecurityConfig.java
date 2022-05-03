@@ -92,7 +92,8 @@ public class ConfenrenceSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(URL.GET_ALL_Hopdongkygui).hasAnyAuthority(Role.ROLE_ADMIN);
 
 		// yeucaukhachhang
-		http.authorizeRequests().antMatchers(URL.GET_ALL_Yeucaukhachhang).hasAuthority(Role.ROLE_ADMIN);
+		http.authorizeRequests().antMatchers(URL.GET_ALL_Yeucaukhachhang).hasAnyAuthority(Role.ROLE_SALE,
+				Role.ROLE_ADMIN);
 
 		http.authorizeRequests().antMatchers(URL.HOME).permitAll().anyRequest().authenticated().and().httpBasic().and()
 				.formLogin().usernameParameter("taikhoan").passwordParameter("matkhau")
