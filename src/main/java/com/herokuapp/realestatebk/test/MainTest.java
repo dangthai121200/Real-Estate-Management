@@ -18,6 +18,6 @@ public class MainTest {
 	}
 
 	public static void main(String[] args) throws RealEsateException {
-		checkBirthDate(new Date("2004/1/1"), "error1", "error2");
+		checkBirthDate(new Date("1990/01/01"), "error1", "error2");
 	}
 }

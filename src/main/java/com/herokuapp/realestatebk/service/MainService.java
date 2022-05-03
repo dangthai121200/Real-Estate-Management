@@ -6,7 +6,7 @@ import com.herokuapp.realestatebk.exception.RealEsateException;
 
 public class MainService {
 
-	public static final int AGE_18 = 657435958;
+	public static final int AGE_18 = 18;
 
 	public static void checkStartDateAndEndDate(Date start, Date end, String messageErrorStart, String messageErrorEnd)
 			throws RealEsateException {
