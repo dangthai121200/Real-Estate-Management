@@ -1,15 +1,23 @@
 package com.herokuapp.realestatebk.test;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.Date;
 
+import com.herokuapp.realestatebk.exception.RealEsateException;
 
 public class MainTest {
-//	public static void main(String[] args) {
-//		PasswordEncoder passwordEncoder = new MessageDigestPasswordEncoder("MD5");
-//		System.out.println(passwordEncoder.encode("Thai0913442352."));
-//		//{bOr3T8Hc8saWV0sx1Kaq+gnc03sBBSgCO/eauRFVVgw=}b5588b33f990d4073ae749c99e4dc23e
-//	}
+
+	public static void checkBirthDate(Date birthdate, String message, String messageAge) throws RealEsateException {
+		Date current = new Date();
+		if (birthdate.after(current)) {
+			throw new RealEsateException(message);
+		}
+		int age = current.getYear() - birthdate.getYear();
+		if (age < 18) {
+			throw new RealEsateException(messageAge);
+		}
+	}
+
+	public static void main(String[] args) throws RealEsateException {
+		checkBirthDate(new Date("2004/1/1"), "error1", "error2");
+	}
 }

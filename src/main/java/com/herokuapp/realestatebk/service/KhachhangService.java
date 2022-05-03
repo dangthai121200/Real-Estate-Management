@@ -17,7 +17,6 @@ import com.herokuapp.realestatebk.form.FormKhachhang;
 import com.herokuapp.realestatebk.repository.HopdongchuyennhhuongRepository;
 import com.herokuapp.realestatebk.repository.HopdongkyguiRepository;
 import com.herokuapp.realestatebk.repository.KhachhangRespository;
-import com.herokuapp.realestatebk.repository.NhanvienRepository;
 import com.herokuapp.realestatebk.util.Role;
 
 @Service
@@ -51,15 +50,19 @@ public class KhachhangService {
 		return formKhachhangs;
 	}
 
-	public FormKhachhang addKhachhang(FormKhachhang fKhachhang) {
+	public FormKhachhang addKhachhang(FormKhachhang fKhachhang) throws RealEsateException {
+		MainService.checkBirthDate(fKhachhang.getNgaysinh(), MessageException.messBirthDayKhachhangInvalid,
+				MessageException.messBirthDayKhachhangLess18Age);
 		Khachhang khachhang = khachhangRespository.save(fKhachhang.coverToKhachhang());
 		FormKhachhang formKhachhangAdd = new FormKhachhang(khachhang);
 		return formKhachhangAdd;
 	}
 
-	public FormKhachhang editKhachhang(FormKhachhang fKhachhang) {
+	public FormKhachhang editKhachhang(FormKhachhang fKhachhang) throws RealEsateException {
 		Khachhang khachhangEdit = null;
 		FormKhachhang formKhachhangEdit = null;
+		MainService.checkBirthDate(fKhachhang.getNgaysinh(), MessageException.messBirthDayKhachhangInvalid,
+				MessageException.messBirthDayKhachhangLess18Age);
 		boolean flag = khachhangRespository.existsById(fKhachhang.getKhid());
 		if (flag) {
 			khachhangEdit = khachhangRespository.save(fKhachhang.coverToKhachhang());
