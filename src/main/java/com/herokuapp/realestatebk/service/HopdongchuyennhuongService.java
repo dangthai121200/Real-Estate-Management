@@ -38,6 +38,8 @@ public class HopdongchuyennhuongService {
 
 	public FormHopdongchuyennhuong addHopdongchuyennhuong(FormHopdongchuyennhuong formHopdongchuyennhuong)
 			throws RealEsateException {
+		MainService.checkStartDate(formHopdongchuyennhuong.getNgaylap(),
+				MessageException.messStartDateHopdongchuyennhuong);
 		Batdongsan batdongsan = batdongsanRepository.findById(formHopdongchuyennhuong.getBdsid()).get();
 		if (batdongsan != null) {
 			if (batdongsan.getHopdongdatcocs().size() > 0) // required batdongsan has hopdongdatcoc

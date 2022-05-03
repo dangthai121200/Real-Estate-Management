@@ -42,6 +42,8 @@ public class HopdongkyguiService {
 	}
 
 	public FormAddHopdongkygui addHopdongkygui(FormAddHopdongkygui formAddHopdongkygui) throws RealEsateException {
+		MainService.checkStartDateAndEndDate(formAddHopdongkygui.getNgaybd(), formAddHopdongkygui.getNgayketthuc(),
+				MessageException.messDateStartHopdongkyguis, MessageException.messDateEndHopdongkyguis);
 		Batdongsan batdongsan = batdongsanRepository.save(formAddHopdongkygui.getFormBatdongsan().coverToBatdongsan());
 		formAddHopdongkygui.setFormBatdongsan(new FormBatdongsan(batdongsan));
 		Hopdongkygui hopdongkygui = hopdongkyguiRepository.save(formAddHopdongkygui.coverToHopdongkygui());

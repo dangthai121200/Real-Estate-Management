@@ -1,12 +1,9 @@
 package com.herokuapp.realestatebk.exception;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-
-import java.sql.SQLIntegrityConstraintViolationException;
-
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -38,15 +35,12 @@ public class HandleException extends ResponseEntityExceptionHandler {
 		return ResponseEntity.badRequest().body(error);
 	}
 
-//	@ExceptionHandler(BindException.class)
-//	@ResponseStatus(HttpStatus.BAD_REQUEST)
-//	public String handleBindException(BindException e) {
-//		e.printStackTrace();
-//	    String errorMessage = "Request không hợp lệ";
-//	    if (e.getBindingResult().hasErrors())
-//	        e.getBindingResult().getAllErrors().get(0).getDefaultMessage();
-//	    return errorMessage;
-//	}
+	@ExceptionHandler(Exception.class)
+	public String handleBindException(Exception e) {
+		e.printStackTrace();
+		String errorMessage = "Request không hợp lệ";
+		return errorMessage;
+	}
 
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<String> SQLIntegrityConstraintViolationException(
@@ -68,6 +62,5 @@ public class HandleException extends ResponseEntityExceptionHandler {
 		}
 		return ResponseEntity.badRequest().body(message);
 	}
-
 
 }

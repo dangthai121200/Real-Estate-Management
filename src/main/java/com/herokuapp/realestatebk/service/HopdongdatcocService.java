@@ -39,6 +39,8 @@ public class HopdongdatcocService {
 	}
 
 	public Formhopdongdatcoc addHopdongdatcoc(Formhopdongdatcoc formhopdongdatcoc) throws RealEsateException {
+		MainService.checkStartDateAndEndDate(formhopdongdatcoc.getNgaylap(), formhopdongdatcoc.getNgayhethan(),
+				MessageException.messDateStartHDDatcoc, MessageException.messDateEndHDDatcoc);
 		Batdongsan batdongsan = batdongsanRepository.findById(formhopdongdatcoc.getBdsid()).get();
 		if (batdongsan != null) {
 			if (batdongsan.getHopdongkyguis().size() > 0) // required batdongsan has hopdongkygui
