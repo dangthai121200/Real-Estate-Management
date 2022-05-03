@@ -2,6 +2,8 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -39,6 +41,7 @@ public class FormKhachhang {
 	private String mota;
 
 	@NotNull(message = "Thiếu ngày sinh")
+	@Temporal(TemporalType.DATE)
 	private Date ngaysinh;
 
 	@NotNull(message = "thiếu số điện thoại")

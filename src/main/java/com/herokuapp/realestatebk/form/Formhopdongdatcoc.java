@@ -2,6 +2,8 @@ package com.herokuapp.realestatebk.form;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -16,9 +18,11 @@ public class Formhopdongdatcoc {
 	private float giatri;
 
 	@NotNull(message = "Thiếu ngày hết hạn")
+	@Temporal(TemporalType.DATE)
 	private Date ngayhethan;
 
 	@NotNull(message = "Thiếu ngày lập")
+	@Temporal(TemporalType.DATE)
 	private Date ngaylap;
 
 	@NotNull(message = "Thiếu trạng thái")

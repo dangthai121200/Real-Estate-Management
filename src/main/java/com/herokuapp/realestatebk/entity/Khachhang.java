@@ -58,7 +58,7 @@ public class Khachhang implements Serializable {
 	@Column(length = 300)
 	private String mota;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Date ngaysinh;
 
